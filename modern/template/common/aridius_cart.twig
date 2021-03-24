@@ -1,0 +1,142 @@
+<div id="aridius_cart" class="aridius_cart efect-mfp">
+<script>
+$(document).ready(function () {
+var bestsellerSwiper = new Swiper ('#cart_block .swiper-container', {
+slidesPerView: 4,
+loop: false,
+updateOnImagesReady:true,
+grabCursor:true,
+autoHeight:true,
+touchMoveStopPropagation: true,
+autoplayDisableOnInteraction: true,
+navigation: {
+nextEl: '.cart-button-next',
+prevEl: '.cart-button-prev',
+},
+breakpoints: {
+1199: {
+slidesPerView: 3,
+},
+479: {
+slidesPerView: 2,
+},
+},
+})
+});
+</script>
+<div class="aridius_cart_head">
+<button title="close" type="button" class="mfp-close close_button">&#215;</button>
+<div class="name-popup">{{ heading_title }}</div>
+</div>
+<div class="aridius_cart_body">
+{% if (products or vouchers) %}
+<table class="table table-striped">
+{% for key,product in products %}
+<tr>
+<td class="text-left foto_cart">{% if (product['thumb']) %}
+<a href="{{ product['href'] }}"><img src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" class="img-thumbnail" /></a>
+{% endif %}</td>
+<td class="text-left text_name"><a href="{{ product['href'] }}">{{ product['name'] }}</a>
+{% if (product['option']) %}
+{% for option in product['option'] %}
+<br />
+- <small>{{ option['name'] }} {{ option['value'] }}</small>
+{% endfor %}
+{% endif %}
+{% if (product['recurring']) %}
+<br />
+- <small>{{ text_recurring }} {{ product['recurring'] }}</small>
+{% endif %}</td>
+<td class="text-right">
+<div class="pull-left">
+<input type="text" name="quantity" onchange="cart.update_aridiuscart('{{ product['cart_id'] }}',this.value);" value="{{ product['quantity'] }}" data-toggle="tooltip" title="" size="2" id="input-quantity{{ key }}" class="form-control" />
+</div>
+<div class="custom pull-left hidden-xs">
+<button type="button" onclick="cart.update_aridiuscart('{{ product['cart_id'] }}',{{ product['quantity'] }} + 1);" id="plus{{ key }}" class="items-count" ><i class="fa fa-angle-up">&nbsp;</i></button>
+<button type="button" onclick="cart.update_aridiuscart('{{ product['cart_id'] }}',{{ product['quantity'] }} - 1);" id="minus{{ key }}" class="items-count"><i class="fa fa-angle-down">&nbsp;</i></button>
+</div></td>
+<td class="text-right">{{ product['total'] }}</td>
+<td class="text-center"><button type="button" onclick="cart.remove('{{ product['cart_id'] }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
+</tr>
+<script ><!--
+function minus{{ key }}(){
+if(document.getElementById("input-quantity{{ key }}").value <= 0) {
+return false;
+}
+document.getElementById("input-quantity{{ key }}").value --;
+};
+function plus{{ key }}(){
+document.getElementById("input-quantity{{ key }}").value ++;
+};
+$('#minus{{ key }}').click(function(){
+minus{{ key }}();
+});
+$('#plus{{ key }}').click(function(){
+plus{{ key }}();
+});
+//--></script>
+{% endfor %}
+{% for voucher in vouchers %}
+<tr>
+<td class="text-center"></td>
+<td class="text-left">{{ voucher['description'] }}</td>
+<td class="text-right">x&nbsp;1</td>
+<td class="text-right">{{ voucher['amount'] }}</td>
+<td class="text-center text-danger"><button type="button" onclick="voucher.remove('{{ voucher['key'] }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
+</tr>
+{% endfor %}
+</table>
+<div>
+<table class="table table-bordered">
+{% for total in totals %}
+<tr>
+<td class="text-right"><strong>{{ total.title }}</strong></td>
+<td class="text-right">{{ total.text }}</td>
+</tr>
+{% endfor %}
+</table>
+<div class="cart">
+<a class="btn-cart" href="javascript:void(0)" onclick = "$.magnificPopup.close()" role="button"><i class="fa fa-shopping-cart"></i> {{ text_continue }}</a>
+<a class="btn-cart" href="{{ checkout }}" role="button"><i class="fa fa-share"></i> {{ text_checkout }}</a>
+</div>
+</div>
+{% if (products_accessories) %}
+<div id="cart_block">
+<div class="header_accessories title_h">{{ text_associated_product }}</div>
+<div class="swiper-container">
+<div class="swiper-wrapper">
+{% for key,accessories in products_accessories %}
+<div class="swiper-slide">
+<div class="swiper-slide2">
+<a href="{{ accessories['href'] }}"><img src="{{ accessories['thumb'] }}" alt="{{ accessories['name'] }}" title="{{ accessories['name'] }}" class="img-responsive center-add_img" /></a>
+<div class="accessories_name">{{ accessories['name'] }}</div>
+{% if (accessories['price']) %}
+<p class="price">
+{% if (not accessories['special']) %}
+{{ accessories['price'] }}
+{% else %}
+<span class="price-new">{{ accessories['special'] }}</span> <span class="price-old">{{ accessories['price'] }}</span>
+{% endif %}
+{% if (accessories['tax']) %}
+<span class="price-tax">{{ text_tax }} {{ accessories['tax'] }}</span>
+{% endif %}
+</p>
+{% endif %}
+<button type="button" class="btn-cartpr" onclick="cart.add('{{ accessories['product_id'] }}','{{ accessories['minimum'] }}')"><i class="fa fa-shopping-cart"></i> {{ button_cart }}</button>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+<div class="cart-button-prev modern-button-prev"></div>
+<div class="cart-button-next modern-button-next"></div>
+</div>
+{% endif %}
+{% else %}
+<p class="text-center">{{ text_empty }}</p>
+<script>
+setTimeout(function(){$.magnificPopup.close()},2e3);
+</script>
+{% endif %}
+</div>
+</div>

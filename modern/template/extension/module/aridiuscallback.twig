@@ -1,0 +1,13 @@
+<script>
+$(document).ready(function(){$(document).on("click","#call-order-submit",function(){$('.mfp-content').append('<div class="loader"><div class="bag_quickview"></div></div>'); $.ajax({url:"index.php?route=extension/module/aridiuscallback/write",type:"post",dataType:"json",data:$("input[name='aridiuscallback_contact'],input[name='aridiuscallback_firstname'],input[name='aridiuscallback_email'],input[name='aridiuscallback_timein'],input[name='aridiuscallback_timeoff'],textarea[name='aridiuscallback_comment']"),success:function(a){a.error&&($("div.loader").remove(),$(".aridiuscallback .error").remove(),a.error.firstname?$(".aridiuscallback_errorfirstname").html('<span class="text-danger">'+a.error.firstname+"</span>").show():$(".aridiuscallback_errorfirstname").hide().empty(),a.error.contact?$(".aridiuscallback_errorcontact").html('<span class="text-danger">'+a.error.contact+"</span>").show():$(".aridiuscallback_errorcontact").hide().empty(),a.error.email?$(".aridiuscallback_erroremail").html('<span class="text-danger">'+a.error.email+"</span>").show():$(".aridiuscallback_erroremail").hide().empty()),a.success&&($("div.loader").remove(),setTimeout(function(){$.magnificPopup.close()},5500),$.magnificPopup.open({items:{src:"index.php?route=extension/module/aridiuscallback/success"},type:"ajax"})){{ '}}' }})}),$(".call-order").bind("click",function(){$.magnificPopup.open({closeBtnInside:!0,fixedContentPos:!0,items:{src:"index.php?route=extension/module/aridiuscallback/getForm"},type:"ajax",mainClass:"mfp-fade"})})});
+</script>
+{% if (modern_callleft != 1) %} 
+<a class ="call-order" >
+<div class="container-circle fix_scroll">
+<div class="content">
+<div class="circle"></div>
+<div class="circleout" data-toggle="tooltip" title="{{ buttoncallback_title }}"><i class="fa fa-phone"></i></div>
+</div>
+</div>
+</a>
+{% endif %} 

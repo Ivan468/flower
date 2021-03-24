@@ -1,0 +1,60 @@
+<script>
+!function(a){a.fn.dcAccordion=function(b){var c={classParent:"dcjq-parent",classActive:"active",classArrow:"dcjq-icon",classCount:"dcjq-count",classExpand:"dcjq-current-parent",classDisable:"",eventType:"click",hoverDelay:300,menuClose:!0,autoClose:!0,autoExpand:!1,speed:"slow",saveState:!0,disableLink:!0,showCount:!1},b=a.extend(c,b);this.each(function(){function g(){$arrow='<span class="'+c.classArrow+'"></span>';var b=c.classParent+"-li";$objSub.show(),a("li",d).each(function(){a("> ul",this).length>0&&(a(this).addClass(b),a("> a",this).addClass(c.classParent).append($arrow))}),$objSub.hide(),c.classDisable&&a("li."+c.classDisable+" > ul").show(),1==c.showCount&&a("li."+b,d).each(function(){if(1==c.disableLink)var b=parseInt(a("ul a:not(."+c.classParent+")",this).length);else var b=parseInt(a("ul a",this).length);a("> a",this).append(' <span class="'+c.classCount+'">('+b+")</span>")})}function h(){$activeLi=a(this).parent("li"),$parentsLi=$activeLi.parents("li"),$parentsUl=$activeLi.parents("ul"),1==c.autoClose&&l($parentsLi,$parentsUl),a("> ul",$activeLi).is(":visible")?(a("ul",$activeLi).slideUp(c.speed),a("a",$activeLi).removeClass(classActive)):(a(this).siblings("ul").slideToggle(c.speed),a("> a",$activeLi).addClass(classActive))}function i(){}function j(){}function k(){1==c.menuClose&&$objSub.slideUp(c.speed)}function l(b,e){a("ul",d).not(e).slideUp(c.speed),a("a",d).removeClass(classActive),a("> a",b).addClass(classActive)}function m(){$objSub.hide();var b=a("a."+classActive,d).parents("li");a("> a",b).addClass(classActive),$allActiveLi=a("a."+classActive,d),a($allActiveLi).siblings("ul").show()}var d=this;if($objLinks=a("li > div",d),$objSub=a("li > ul",d),c.classDisable&&($objLinks=a("li:not(."+c.classDisable+") > a",d),$objSub=a("li:not(."+c.classDisable+") > ul",d)),classActive=c.classActive,g(),1==c.autoExpand&&a("li."+c.classExpand+" > a").addClass(classActive),m(),"hover"==c.eventType){var e={sensitivity:2,interval:c.hoverDelay,over:h,timeout:c.hoverDelay,out:i};$objLinks.hoverIntent(e);var f={sensitivity:2,interval:1e3,over:j,timeout:1e3,out:k};a(d).hoverIntent(f),1==c.disableLink&&$objLinks.click(function(b){a(this).siblings("ul").length>0&&b.preventDefault()})}else $objLinks.click(function(b){$activeLi=a(this).parent("li"),$parentsLi=$activeLi.parents("li"),$parentsUl=$activeLi.parents("ul"),1==c.disableLink&&a(this).siblings("ul").length>0&&b.preventDefault(),1==c.autoClose&&l($parentsLi,$parentsUl),a("> ul",$activeLi).is(":visible")?(a("ul",$activeLi).slideUp(c.speed),a("a",$activeLi).removeClass(classActive)):(a(this).siblings("ul").slideToggle(c.speed),a("> a",$activeLi).addClass(classActive))})}){{ '}}' }}(jQuery);
+</script>
+<div class="box">
+<div class="box-heading">
+<h3 class="title_h title_center">{{ heading_title_accord }}</h3>
+</div>
+<div class="box-content">
+<div class="box-category">
+<ul class="accordion"  id="accordion">
+{% for category in categories %} 
+<li>
+{% if (category['category_id'] == category_id) %} 
+<a href="{{ category['href'] }}" class="active"><span class="carcat"><i class="carcat-arrow fa fa-caret-down"></i></span>&nbsp;&nbsp;{{ category['name'] }}</a>
+<div class="dcjq-icon">&nbsp;&nbsp;&nbsp;</div>
+{% elseif (category['children']) %} 
+<a href="{{ category['href'] }}"><span class="carcat2"><i class="carcat-arrow2 fa fa-caret-right"></i></span>&nbsp; {{ category['name'] }}</a>
+<div class="dcjq-icon">&nbsp;&nbsp;&nbsp;</div>
+{% else %} 
+<a href="{{ category['href'] }}"><span class="carcat2"><i class="carcat-arrow2 fa fa-caret-right"></i></span>&nbsp; {{ category['name'] }}</a>
+{% endif %} 
+{% if (category['children']) %} 
+<ul>
+{% for child in category['children'] %} 
+<li>
+{% if (child['category_id'] == child_id) %} 
+<a href="{{ child['href'] }}" class="active"><i class="fa fa-caret-down"></i> {{ child['name'] }}</a>
+<div class="dcjq-icon">&nbsp;&nbsp;&nbsp;</div>
+{% else %} 
+<a href="{{ child['href'] }}"><i class="fa fa-caret-right"></i> {{ child['name'] }}</a>
+<div class="dcjq-icon">&nbsp;&nbsp;&nbsp;</div>
+{% endif %} 
+<!--3lv-->
+{% if (child['sister_id']) %} 
+<ul>
+{% for sisters in child['sister_id'] %} 
+<li>
+{% if (sisters['category_id'] == sisters_id) %} 
+<a href="{{ sisters['href'] }}" class="active"> - {{ sisters['name'] }}</a>
+{% else %} 
+<a href="{{ sisters['href'] }}"> - {{ sisters['name'] }}</a>
+{% endif %} 
+</li>
+{% endfor %} 
+</ul>
+{% endif %} 
+<!--3lv-->
+</li>
+{% endfor %} 
+</ul>
+{% endif %} 
+</li>
+{% endfor %} 
+</ul>
+</div>
+</div>
+</div>
+<script>
+$(document).ready(function(a){a("#accordion").dcAccordion({eventType:"click"})});
+</script>

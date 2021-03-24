@@ -1,0 +1,33 @@
+<script>
+$(document).ready(function() {
+var popuptext_dateModalShow = localStorage.getItem("popuptext_dateModalShow{{ module_id }}");
+var popuptext_currentDate = new Date().toString();
+var popuptext_currentDate2 = new Date();
+var popuptext_currentDay = popuptext_currentDate2.getDay();
+var popuptext_period = (((new Date(popuptext_currentDate)).getTime())- ((new Date(popuptext_dateModalShow)).getTime()))/60000;
+if ( ((popuptext_dateModalShow==null) || (popuptext_period>{{ aridius_popuptext_time }}))
+{% if (aridius_popuptext_day == '0') %}
+&& ((popuptext_currentDay==0) || (popuptext_currentDay==1) || (popuptext_currentDay==2) || (popuptext_currentDay==3) || (popuptext_currentDay==4) || (popuptext_currentDay==5) || (popuptext_currentDay==6))
+{% elseif (aridius_popuptext_day == '2') %}
+&& ((popuptext_currentDay==1) || (popuptext_currentDay==2) || (popuptext_currentDay==3) || (popuptext_currentDay==4) || (popuptext_currentDay==5))
+{% elseif (aridius_popuptext_day == '3') %}
+&& ((popuptext_currentDay==0) || (popuptext_currentDay==6))
+{% endif %}
+) {
+var mfp = $.magnificPopup.instance;
+setTimeout(function(){
+localStorage.setItem("popuptext_dateModalShow{{ module_id }}", popuptext_currentDate);
+if (!mfp.isOpen && sessionStorage.getItem('popup_open') != '1') {
+$.magnificPopup.open({
+fixedContentPos: true,
+items: {
+src: '<div class="mailModal efect-mfp"><div class="mailModalbor"><button title="close" type="button" class="mfp-close">&#215;</button><div class="name-popup">{{ aridius_popuptext_name }}</div></div><div class="mailModal3">{{ aridius_popuptext_description }}</div></div>',
+type: 'inline'
+},
+mainClass: 'mfp-fade'
+});
+}
+},{{ aridius_popuptext_delay }}*1000);
+}
+});
+</script>

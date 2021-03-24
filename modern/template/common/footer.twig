@@ -1,0 +1,403 @@
+
+{{ content_mail }}
+<script>
+//maskedinput
+!function(a){"function"===typeof define&&define.amd?define(["jquery"],a):a("object"===typeof exports?require("jquery"):jQuery)}(function(a){var f,b=navigator.userAgent,c=/iphone/i.test(b),d=/chrome/i.test(b),e=/android/i.test(b);a.mask={definitions:{'{% if (modern_mask_tel) %}{{ modern_mask_tel }}{% else %}9{% endif %}':"[0-9]",a:"[A-Za-z]","*":"[A-Za-z0-9]"},autoclear:!0,dataName:"rawMaskFn",placeholder:"_"},a.fn.extend({caret:function(a,b){var c;if(0!==this.length&&!this.is(":hidden")&&this.get(0)===document.activeElement)return"number"==typeof a?(b="number"===typeof b?b:a,this.each(function(){this.setSelectionRange?this.setSelectionRange(a,b):this.createTextRange&&(c=this.createTextRange(),c.collapse(!0),c.moveEnd("character",b),c.moveStart("character",a),c.select())})):(this[0].setSelectionRange?(a=this[0].selectionStart,b=this[0].selectionEnd):document.selection&&document.selection.createRange&&(c=document.selection.createRange(),a=0-c.duplicate().moveStart("character",-1e5),b=a+c.text.length),{begin:a,end:b})},unmask:function(){return this.trigger("unmask")},mask:function(b,g){var h,i,j,k,l,m,n,o;if(!b&&this.length>0){h=a(this[0]);var p=h.data(a.mask.dataName);return p?p():void 0}return g=a.extend({autoclear:a.mask.autoclear,placeholder:a.mask.placeholder,completed:null},g),i=a.mask.definitions,j=[],k=n=b.length,l=null,b=String(b),a.each(b.split(""),function(a,b){"?"==b?(n--,k=a):i[b]?(j.push(new RegExp(i[b])),null===l&&(l=j.length-1),a<k&&(m=j.length-1)):j.push(null)}),this.trigger("unmask").each(function(){function s(){if(g.completed){for(var a=l;a<=m;a++)if(j[a]&&p[a]===t(a))return;g.completed.call(h){{ '}}' }}function t(a){return g.placeholder.charAt(a<g.placeholder.length?a:0)}function u(a){for(;++a<n&&!j[a];);return a}function v(a){for(;--a>=0&&!j[a];);return a}function w(a,b){var c,d;if(!(a<0)){for(c=a,d=u(b);c<n;c++)if(j[c]){if(!(d<n&&j[c].test(p[d])))break;p[c]=p[d],p[d]=t(d),d=u(d)}D(),h.caret(Math.max(l,a)){{ '}}' }}function x(a){var b,c,d,e;for(b=a,c=t(a);b<n;b++)if(j[b]){if(d=u(b),e=p[b],p[b]=c,!(d<n&&j[d].test(e)))break;c=e{{ '}}' }}function y(){var c=h.val(),d=h.caret(),e=function(){a.proxy(a.fn.caret,h,d.begin,d.begin)()};if(o&&o.length&&o.length>c.length){for(var f=E(!0),g=d.end;g>0&&!j[g-1];)g--;0===g&&(g=f),d.begin=g,setTimeout(function(){e(),s()},0)}else d.begin=E(!0),setTimeout(function(){e(),s()},0)}function z(){E(),h.val()!=r&&h.change()}function A(a){if(!h.prop("readonly")){var d,e,f,b=a.which||a.keyCode;o=h.val(),8===b||46===b||c&&127===b?(d=h.caret(),e=d.begin,f=d.end,f-e===0&&(e=46!==b?v(e):f=u(e-1),f=46===b?u(f):f),C(e,f),w(e,f-1),a.preventDefault()):13===b?z.call(this,a):27===b&&(h.val(r),h.caret(0,E()),a.preventDefault()){{ '}}' }}function B(b){if(!h.prop("readonly")){var f,g,i,c=b.which||b.keyCode,d=h.caret();if(!(b.ctrlKey||b.altKey||b.metaKey||c<32)&&c&&13!==c){if(d.end-d.begin!==0&&(C(d.begin,d.end),w(d.begin,d.end-1)),f=u(d.begin-1),f<n&&(g=String.fromCharCode(c),j[f].test(g))){if(x(f),p[f]=g,D(),i=u(f),e){var k=function(){a.proxy(a.fn.caret,h,i)()};setTimeout(k,0)}else h.caret(i);d.begin<=m&&s()}b.preventDefault(){{ '}}' }}}function C(a,b){var c;for(c=a;c<b&&c<n;c++)j[c]&&(p[c]=t(c))}function D(){h.val(p.join(""))}function E(a){var d,e,f,b=h.val(),c=-1;for(d=0,f=0;d<n;d++)if(j[d]){for(p[d]=t(d);f++<b.length;)if(e=b.charAt(f-1),j[d].test(e)){p[d]=e,c=d;break}if(f>b.length){C(d+1,n);break{{ '}}' }}else p[d]===b.charAt(f)&&f++,d<k&&(c=d);return a?D():c+1<k?g.autoclear||p.join("")===q?(h.val()&&h.val(""),C(0,n)):D():(D(),h.val(h.val().substring(0,c+1))),k?d:l}var h=a(this),p=a.map(b.split(""),function(a,b){return"?"!=a?i[a]?t(b):a:void 0}),q=p.join(""),r=h.val();h.data(a.mask.dataName,function(){return a.map(p,function(a,b){return j[b]&&a!=t(b)?a:null}).join("")}),h.one("unmask",function(){h.off(".mask").removeData(a.mask.dataName)}).on("focus.mask",function(){if(!h.prop("readonly")){clearTimeout(f);var a;r=h.val(),a=E(),f=setTimeout(function(){h.get(0)===document.activeElement&&(D(),a==b.replace("?","").length?h.caret(0,a):h.caret(a))},10){{ '}}' }}).on("blur.mask",z).on("keydown.mask",A).on("keypress.mask",B).on("input.mask paste.mask",function(){h.prop("readonly")||setTimeout(function(){var a=E(!0);h.caret(a),s()},0)}),d&&e&&h.off("input.mask").on("input.mask",y),E()}){{ '}}' }})});
+</script>
+<script>
+//aridius_fastorder
+$(document).ready(function(){$(document).on("click touchstart","#fast-order-submit",function(){$(".mfp-content").append('<div class="loader"><div class="bag_quickview"></div></div>'),$.ajax({url:"index.php?route=extension/module/aridiusfastorder/write",type:"post",dataType:"json",data:$("#product input[type='text'], #product input[type='hidden'], #product input[type='radio']:checked, #product input[type='checkbox']:checked, #product select, #product textarea,input[name='aridiusfastorder_contact'],input[name='aridiusfastorder_firstname'],input[name='aridiusfastorder_email'],textarea[name='aridiusfastorder_comment'],input[name='fo_total_price']"),success:function(a){a.error&&($("div.loader").remove(),$(".aridiusfastorder .error").remove(),a.error.firstname?$(".aridiusfastorder_errorfirstname").html('<span class="text-danger">'+a.error.firstname+"</span>").show():$(".aridiusfastorder_errorfirstname").hide().empty(),a.error.quantity?$(".aridiusfastorder_errorquantity").html('<span class="text-danger">'+a.error.quantity+"</span>").show():$(".aridiusfastorder_errorquantity").hide().empty(),a.error.contact?$(".aridiusfastorder_errorcontact").html('<span class="text-danger">'+a.error.contact+"</span>").show():$(".aridiusfastorder_errorcontact").hide().empty(),a.error.email?$(".aridiusfastorder_erroremail").html('<span class="text-danger">'+a.error.email+"</span>").show():$(".aridiusfastorder_erroremail").hide().empty()),a.success&&($("div.loader").remove(),setTimeout(function(){$.magnificPopup.close()},5500),$.magnificPopup.open({items:{src:"index.php?route=extension/module/aridiusfastorder/success"},type:"ajax"})){{ '}}' }})}),$("#fast-order").on("click",function(){$.ajax({url:"index.php?route=extension/module/aridiusfastorder/validOrder",type:"post",data:$("#product input[type='text'], #product input[type='hidden'], #product input[type='radio']:checked, #product input[type='checkbox']:checked, #product select, #product textarea"),dataType:"json",beforeSend:function(){$("#fast-order").button("loading")},complete:function(){$("#fast-order").button("reset")},success:function(a){if($(".alert, .text-danger").remove(),$(".form-group").removeClass("has-error"),a.error){if(a.error.option)for(i in a.error.option){var b=$("#input-option"+i.replace("_","-"));b.parent().hasClass("input-group")?b.parent().after('<div class="text-danger">'+a.error.option[i]+"</div>"):b.after('<div class="text-danger">'+a.error.option[i]+"</div>")}a.error.recurring&&$("select[name='recurring_id']").after('<div class="text-danger">'+a.error.recurring+"</div>"),$(".text-danger").parent().addClass("has-error")}if(a.success){var c=$(".autocalc-product-special").html();"undefined"==typeof c&&(c=$(".autocalc-product-price").html());var d=$(".autocalc-product-price").html();"undefined"==typeof d&&(d=$(".autocalc-product-special").html()),$.magnificPopup.open({closeBtnInside:!0,fixedContentPos:!0,items:{src:"index.php?route=extension/module/aridiusfastorder/getForm&product_fastid="+$("input[name=product_id]").val()+"&formated_special="+c+"&quantity="+$("input[name=quantity]").val()+"&formated_price="+d},type:"ajax",mainClass:"mfp-fade"}){{ '}}' }},error:function(a,b,c){alert(c+"\r\n"+a.statusText+"\r\n"+a.responseText){{ '}}' }})})});
+</script>
+<script>
+//aridius_instock
+$(document).on("click touchstart","#instock-order-submit",function(){$(".mfp-content").append('<div class="loader"><div class="bag_quickview"></div></div>');var b=$(this).data("productId"),c=$("input[name=aridiusinstock_contact]").val(),d=$("input[name=aridiusinstock_firstname]").val(),e=$("input[name=aridiusinstock_email]").val();$.ajax({url:"index.php?route=extension/module/aridiusinstock/write",type:"post",dataType:"json",data:{product_id:b,aridiusinstock_contact:c,aridiusinstock_firstname:d,aridiusinstock_email:e},success:function(a){a.error&&($("div.loader").remove(),$(".aridiusinstock .error").remove(),a.error.firstname?$(".aridiusinstock_errorfirstname").html('<span class="text-danger">'+a.error.firstname+"</span>").show():$(".aridiusinstock_errorfirstname").hide().empty(),a.error.contact?$(".aridiusinstock_errorcontact").html('<span class="text-danger">'+a.error.contact+"</span>").show():$(".aridiusinstock_errorcontact").hide().empty(),a.error.email?$(".aridiusinstock_erroremail").html('<span class="text-danger">'+a.error.email+"</span>").show():$(".aridiusinstock_erroremail").hide().empty()),a.success&&($("div.loader").remove(),setTimeout(function(){$.magnificPopup.close()},5500),$.magnificPopup.open({items:{src:"index.php?route=extension/module/aridiusinstock/success"},type:"ajax"}))}})});var instock={add:function(a){$.ajax({url:"index.php?route=extension/module/aridiusinstock/validOrder",type:"post",data:"product_id="+a,dataType:"json",success:function(){$(".alert, .text-danger").remove(),$(".form-group").removeClass("has-error"),$.magnificPopup.open({closeBtnInside:!0,fixedContentPos:!0,items:{src:"index.php?route=extension/module/aridiusinstock/getForm&product_inid="+a},type:"ajax",mainClass:"mfp-fade"})},error:function(a,b,c){alert(c+"\r\n"+a.statusText+"\r\n"+a.responseText)}})},remove:function(){}};
+</script>
+<script>
+//aridius_undersell
+$(document).ready(function(){$(document).on("click touchstart","#undersell-order-submit",function(){$(".mfp-content").append('<div class="loader"><div class="bag_quickview"></div></div>'),$.ajax({url:"index.php?route=extension/module/aridiusundersell/write",type:"post",dataType:"json",data:$("#product input[type='text'], #product input[type='hidden'], #product input[type='radio']:checked, #product input[type='checkbox']:checked, #product select, #product textarea,input[name='aridiusundersell_contact'],input[name='aridiusundersell_firstname'],input[name='aridiusundersell_email'],textarea[name='aridiusundersell_comment'],input[name='aridiusundersell_link'],input[name='fo_total_price']"),success:function(a){a.error&&($("div.loader").remove(),$(".aridiusundersell .error").remove(),a.error.firstname?$(".aridiusundersell_errorfirstname").html('<span class="text-danger">'+a.error.firstname+"</span>").show():$(".aridiusundersell_errorfirstname").hide().empty(),a.error.quantity?$(".aridiusundersell_errorquantity").html('<span class="text-danger">'+a.error.quantity+"</span>").show():$(".aridiusundersell_errorquantity").hide().empty(),a.error.contact?$(".aridiusundersell_errorcontact").html('<span class="text-danger">'+a.error.contact+"</span>").show():$(".aridiusundersell_errorcontact").hide().empty(),a.error.email?$(".aridiusundersell_erroremail").html('<span class="text-danger">'+a.error.email+"</span>").show():$(".aridiusundersell_erroremail").hide().empty(),a.error.link?$(".aridiusundersell_errorlink").html('<span class="text-danger">'+a.error.link+"</span>").show():$(".aridiusundersell_errorlink").hide().empty()),a.success&&($("div.loader").remove(),setTimeout(function(){$.magnificPopup.close()},5500),$.magnificPopup.open({items:{src:"index.php?route=extension/module/aridiusundersell/success"},type:"ajax"}))}})}),$("#undersell-order").on("click",function(){$.ajax({url:"index.php?route=extension/module/aridiusundersell/validOrder",type:"post",data:$("#product input[type='text'], #product input[type='hidden'], #product input[type='radio']:checked, #product input[type='checkbox']:checked, #product select, #product textarea"),dataType:"json",beforeSend:function(){$("#fast-order").button("loading")},complete:function(){$("#fast-order").button("reset")},success:function(){$(".alert, .text-danger").remove(),$(".form-group").removeClass("has-error");var b=$(".autocalc-product-special").html();"undefined"==typeof b&&(b=$(".autocalc-product-price").html());var c=$(".autocalc-product-price").html();"undefined"==typeof c&&(c=$(".autocalc-product-special").html()),$.magnificPopup.open({closeBtnInside:!0,removalDelay:500,fixedContentPos:!0,items:{src:"index.php?route=extension/module/aridiusundersell/getForm&product_undersellid="+$("input[name=product_id]").val()+"&formated_special="+b+"&formated_price="+c+"&quantity="+$("input[name=quantity]").val()},type:"ajax",mainClass:"mfp-fade"})},error:function(a,b,c){alert(c+"\r\n"+a.statusText+"\r\n"+a.responseText)}})})});
+</script>
+<script>
+//aridiusquickview
+function Spinner_page(a){a?($("#Spinner_page").html('<i class="fa fa-spinner fa-pulse fa_size"></i>'),$("#Spinner_page").show()):($("#Spinner_page").html(""),$("#Spinner_page").hide())}function quickview_open(a){$("body").prepend('<div id="Spinner_page"></div><div class="bag_quickview2"></div>'),$.ajax({type:"post",data:"aridius_quickview=1",url:"index.php?route=product/product&product_id="+a,beforeSend:function(){Spinner_page(!0)},complete:function(){$(".bag_quickview2").hide(),$("#Spinner_page").hide(),Spinner_page(!1)},success:function(a){$(".bag_quickview2").hide(),$data=$(a);var b=$(a).html();$.magnificPopup.open({closeBtnInside:!0,removalDelay:500,fixedContentPos:!0,items:{src:b,type:"inline"},callbacks:{open:function(){get_timerpopup(!0)},close:function(){get_timerpopup(!1),$(".zoomContainer").remove(),$("#Spinner_page").remove(),$(".bag_quickview2").remove()}},mainClass:"mfp-fade quickview_mfp"})}})}
+</script>
+<script>
+!function(e){function t(n){if(o[n])return o[n].exports;var r=o[n]={i:n,l:!1,exports:{}};return e[n].call(r.exports,r,r.exports,t),r.l=!0,r.exports}var o={};t.m=e,t.c=o,t.d=function(e,o,n){t.o(e,o)||Object.defineProperty(e,o,{configurable:!1,enumerable:!0,get:n})},t.n=function(e){var o=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(o,"a",o),o},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t,o){"use strict";var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},r=o(1),u={passive:!0,capture:!1},i=["scroll","wheel","touchstart","touchmove","touchenter","touchend","touchleave","mouseout","mouseleave","mouseup","mousedown","mousemove","mouseenter","mousewheel","mouseover"],s=function(e,t){return void 0!==e?e:-1!==i.indexOf(t)&&u.passive},c=function(e){var t=Object.getOwnPropertyDescriptor(e,"passive");return t&&!0!==t.writable&&void 0===t.set?Object.assign({},e):e};if((0,r.eventListenerOptionsSupported)()){var p=EventTarget.prototype.addEventListener;!function(e){EventTarget.prototype.addEventListener=function(t,o,r){var i="object"===(void 0===r?"undefined":n(r))&&null!==r,p=i?r.capture:r;r=i?c(r):{},r.passive=s(r.passive,t),r.capture=void 0===p?u.capture:p,e.call(this,t,o,r)},EventTarget.prototype.addEventListener._original=e}(p)}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.eventListenerOptionsSupported=function(){var e=!1;try{var t=Object.defineProperty({},"passive",{get:function(){e=!0}});window.addEventListener("test",null,t),window.removeEventListener("test",null,t)}catch(e){}return e}}]);
+</script>
+<!--rating-->
+<script>
+!function(a,b){"use strict";function d(d,e){this.$input=a(d),this.$rating=a("<span></span>").insertBefore(this.$input),this.options=function(d){return d.start=parseInt(d.start,10),d.start=isNaN(d.start)?b:d.start,d.stop=parseInt(d.stop,10),d.stop=isNaN(d.stop)?d.start+c||b:d.stop,d.step=parseInt(d.step,10)||b,d.fractions=Math.abs(parseInt(d.fractions,10))||b,d.scale=Math.abs(parseInt(d.scale,10))||b,d=a.extend({},a.fn.ar_rating.defaults,d),d.filledSelected=d.filledSelected||d.filled,d}(a.extend({},this.$input.data(),e)),this._init()}var c=5;d.prototype={_init:function(){for(var c=this,d=this.$input,e=this.$rating,f=function(a){return function(c){d.prop("disabled")||d.prop("readonly")||d.data("readonly")!==b||a.call(this,c)}},g=1;g<=this._rateToIndex(this.options.stop);g++){var h=a('<div class="rating-symbol"></div>').css({display:"inline-block",position:"relative"});a('<div class="rating-symbol-background '+this.options.empty+'"></div>').appendTo(h),a('<div class="rating-symbol-foreground"></div>').append("<span></span>").css({display:"inline-block",position:"absolute",overflow:"hidden",left:0,width:0}).appendTo(h),e.append(h),this.options.extendSymbol.call(h,this._indexToRate(g))}this._updateRate(d.val()),d.on("change",function(){c._updateRate(a(this).val())});var j,i=function(b){var d=a(b.currentTarget),e=(b.pageX||b.originalEvent.touches[0].pageX)-d.offset().left;return e=e>0?e:.1*c.options.scale,d.index()+e/d.width()};e.on("mousedown touchstart",".rating-symbol",f(function(a){d.val(c._indexToRate(i(a))).change()})).on("mousemove touchmove",".rating-symbol",f(function(d){var e=c._roundToFraction(i(d));e!==j&&(j!==b&&a(this).trigger("rating.rateleave"),j=e,a(this).trigger("rating.rateenter",[c._indexToRate(j)])),c._fillUntil(e)})).on("mouseleave touchend",".rating-symbol",f(function(){j=b,a(this).trigger("rating.rateleave"),c._fillUntil(c._rateToIndex(parseFloat(d.val())))}))},_fillUntil:function(a){var b=this.$rating,c=Math.floor(a);b.find(".rating-symbol-background").css("visibility","visible").slice(0,c).css("visibility","hidden");var d=b.find(".rating-symbol-foreground");d.width(0),d.slice(0,c).width("auto").find("span").attr("class",this.options.filled),d.eq(a%1?c:c-1).find("span").attr("class",this.options.filledSelected),d.eq(c).width(a%1*100+"%")},_indexToRate:function(a){return this.options.start+Math.floor(a)*this.options.step+this.options.step*this._roundToFraction(a%1)},_rateToIndex:function(a){return(a-this.options.start)/this.options.step},_roundToFraction:function(a){var b=Math.ceil(a%1*this.options.fractions)/this.options.fractions,c=Math.pow(10,this.options.scale);return Math.floor(a)+Math.floor(b*c)/c},_contains:function(a){var b=this.options.step>0?this.options.start:this.options.stop,c=this.options.step>0?this.options.stop:this.options.start;return b<=a&&a<=c},_updateRate:function(a){var b=parseFloat(a);this._contains(b)&&(this._fillUntil(this._rateToIndex(b)),this.$input.val(b))},rate:function(a){return a===b?this.$input.val():void this._updateRate(a)}},a.fn.ar_rating=function(b){var e,c=Array.prototype.slice.call(arguments,1);return this.each(function(){var f=a(this),g=f.data("rating");g||f.data("rating",g=new d(this,b)),"string"===typeof b&&"_"!==b[0]&&(e=g[b].apply(g,c))}),e||this},a.fn.ar_rating.defaults={filled:"glyphicon glyphicon-star",filledSelected:b,empty:"glyphicon glyphicon-star-empty",start:0,stop:c,step:1,fractions:1,scale:3,extendSymbol:function(){}},a(function(){a("input.rating").ar_rating()})}(jQuery);
+</script>
+<div class="footer">
+<div class="container">
+<div class="row">
+<script>
+window.bLazy = new Blazy({
+});
+</script>
+{% if (modern_show_fluid_map_footer == '0' and modern_map_noapi == '1') %}
+<script class="b-lazy" id="scr_map" data-src="https://maps.googleapis.com/maps/api/js?key={{ modern_fluid_map_key }}&language={{ code }}" ></script>
+{% endif %}
+{% if (modern_show_logo_footer != 1) %}
+<div class="col-sm-12">
+<div id="logo_footer">
+{% if (logo) %}
+<img src="{{ footer_logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+{% endif %}
+</div>
+</div>
+{% endif %}
+{% if (modern_show_itext_footer != 1 and class == 'common-home') %}
+<div class="col-xs-12">
+<div class="footer_h5 text_cent">{{ text_footer_aboutus }}</div>
+<div class="aboutus_footer">
+{{ modern_description }}
+</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text_cent copyrightf">
+{{ modern_license_text }}
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% if (modern_show_fluid_map_footer == '0') %}
+<div  id="map123" {% if (modern_open_map_footer != 1) %}style="min-height:508px"{% endif %}>
+{% if (modern_open_map_footer) %}
+<a class="img_map"><img  class="img-responsive img_map2" alt="marker" title="marker" src="catalog/view/theme/modern/image/shablon/map_icon.png" ><span class="text_map">{{ text_footer_map }}</span></a>
+{% endif %}
+<div id="map-canvas2" >
+{% if (modern_show_contactblock == '0') %}
+{% if (modern_open_map_footer) %}
+<div class="block-contacts2 "></div>
+{% endif %}
+<div class="container footer_cont">
+<div class="block-contacts ">
+  <div class="contacts-logo-footer">
+<img src="/image/catalog/123/logof.png" style="width: 106px; height: 107px;" alt="logo"/>
+  </div>
+<div class="info-block">
+
+{# <div class="footer_contacts">
+{{ text_footer_contacts }}
+</div> #}
+<ul class="fa-ul">
+{% if (modern_telephone_footer[language_id] is not empty) %}
+      <div class="contact-info-wrap">
+          <li> 
+          <img style="display: inline-block; height: 18px; width:auto" src="/catalog/view/theme/modern/image/social-ico/tel.png" />
+          <h3 style="display: inline-block;"> Телефон </h3>
+          </li>
+          <div>
+              <li>{# <i class="fa-li fa fa-phone"></i> #} <a href="tel:{{ modern_telephone_footer[language_id] }}">{{ modern_telephone_footer[language_id] }}</a></li> </div></div>   
+                {% endif %}
+                {% if (modern_telephone1_footer[language_id] is not empty) %}
+                <li>
+                {# <i class="fa-li fa fa-phone"></i> #}
+                <a href="tel:{{ modern_telephone1_footer[language_id] }}">{{ modern_telephone1_footer[language_id] }}</a></li>
+         
+      
+{% endif %}
+{% if (modern_telephone2_footer[language_id] is not empty) %}
+
+<li>
+{# <i class="fa-li fa fa-phone"></i> #}
+<a href="tel:{{ modern_telephone2_footer[language_id] }}">{{ modern_telephone2_footer[language_id] }}</a></li>
+{% endif %}
+{% if (modern_skype_footer[language_id] is not empty) %}
+     <div class="contact-info-wrap">
+        <li>
+        <img style="display: inline-block; height: 18px; width:auto" src="/catalog/view/theme/modern/image/social-ico/skupe.png" /><h3 style="display: inline-block;">Skupe</h3> 
+        <li><a href="callto:{{ modern_skype_footer[language_id] }}">{{ modern_skype_footer[language_id] }}</a></li>
+     </div>   
+{% endif %}
+{% if (modern_mail_footer[language_id] is not empty) %}
+ 
+        <li class="contact-info-wrap"> 
+          <div> <img style="display: inline-block; height: 13px; width:auto" src="/catalog/view/theme/modern/image/social-ico/mail.png" /> <h3 style="display: inline-block;">Почта</h3> </div>
+          <div><a onClick="javascript:window.open('mailto:{{ modern_mail_footer[language_id] }}', 'Mail');event.preventDefault()" >{{ modern_mail_footer[language_id] }}</a></div>
+        </li>
+       
+{% endif %}
+{% if (modern_addres_footer[language_id] is not empty) %}
+<li class="li_top"><i class="fa-li fa fa-home launch-show"></i>{{ modern_addres_footer[language_id] }}</li>
+{% endif %}
+{% if (modern_time_footer[language_id] is not empty) %}
+<li><i class="fa-li fa fa-check-circle-o "></i>{{ modern_time_footer[language_id] }}</li>
+{% endif %}
+<li>
+<div class="header__social-block"> 
+<a class="instagram-linc" href="https://www.instagram.com/s.flowersukraine/"> <img style="width: 19px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/inst.svg"/></a> 
+<a class="instagram-linc" href="https://t.me/sflowersukraine"> <img style="width: 18px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/telegr.svg"/></a> 
+<a class="instagram-linc" href="https://www.facebook.com/s.flowersukraine"> <img style="width: 16px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/fb.svg"/></a> 
+</div>
+ </li>
+</ul>
+</div>
+</div>
+</div>
+{% else %}
+{% if (modern_open_map_footer) %}
+<div class="block-contacts2 "></div>
+{% endif %}
+{% endif %}
+</div>
+{% if (modern_open_map_footer) %}
+<div class="filter_map">
+{% if (modern_map_noapi == '1') %} 
+<div id="map_canvas" class="mapc_footer"></div>
+{% else %} 
+{{ (modern_mapcode) }}	
+{% endif %} 
+</div>
+{% else %}
+<div>
+{% if (modern_map_noapi == '1') %} 
+<div id="map_canvas" class="mapc_footer"></div>
+{% else %} 
+{{ (modern_mapcode) }}	
+{% endif %} 
+</div>
+{% endif %}
+</div>
+{% endif %}
+<footer>
+<div class="container">
+<div class="row line_foot">
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+<img src="/image/catalog/footer-logo.png" style="max-width: 168px; height: auto; width: 100%" alt="logo" class="logo_footer"/>
+<div class="header__social-block"> 
+<a class="instagram-linc" href="https://www.instagram.com/s.flowersukraine/"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/inst.svg"/></a> 
+<a class="instagram-linc" href="https://t.me/sflowersukraine"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/telegr.svg"/></a> 
+<a class="instagram-linc" href="https://www.facebook.com/s.flowersukraine"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/fb.svg"/></a> 
+<a class="instagram-linc" href="https://www.youtube.com/channel/UCIO8BL2mFumq8p07mbJtIIQ"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/youtube.svg"/></a>
+ <a class="instagram-linc" href="callto:{{ modern_skype_footer[language_id] }}"><img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/skype.svg"/></a>
+</div>
+ <a class="footer-tel"href="tel:{{ modern_telephone_footer[language_id] }}">{{ modern_telephone_footer[language_id] }}</a>
+</div>
+
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+<h5 class="accordion">{{ text_information }}</h5>
+<ul class="list-unstyled panel">
+{% for information in informations %}
+<li><a href="{{ information['href'] }}">{{ information['title'] }}</a></li>
+{% endfor %}
+</ul>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+<h5 class="accordion">{{ text_service }}</h5>
+<ul class="list-unstyled panel">
+{% if (modern_sitemap_footer != 1) %}
+<li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+{% endif %}
+{% if (modern_return_footer != 1) %}
+<li><a href="{{ return }}">{{ text_return }}</a></li>
+{% endif %}
+{% if (modern_contact_footer != 1) %}
+<li><a href="{{ contact }}">{{ text_contact }}</a></li>
+{% endif %}
+<li><a href="index.php?route=information/information&information_id=8">Для сотрудничества</a></li>
+</ul>
+</div>
+<div class="clearfix visible-xs"></div>
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+<h5 class="accordion">{{ text_account }}</h5>
+<ul class="list-unstyled panel">
+{% if (modern_account_footer != 1) %}
+<li><a href="{{ account }}">{{ text_account }}</a></li>
+{% endif %}
+{% if (modern_order_footer != 1) %}
+<li><a href="{{ order }}">{{ text_order }}</a></li>
+{% endif %}
+{% if (modern_wishlist_footer != 1) %}
+<li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+{% endif %}
+{% if (modern_newsletter_footer != 1) %}
+<li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+{% endif %}
+<li><a href="all-news">Список новостей</a></li>
+</ul>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+<h5 class="accordion">{{ text_extra }}</h5>
+<ul class="list-unstyled panel" >
+{% if (modern_manufacturer_footer != 1) %}
+<li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+{% endif %}
+{% if (modern_voucher_footer != 1) %}
+<li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+{% endif %}
+{% if (modern_affiliate_footer != 1) %}
+<li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+{% endif %}
+{% if (modern_special_footer != 1) %}
+<li><a href="{{ special }}">{{ text_special }}</a></li>
+{% endif %}
+<li><a href="index.php?route=information/information&information_id=10">Цветы в офис</a></li>
+</ul>
+</div>
+<div class="clearfix visible-xs "></div> 
+<!-- start social link    -----------------    -----    -----------------  -->
+{# <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> 
+{% if (modern_top_links2 ) %}
+<div class="footer_add">
+<div class="footer_socialpay">{{ text_footer_social }}</div>
+<div class="setifooter_ico">
+{% for modern_top_link2 in modern_top_links2 %}
+<a {% if (modern_top_link2['link_top']) %} href="{{ modern_top_link2['link_top'] }}" target="_blank" {% endif %}>
+<div data-toggle="tooltip" title="{{ modern_top_link2['tooltipseti'] }}" class="setifooter"><i class="diamont_seti {{ modern_top_link2['faicons_top'] }}"></i></div>
+</a>
+{% endfor %}
+</div>
+</div>
+{% endif %} #}
+<!-- end  social link --------------------------------------------- -->
+<div class="clearfix"></div>
+
+
+
+</div>
+<div class="clearfix"></div>
+<span class="col-sm-12 counter-footer">
+{{ modern_counter }}
+</span>
+<div class="clearfix"></div>
+
+
+<div class="footer_down">
+<div class="left-footer-block">Copyright © 2021. Все права защищены</div>
+{% if (footer_pay is not empty) %}
+<div class="right-footer-block">
+<div class="footer_socialpay">{{ text_footer_pay }}</div>
+{# <img class="img-responsive rigimg" alt="payment" title="payment" src="{{ footer_pay }}"> #}
+<img src="/catalog/view/theme/modern/image/pay-var/privat.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/master-card.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/maestro.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/vis-el.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/visa.png"   />
+</div>
+{% endif %}
+
+ </div>
+
+</div>
+
+</?div>
+</footer>
+<!-- Testing OPENCART IVAN  test
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+<!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
+<!--код tooltip-->
+<script>
+$(document).ready(function(){$(".tooltip-examples a").tooltip(),$(".tooltip-examples button").tooltip()});
+</script>
+{% if (modern_map_noapi == '1') %} 
+<script>
+$('#scr_map').on('load', function(){
+function initialize() {
+var latlng = new google.maps.LatLng({{ modern_latitude_fluid_map[language_id] }}, {{ modern_longitude_fluid_map[language_id] }});
+{% if (modern_map_links) %}
+{% for key, modern_map_link in modern_map_links %}
+var pos{{ key }} = new google.maps.LatLng({{ modern_map_link.latitude[language_id] }}, {{ modern_map_link.longitude[language_id] }} );
+{% endfor %}
+{% endif %}
+var settings = {
+zoom: {{ modern_fluid_map_zoom }},
+center: latlng,
+zoomControl: true,
+scrollwheel: false,
+mapTypeControl: true,
+mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+navigationControl: true,
+navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+mapTypeId: google.maps.MapTypeId.ROADMAP};
+var map = new google.maps.Map(document.getElementById("map_canvas"), settings);
+{% if modern_description_map_logo %}
+var contentString = '<div id="content">'+
+'<div id="siteNotice">'+
+'</div>'+
+'<div id="bodyContent">'+
+'{{ modern_description_map_logo }}'+
+'</div>'+
+'</div>';
+var infowindow = new google.maps.InfoWindow({
+content: contentString
+});
+{% endif %}
+{% if (modern_map_links) %}
+{% for key, modern_map_link in modern_map_links %}
+{% if modern_map_link.title %}
+var contentString{{ key }} = '<div id="content{{ key }}">'+
+'<div id="siteNotice{{ key }}">'+
+'</div>'+
+'<div id="bodyContent{{ key }}">'+
+'{{ modern_map_link.title }}'+
+'</div>'+
+'</div>';
+var infowindow{{ key }} = new google.maps.InfoWindow({
+content: contentString{{ key }}
+});
+{% endif %}
+{% endfor %}
+{% endif %}
+var companyImage = new google.maps.MarkerImage('{{ map_img }}',
+new google.maps.Size(80,80),
+new google.maps.Point(0,0),
+new google.maps.Point(50,50)
+);
+var companyMarker = new google.maps.Marker({
+position: latlng,
+map: map,
+icon: companyImage,
+zIndex: 3});
+{% if (modern_map_links) %}
+{% for key, modern_map_link in modern_map_links %}
+var marker{{ key }} = new google.maps.Marker({
+position: pos{{ key }},
+map: map,
+icon: companyImage,
+zIndex: 3});
+{% endfor %}
+{% endif %}
+{% if (modern_show_info_marker_block != 1) %}
+{% if (modern_description_map_logo) %}
+google.maps.event.addListener(companyMarker, 'mouseover', function() {
+infowindow.open(map,companyMarker);
+});
+{% endif %}
+{% if (modern_map_links) %}
+{% for key, modern_map_link in modern_map_links %}
+{% if (modern_map_link.title) %}
+google.maps.event.addListener(marker{{ key }}, 'mouseover', function() {
+infowindow{{ key }}.open(map,marker{{ key }});
+});
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+});
+</script>
+{% endif %}
+<script>
+function map_slide(){$(window).width()<750?($("#map123").css({height:hoverHeight}),$("*").removeClass("filter_map"),$("*").remove(".img_map"),$("*").remove(".block-contacts2")):($(".img_map").click(function(){$("#map123").stop().animate({height:hoverHeight},speed),$("*").removeClass("filter_map"),$("*").remove(".img_map"),$("*").remove(".block-contacts2");var a=$("body").height();$("html,body").animate({scrollTop:a},speed)}),$(".footer_contacts").click(function(){$("#map123").stop().animate({height:hoverHeight},speed),$("*").removeClass("filter_map"),$("*").remove(".img_map"),$("*").remove(".block-contacts2");var a=$("body").height();$("html,body").animate({scrollTop:a},speed)}))}var speed=1e3,originalHeight=50,hoverHeight=320;map_slide();
+</script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+</body></html>

@@ -1,0 +1,36 @@
+<script>
+$(document).ready(function(){$(document).on("click touchstart","#mailModal-submit",function(){$.ajax({url:"index.php?route=extension/module/aridius_popupmail/add_email",type:"post",dataType:"json",data:"email="+$("#mail_letters_popup").val(),success:function(a){a.error&&($(".textsuccess").remove(),a.error.email?$(".message_email_popup").html('<span class="textdanger">'+a.error.email+"</span>").show():$(".message_email_popup").hide().empty(),a.error.compare_email?$(".message_compare_popup").html('<span class="textdanger">'+a.error.compare_email+"</span>").show():$(".message_compare_popup").hide().empty()),a.success&&(setTimeout(function(){$.magnificPopup.close()},5500),$(".textdanger").remove(),$(".message_success_popup").html('<span class="textsuccess">'+a.success_email+"</span>"))}})})});
+</script>
+<script>
+$(document).ready(function() {
+var dateModalShow = localStorage.getItem("dateModalShow");
+var currentDate = new Date().toString();
+var currentDate2 = new Date();
+var currentDay = currentDate2.getDay();
+var period = (((new Date(currentDate)).getTime())- ((new Date(dateModalShow)).getTime()))/60000;
+if ( ((dateModalShow==null) || (period>{{ aridius_popupmail_time }}))
+{% if (aridius_popupmail_day == '0') %}
+&& ((currentDay==0) || (currentDay==1) || (currentDay==2) || (currentDay==3) || (currentDay==4) || (currentDay==5) || (currentDay==6))
+{% elseif (aridius_popupmail_day == '2') %}
+&& ((currentDay==1) || (currentDay==2) || (currentDay==3) || (currentDay==4) || (currentDay==5))
+{% elseif (aridius_popupmail_day == '3') %}
+&& ((currentDay==0) || (currentDay==6))
+{% endif %}
+) {
+var mfp = $.magnificPopup.instance;
+setTimeout(function(){
+localStorage.setItem("dateModalShow", currentDate);
+if (!mfp.isOpen && sessionStorage.getItem('popup_open') != '1') {
+$.magnificPopup.open({
+fixedContentPos: true,
+items: {
+src: '<div class="mailModal efect-mfp"><div class="mailModalbor"><button title="close" type="button" class="mfp-close">&#215;</button></div><div class="mailModal2">{{ aridius_popupmail_img }}<form action="#" method="post"><div class="mailletters2 input-group"><input type="email" name="mail_letters_popup" id="mail_letters_popup" value="" placeholder="{{ aridius_popupmail_placeholder[language_id] }}" class="form-control input-lg" /><span class="input-group-btn"><button type="button" id="mailModal-submit" class="btn-cart fixcenter">{{ button_send }}</button></span><div class="message_email_popup"></div><div class="message_compare_popup"></div><div class="message_success_popup"></div>{% if (aridius_popupmaildes_status == "1") %}<span class="person_data2">{{ aridius_popupmail_description }}</span>{% endif %}</div></form></div></div>',
+type: 'inline'
+},
+mainClass: 'mfp-fade'
+});
+}
+},{{ aridius_popupmail_delay }}*1000);
+}
+});
+</script>

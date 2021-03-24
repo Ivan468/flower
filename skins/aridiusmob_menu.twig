@@ -1,0 +1,384 @@
+<div class="block_logo_drop col-xs-12">
+<div class="row black-bg">
+<div class="{% if (languages|length > 1 or currencies|length > 1) %}col-xs-6{% else %}col-xs-12{% endif %} cart table-cell-header">
+<h4> Меню</h4>
+{% if (logo) %}
+{% if (location_home == 'common-home') %}
+{# <img id="logo_img" src="{% if (modern_img_logomob) %}{{ modern_img_logomob }}{% else %}{{ logo }}{% endif %}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /> #}
+{% else %}
+
+{# <button href="{{ home }}"><img src="{% if (modern_img_logomob) %}{{ modern_img_logomob }}{% else %}{{ logo }}{% endif %}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></button> #}
+{% endif %}
+
+{% else %}
+<h1><a href="{{ home }}">{{ name }}</a></h1>
+{% endif %}
+</div>
+<!--add btn close menu-->
+<button title="close" type="button" class="mfp-close close_button" id="close_menu-btn" >×</button>
+<!--add btn link-->
+{% if languages|length > 1 %}
+<div class="col-xs-6">
+<div class="form_cur_lang">
+{% for language in languages %}
+{% if (language['code'] == language_code) %}
+<button class="active btn_cur_lang btn-link language-select language-push" type="button" data-codelan="{{ language['code'] }}">{{ language['name'] }}</button>
+{% else %}
+<button class="btn_cur_lang btn-link language-select language-push" type="button" data-codelan="{{ language['code'] }}">{{ language['name'] }}</button>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if currencies|length > 1 %}
+<div class="col-xs-6">
+<div class="form_cur_lang" >
+{% for currency in currencies %}
+{% if (currency['code'] == currency_code) %}
+<button class="active btn_cur_lang currency-select btn-link currency-push" type="button" data-code="{{ currency['code'] }}">{{ currency['code'] }}</button>
+{% else %}
+<button class="currency-select btn btn-link btn_cur_lang currency-push" type="button" data-code="{{ currency['code'] }}">{{ currency['code'] }}</button>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+</div>
+{# <div class="row">
+<div class="tel_wrap_block">
+<a href="tel:+380678293030">+38 (067) 829 30 30</a> <button onclick="window.location.href = 'tel:+380678293030';" class="btn-cartpr">Позвонить</button>
+</div>
+</div> #}
+<div class="row">
+<div class="col-xs-12">
+<div class="mob_wish">
+<h5> Закладки</h5>
+{% if (modern_wishlist_top != 1) %}
+<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}">
+ <svg width="33" height="31" viewBox="0 0 33 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.5 30.1641C16.0302 30.1641 15.5772 29.9939 15.2243 29.6847C13.8911 28.519 12.6059 27.4236 11.4719 26.4573L11.4661 26.4522C8.14147 23.6191 5.27054 21.1724 3.273 18.7622C1.04006 16.0677 0 13.513 0 10.7222C0 8.0106 0.929785 5.50901 2.6179 3.67789C4.32616 1.82511 6.67013 0.804688 9.21879 0.804688C11.1237 0.804688 12.8682 1.40692 14.4037 2.59452C15.1787 3.19398 15.8811 3.92764 16.5 4.78341C17.1191 3.92764 17.8213 3.19398 18.5965 2.59452C20.132 1.40692 21.8765 0.804688 23.7814 0.804688C26.3298 0.804688 28.674 1.82511 30.3823 3.67789C32.0704 5.50901 32.9999 8.0106 32.9999 10.7222C32.9999 13.513 31.9601 16.0677 29.7272 18.7619C27.7296 21.1724 24.859 23.6188 21.5349 26.4517C20.3989 27.4195 19.1116 28.5168 17.7754 29.6852C17.4227 29.9939 16.9695 30.1641 16.5 30.1641ZM9.21879 2.73778C7.21647 2.73778 5.37704 3.5369 4.03889 4.9881C2.68084 6.4612 1.93283 8.49752 1.93283 10.7222C1.93283 13.0694 2.80522 15.1687 4.76121 17.5288C6.65175 19.8101 9.46377 22.2064 12.7196 24.9812L12.7257 24.9862C13.8639 25.9563 15.1543 27.056 16.4972 28.2302C17.8482 27.0537 19.1405 25.9522 20.281 24.9807C23.5367 22.2059 26.3484 19.8101 28.239 17.5288C30.1947 15.1687 31.0671 13.0694 31.0671 10.7222C31.0671 8.49752 30.3191 6.4612 28.9611 4.9881C27.6231 3.5369 25.7835 2.73778 23.7814 2.73778C22.3146 2.73778 20.9679 3.20406 19.7788 4.12352C18.7191 4.94328 17.9809 5.97957 17.5481 6.70467C17.3255 7.07754 16.9338 7.3001 16.5 7.3001C16.0662 7.3001 15.6744 7.07754 15.4519 6.70467C15.0193 5.97957 14.2811 4.94328 13.2212 4.12352C12.0321 3.20406 10.6854 2.73778 9.21879 2.73778Z" fill="#956D84"/>
+</svg>
+&nbsp;&nbsp;&nbsp; <span class="">{{ text_wishlist }}</span></a>
+{% endif %}
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<ul class="list-inline top">
+{% if (modern_account_top != 1) %}
+{% if (logged) %}
+<div class="nav">
+<ul class="list-inline perc_cab">
+<li class="dropdown">
+<a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>{{ text_account }}</span> <span class="caret"></span></a>
+<ul class="dropdown-menu">
+{% if (logged) %}
+<li><a href="{{ account }}">{{ text_account }}</a></li>
+{% if (modern_order_top != 1) %}
+<li><a href="{{ order }}">{{ text_order }}</a></li>
+{% endif %}
+{% if (modern_transaction_top != 1) %}
+<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+{% endif %}
+{% if (modern_download_top != 1) %}
+<li><a href="{{ download }}">{{ text_download }}</a></li>
+{% endif %}
+<li><a href="{{ logout }}">{{ text_logout }}</a></li>
+{% else %}
+<li><a href="{{ register }}">{{ text_register }}</a></li>
+<li><a href="{{ login }}">{{ text_login }}</a></li>
+{% endif %}
+</ul>
+</li>
+</ul>
+</div>
+{% else %}
+<li><img src="catalog/view/theme/modern/image/shablon/key_header.png" alt="key"></li>
+<li class="log"><a href="{{ login }}">{{ text_login }}</a></li>
+<li class="reg"><a href="{{ register }}">{{ text_register }}</a></li>
+{% endif %}
+{% endif %}
+{% if (modern_cart_top != 1) %}
+<li><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart hidden-lg hidden-md"></i> <span class="hidden-xs hidden-sm ">{{ text_shopping_cart }}</span></a></li>
+{% endif %}
+{% if (modern_checkout_top != 1) %}
+<li><a href="{{ checkout }}" title="{{ text_checkout }}"><i class="fa fa-share hidden-lg hidden-md"></i> <span class="hidden-xs hidden-sm ">{{ text_checkout }}</span></a></li>
+{% endif %}
+</ul>
+</div>
+</div>
+</div>
+<div class="menu_mob_cat col-xs-12">
+<div class="row">
+<div class="mob_main col-xs-12">
+<ul class="list-unstyled">
+<li><a href="{{ base }}">{{ text_homel }}</i></a></li>
+</ul>
+</div>
+{% if (theme_modern_other3 ==1) %}
+<div class="col-xs-12">
+<button type="button" class="btn btn-navbar navbar-toggle menu_button collapsed" data-toggle="collapse" data-target="#navbar-menu-mob">{{ text_category }}<i class="fa fa-2x fa-angle-left fa_menu"></i></button>
+</div>
+{% endif %}
+<div class="navbar-collapse collapse {% if (theme_modern_other3 != 1) %} in {% endif %}" id="navbar-menu-mob">
+<ul id="menu" class="nav navbar-nav">
+{% for category in categories %}
+{% if (category['children']) %}
+<li class="plus"><i class="fa fa-plus"></i><i class="fa fa-minus"></i></li>
+<li class="dropdown static_pos">
+<a class="with-child dropdown-toggle" href="{{ category['href'] }}" data-hover="dropdown" data-delay="1" data-close-others="false">{{ category['name'] }}<span class="fa fa-angle-down menu"></span></a>
+<div class="dropdown-menu marg_top">
+<div class="dropdown-inner children-category">
+{% for child in category['children'] %}
+<ul class="list-unstyled" >
+{% if (child['children_lv3'] is defined and child['children_lv3']) %}
+<li class="with-child2" >
+<a class="pad_a_child" href="{{ child['href'] }}"><span class="style2lv">{{ child['name'] }}</span></a>
+</li>
+{% for child_lv3 in child['children_lv3'] %}
+<li class="children_lv3"><a href="{{ child_lv3['href'] }}">&nbsp;&nbsp;- {{ child_lv3['name'] }}</a></li>
+{% endfor %}
+{% else %}
+<li><a class="pad_a_child" href="{{ child['href'] }}"><span class="style2lv">{{ child['name'] }}</span></a></li>
+{% endif %}
+</ul>
+{% endfor %}
+</div>
+</div>
+</li>
+{% else %}
+<li><a href="{{ category['href'] }}">{{ category['name'] }}</a></li>
+{% endif %}
+{% endfor %}
+{% if (modern_man_menu != 1) %}
+{% if (manufacturers) %}
+<li class="plus"><i class="fa fa-plus"></i><i class="fa fa-minus"></i></li>
+<li class="dropdown postion_fullmenu2">
+<a class="with-child dropdown-toggle" href="{{ href_manufacturer }}" data-hover="dropdown" data-delay="1" data-close-others="false">{{ text_manufacturer }}<span class="fa fa-angle-down menu"></span></a>
+<div class="mancss dropdown-menu">
+<div class="dropdown-inner children-category">
+{% for manufacturer in manufacturers %}
+<ul class="list-unstyled">
+<li><a class = "manufac-menu" href="{{ manufacturer['href'] }}">{{ manufacturer['name'] }}</a></li>
+</ul>
+{% endfor %}
+</div>
+</div>
+</li>
+{% endif %}
+{% endif %}
+</ul>
+</div>
+<!--add menu link-->
+{% if (modern_top_links8 ) %}
+<div class="mob_info_first col-xs-12">
+<ul class="list-unstyled">
+{% for modern_top_link8 in modern_top_links8 %}
+<li>
+<a {% if (modern_top_link8['link_top'][language_id]) %} href="{{ modern_top_link8['link_top'][language_id] }}"{% endif %}>{% if (modern_top_link8['faicons_top']) %} <i class="{{ modern_top_link8['faicons_top'] }}"></i> {% endif %}{% if (modern_top_link8['title']) %}{{ modern_top_link8['title'][language_id] }}{% endif %}</a>
+</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+<!--add menu link-->
+</div>
+</div>
+{% if (modern_telephone_mainheader2[language_id] or modern_telephone_mainheader[language_id] or modern_top_links3 or modern_top_links5 or modern_mail_header[language_id]) %}
+
+
+<div class="contact">
+<a class="cont" href="№" onclick="$('.tt').toggleClass('act');$('.cont .fa-plus').toggleClass('act');return false;" data-hover="dropdown"> 
+<span> 
+<svg style="margin-right: 9px;vertical-align: text-top;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M3.2603 10.6357C4.83841 12.5222 6.73812 14.0075 8.90638 15.0584C9.73191 15.4496 10.8359 15.9138 12.0659 15.9934C12.1422 15.9967 12.2151 16 12.2914 16C13.1169 16 13.78 15.7149 14.3204 15.1281C14.3237 15.1247 14.3303 15.1181 14.3336 15.1115C14.5259 14.8794 14.7448 14.6705 14.9735 14.4484C15.1293 14.2992 15.2885 14.1434 15.441 13.9843C16.1472 13.2482 16.1472 12.3133 15.4344 11.6005L13.4418 9.60796C13.1036 9.25653 12.6992 9.07087 12.2748 9.07087C11.8504 9.07087 11.4426 9.25653 11.0945 9.60464L9.90762 10.7915C9.79822 10.7286 9.68549 10.6722 9.5794 10.6191C9.44679 10.5528 9.32412 10.4898 9.21471 10.4202C8.1339 9.73394 7.15255 8.83879 6.2143 7.68835C5.7402 7.08827 5.42192 6.58433 5.19979 6.07045C5.51144 5.78864 5.80319 5.49358 6.085 5.20514C6.18446 5.10236 6.28723 4.99959 6.39001 4.89681C6.74807 4.53875 6.94036 4.12433 6.94036 3.70327C6.94036 3.28222 6.75139 2.8678 6.39001 2.50974L5.40203 1.52176C5.28599 1.40572 5.17658 1.293 5.06386 1.17696C4.84505 0.951513 4.61628 0.719436 4.39084 0.510568C4.04936 0.175715 3.6482 0 3.22383 0C2.80277 0 2.3983 0.175715 2.04355 0.513883L0.803603 1.75383C0.352712 2.20472 0.097428 2.75176 0.044382 3.385C-0.0186101 4.17737 0.127266 5.01948 0.505219 6.0373C1.08541 7.6121 1.96067 9.07418 3.2603 10.6357ZM0.853334 3.45462C0.893118 3.01368 1.0622 2.64567 1.38048 2.32739L2.6138 1.09407C2.80609 0.908413 3.01827 0.812267 3.22383 0.812267C3.42606 0.812267 3.63162 0.908413 3.82059 1.1007C4.04272 1.30626 4.25159 1.52176 4.47704 1.75052C4.58976 1.86656 4.7058 1.98259 4.82184 2.10195L5.80982 3.08993C6.01537 3.29548 6.12147 3.50435 6.12147 3.7099C6.12147 3.91546 6.01537 4.12433 5.80982 4.32988C5.70704 4.43266 5.60427 4.53875 5.50149 4.64153C5.19316 4.95317 4.90472 5.24824 4.58645 5.53005C4.57982 5.53668 4.5765 5.53999 4.56987 5.54662C4.29469 5.8218 4.33779 6.08371 4.4041 6.28264C4.40742 6.29258 4.41073 6.29921 4.41405 6.30916C4.66933 6.9225 5.02408 7.50601 5.57774 8.20224C6.57236 9.42893 7.62001 10.3804 8.77377 11.1131C8.91633 11.206 9.06883 11.2789 9.21139 11.3518C9.34401 11.4182 9.46668 11.4811 9.57609 11.5508C9.58935 11.5574 9.59929 11.564 9.61255 11.5707C9.72196 11.627 9.82805 11.6535 9.93415 11.6535C10.1994 11.6535 10.3718 11.4845 10.4281 11.4281L11.6681 10.1881C11.8604 9.99586 12.0692 9.89308 12.2748 9.89308C12.5268 9.89308 12.7323 10.0489 12.8616 10.1881L14.8608 12.184C15.2586 12.5818 15.2553 13.0128 14.8508 13.4339C14.7116 13.5831 14.5657 13.7257 14.4099 13.8748C14.1778 14.1003 13.9358 14.3324 13.717 14.5943C13.3357 15.0054 12.8815 15.1977 12.2947 15.1977C12.2383 15.1977 12.1787 15.1944 12.1223 15.191C11.0349 15.1214 10.0237 14.6971 9.26444 14.3357C7.20228 13.3378 5.39208 11.9221 3.89022 10.1252C2.65358 8.63655 1.82142 7.25072 1.27107 5.76544C0.929587 4.85371 0.800288 4.12101 0.853334 3.45462Z" fill="#956D84"/>
+</g><defs><clipPath id="clip0"><rect width="16" height="16" fill="white"/></clipPath></defs>
+</svg> Контакты </span> <i class="fa fa-plus act"></i><i class="fa fa-minus"></i></a>
+
+<style>
+	.cont{
+		border-top: none;
+    	color: #333;
+    	padding: 10px 28px 26px 15px;
+    	margin-right: 55px;
+    	width: 100%;
+		display: flex;
+		height: max-content;
+		justify-content: space-between;
+		border-bottom: 1px solid #00000021;
+	}
+	.cont .plus, .fa-plus .fa-minus {
+		color: #777;
+		margin-top: 12px;
+		margin-right: 5px;
+		position: absolute;
+		right: 0px;
+		width: 50px;
+		text-align: center;
+		height: 25px;
+		float: right;
+		z-index: 99;
+	}
+	.cont .fa.fa-plus{
+		display: none;
+	}
+	.cont .fa.fa-plus.act{
+		display: block;
+	}
+	.fa-plus.act ~ .fa-minus{
+		display: none;
+	}
+	.table.tt.act{
+		display: none;
+	}
+
+
+</style>
+
+<table class="table tt act">
+<tbody>
+{% if (modern_telephone_mainheader2[language_id] or modern_telephone_mainheader[language_id]) %}
+<tr>
+<td class="fa_table" rowspan="{% if (modern_telephone_mainheader2[language_id]) %}2{% else %}1{% endif %}">
+<div class="circleout2"><i class="fa fa-phone"></i></div>
+</td>
+<td>
+<div><a href="tel:{{ modern_telephone_mainheader[language_id] }}" class="tell_nav">{{ modern_telephone_mainheader[language_id] }}</a></div>
+</td>
+</tr>
+{% if (modern_telephone_mainheader2[language_id]) %}
+<tr>
+<td>
+<div class="phone">
+<div class="listunstyled "><a href="tel:{{ modern_telephone_mainheader2[language_id] }}" class="tell_nav">{{ modern_telephone_mainheader2[language_id] }}</a></div>
+</div>
+</td>
+</tr>
+{% endif %}
+{% endif %}
+{% if (modern_top_links3 ) %}
+{% for modern_top_link3 in modern_top_links3 %}
+<tr>
+<td style="text-align:center;font-size: 20px;">{% if (modern_top_link3['faicons_top']) %}<i class="{{ modern_top_link3['faicons_top'] }}"></i>{% endif %}</td>
+<td><a class="tell_nav" {% if (modern_top_link3['title'][language_id]) %} href="tel:{{ modern_top_link3['title'][language_id] }}"{% endif %} > {{ modern_top_link3['title'][language_id] }}</a></td>
+</tr>
+{% endfor %}
+{% endif %}
+{% if (modern_top_links5 ) %}
+{% for modern_top_link5 in modern_top_links5 %}
+<tr>
+<td style="text-align:center;font-size: 20px;">{% if (modern_top_link5['faicons_top']) %}<i class="{{ modern_top_link5['faicons_top'] }}"></i>{% endif %}</td>
+<td><a class="tell_nav" {% if (modern_top_link5['title'][language_id]) %} href="{{ modern_top_link5['link'][language_id] }}"{% endif %} > {{ modern_top_link5['title'][language_id] }}</a></td>
+</tr>
+{% endfor %}
+{% endif %}
+{% if (modern_mail_header[language_id] ) %}
+<tr>
+<td style="text-align:center;font-size: 20px;"><i class="fa fa-envelope-o"></i></td>
+<td><a class="tell_nav" onClick="javascript:window.location.href='mailto:{{ modern_mail_header[language_id] }}';return false;" href="javascript:close_window();" > {{ modern_mail_header[language_id] }}</a></td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+{% endif %}
+</div>
+
+<div class="mob_wish_com col-xs-12">
+<div class="header__social-block mob-menu-social-item"> 
+<a class="viber-linc" href="tel:+380678293030"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/viber.svg"></a>
+<a class="instagram-linc" href="https://www.instagram.com/s.flowersukraine/"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/inst.svg"/></a> 
+<a class="instagram-linc" href="https://t.me/sflowersukraine"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/telegr.svg"/></a> 
+<a class="instagram-linc" href="https://www.facebook.com/s.flowersukraine"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/fb.svg"/></a> 
+</div>
+{# <div class="mob_wish">
+{% if (modern_wishlist_top != 1) %}
+<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i>&nbsp;&nbsp;&nbsp; <span class="">{{ text_wishlist }}</span></a>
+{% endif %}
+</div> #}
+<div class="mob_compare">
+{% if (modern_compare_top != 1) %}
+<a href="{{ compare }}" id="compare-total" title="{{ text_compare }}"><i class="fa fa-balance-scale"></i>&nbsp;&nbsp;&nbsp; <span class="">{{ text_compare }}</span></a>
+{% endif %}
+</div>
+</div>
+<!--informations-->
+{% if (modern_info_menu != 1) %}
+{% if (informations) %}
+<div class="mob_info col-xs-12">
+<ul class="list-unstyled">
+{% for information in informations %}
+<li><a href="{{ information['href'] }}">{{ information['title'] }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endif %}
+<!--informations END-->
+<!--other link-->
+{% if (modern_main_link_menu[language_id]) %}
+<div class="mob_other_info col-xs-12">
+<ul class="list-unstyled">
+{% if (modern_top_links4 ) %}
+{% for modern_top_link4 in modern_top_links4 %}
+<li>
+<a {% if (modern_top_link4['link_top'][language_id]) %} href="{{ modern_top_link4['link_top'][language_id] }}"{% endif %} title="{{ modern_top_link4['title'][language_id] }}">{% if (modern_top_link4['faicons_top']) %} <i class="{{ modern_top_link4['faicons_top'] }}"></i>{% endif %}{% if (modern_top_link4['title']) %} {{ modern_top_link4['title'][language_id] }}{% endif %}</a>
+</li>
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+{% endif %}
+<!--other link END-->
+<script>
+$( "#close_menu-btn" ).click(function(){
+  $('#menu_adapt').removeClass('show');
+  $(".overlay").css({
+    display: "none"
+  });
+  $("html").removeClass('scroll-disabled');
+  sessionStorage.setItem('popup_open', '0');
+});
+
+</script>
+<script>
+$(document).ready(function(){
+	$('.currency-push').on('click', function() {
+		var code = $(this).attr("data-code");
+		$(".currency-push-js[name='" + code + "']").trigger('click');
+	});
+	$('.language-push').on('click', function() {
+		var code_lan = $(this).attr("data-codelan");
+		$(".language-push-js[name='" + code_lan + "']").trigger('click');
+	});
+});
+</script>
+<script><!--
+$(document).ready(function(){
+$('#menu_adapt .menu_mob_cat li').bind().click(function(e) {
+	$(this).toggleClass("open").find('>ul').stop(true, true).slideToggle(3000)
+	.end().siblings().find('>ul').slideUp().parent().removeClass("open");
+	e.stopPropagation();
+	// Замена + на - во время открытия меню
+	$(this).prev().find('.fa-plus').toggle();
+	$(this).prev().find('.fa-minus').toggle();
+});
+$('#menu_adapt .menu_mob_cat li a').click(function(e) {
+	e.stopPropagation();
+});
+// Раскрытие/скрытие пунктов меню 3го уровня
+$('.children-category > ul > li').each(function(i, elem){
+	if( $(elem).hasClass('children_lv3') ) {
+		var ulElements = $(elem).parent().find('li');
+		if( $(ulElements[0]).find('a.plus-link').length == 0 ) {
+			$(ulElements[0]).append('<a href="#" class="plus-link"><i class="fa fa-plus" style="display: inline; "></i><i class="fa fa-minus" style="display: none;"></i></a>');
+			$(ulElements[0]).find('a.plus-link').click(function(e){
+				$(ulElements[0]).find('a.plus-link > .fa-plus').toggle();
+				$(ulElements[0]).find('a.plus-link > .fa-minus').toggle();
+				$(ulElements[0]).parent().find('.children_lv3').toggle();
+				return false;
+			});
+		}
+	}
+});
+});
+//--></script>

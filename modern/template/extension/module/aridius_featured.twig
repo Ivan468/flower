@@ -1,0 +1,670 @@
+{% if (ardfeaturedview) %}
+<hr>
+<h3 class="title_h title_center">{% if (aridiusfeatured_name[language_id]) %}{{ aridiusfeatured_name[language_id] }}{% else %}{{ heading_title_feat }}{% endif %}</h3>
+<div class="padding-carusel row hover_index" id="featured_carusel{{ module }}">
+<div id="featured_crs{{ module }}" class="swiper-container padding_swiper button-next-prev">
+<div class="swiper-wrapper">
+{% for key,product in products %}
+<div class="product-layoutmod swiper-slide">
+{% if (not modern_arrows) %}
+<div class="swiper-button-prev{{ key }} button_prev button_swiper_car">
+<i class="fa fa-arrow-left"></i>
+</div>
+<div class="swiper-button-next{{ key }} button_next button_swiper_car" >
+<i class="fa fa-arrow-right"></i>
+</div>
+{% endif %}
+<div class="product-layout2">
+<div class="border product-thumb">
+<div class="caption">
+<div id="imgCarousel-featured{{ key }}">
+<div class="featured_block swiper-container">
+{% if (not modern_quickview) %}
+<button class="button_img_quick" data-toggle="tooltip" title="{{ button_quickview }}" onclick="quickview_open('{{ product['product_id'] }}');"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-search fa-stack-1x fa-inverse"></i></span></button>
+{% endif %}
+<div class="swiper-wrapper">
+<div class="item swiper-slide">
+<a href="{{ product['href'] }}"><img class="featured-imgsize img-responsive center-add_img" src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" /></a>
+</div>
+{% if (not modern_arrows) %}
+{% for key2,image in product['images'] %}
+<div class="item swiper-slide addit_lazy">
+<a href="{{ product['href'] }}"><img class="swiper-lazy img-responsive center-add_img" src="catalog/view/theme/modern/image/background_white.jpg" alt="{{ product['name'] }}-foto{{ key2+2 }}" data-src="{{ image['thumb'] }}"/></a>
+<div class="swiper-lazy-preloader"></div>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+{% if (theme_modern_other9 != '0') %}
+<div class="swiper-pagination swiper-pagination{{ key }}"></div>
+{% endif %}
+</div>
+{% if (not modern_arrows) %}
+<script>
+$(document).ready(function () { var featuredSwiper{{ key }} = new Swiper('#featured_carusel{{ module }} #imgCarousel-featured{{ key }} .swiper-container', { simulateTouch:false, preloadImages: false, autoHeight:false, loop: false, lazy: true, navigation: { nextEl: '#featured_carusel{{ module }} .swiper-button-next{{ key }}', prevEl: '#featured_carusel{{ module }} .swiper-button-prev{{ key }}' },pagination: {el: '#featured_carusel{{ module }} .swiper-pagination{{ key }}',dynamicBullets: {{ theme_modern_other9 }},dynamicMainBullets:2}, }) });
+</script>
+{% endif %}
+<div class="positionsticker">
+<!-- special -->
+{% if (modern_sticker_sale_product_auto != 1 and product['special'] and product['price_sticker'] != 0) %}
+{% set percent = (100 - (product['special_sticker'] / product['price_sticker']) * 100)|round %}
+<div class="stickers-special">-{{ percent }}%</div>
+{% endif %}
+<!-- special END -->
+<!-- new -->
+{% set startDate1 = (product['dateadded']|slice(0, 10))|date('U') %}
+{% set endDate2 = ("now"|date("Y/m/d"))|date('U') %}
+{% set days = ((endDate2 / 86400)|round) - ((startDate1 / 86400)|round) %}
+{% if (modern_sticker_new_product_auto != 1 and days < modern_sticker_product_new_day or modern_sticker_new_product_auto != 0 and product['stickers'] == 1) %}
+<div class="stickers-new">{{ modern_name_sticker_product_new[language_id] }}</div>
+{% endif %}
+<!-- new END -->
+<!-- top -->
+{% if (modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 1 and product['rating'] == modern_sticker_product_top_rating or modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 2 and product['viewed'] > modern_sticker_product_top_viewed or modern_sticker_top_product_auto != 0 and product['stickers'] == 2 ) %}
+<div class="stickers-top">{{ modern_name_sticker_product_top[language_id] }}</div>
+{% endif %}
+<!-- top END -->
+</div>
+<div class="rating">
+{% if (rat and product['rating']) %}
+{% set i = 1 %}{% for i in i..5 %}
+{% if (product['rating'] < i) %}
+<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+{% else %}
+<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+{% endif %}
+{% endfor %}
+{% endif %}
+</div>
+<h4><a href="{{ product['href'] }}">
+{% if (product['name'])|length < modern_limit_symbolst %}
+{{ product['name'] }}
+{% else %}
+{{ (product['name']|slice(0, modern_limit_symbolst))~"..." }}
+{% endif %}
+</a></h4>
+{% if (product['price']) %}
+<p class="price">
+{% if (not product['special']) %}
+{{ product['price'] }}
+{% else %}
+<span class="price-new">{{ product['special'] }}</span> <span class="price-old">{{ product['price'] }}</span>
+{% endif %}
+{% if (product['tax']) %}
+<span class="price-tax">{{ text_tax }} {{ product['tax'] }}</span>
+{% endif %}
+</p>
+{% endif %}
+<div class="cart">
+{% if (product['quantity'] <= 0 and aridiusinstock_status ) %}
+<button type="button" class="btn-instock" onclick="instock.add('{{ product['product_id'] }}');" data-product-id=" {{ product['product_id'] }}">{{ button_instock }}</button>
+{% else %}
+<button type="button" class="btn-cartpr" onclick="cart.add('{{ product['product_id'] }}');"><i class="fa fa-shopping-cart"></i> {{ button_cart }}</button>
+{% endif %}
+</div>
+</div>
+<div class="effect-hover">
+{% if (wish or comp) %}
+<div class = "padding_mini_button">
+{% if (wish) %}
+<a class="wishlist wishlist_set" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product['product_id'] }}');"><i class="fa fa-fw fa-heart-o icon_size_wish"></i></a>
+{% endif %}
+{% if (comp) %}
+<a class="compare compare_set" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product['product_id'] }}');"><i class="fa fa-fw fa-balance-scale icon_size_comp"></i></a>
+{% endif %}
+</div>
+{% endif %}
+{% if (desc) %}
+<hr>
+<p class="description_cat">{{ product['description'] }}</p>
+{% endif %}
+{% if (product['attribute_groups'] and attribute) %}
+<hr>
+<div class="attribute_cat">
+{% set v = 0 %}
+{% set break = false %}
+{% set break2 = false %}
+{% for attribute_group in product['attribute_groups'] if not break  %}
+{% for key,attribute in attribute_group['attribute'] if not break2 %}
+{% set v = v + 1 %}
+{% if (v + 1 > modern_attribute_see) %}
+{% set break2 = true %}
+{% endif %}
+{{ attribute['name'] }} - {{ attribute['text'] }}
+{% if (v < modern_attribute_see) %}
+/
+{% endif %}
+{% endfor %}
+{% if (v + 1 > modern_attribute_see) %}
+{% set break = true %}
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+<div class="featured-button-prev modern-button-prev"></div>
+<div class="featured-button-next modern-button-next"></div>
+<div class="load_background"><div class="swiper-lazy-preloader"></div></div>
+</div>
+<script>
+var featuredSwiper = new Swiper ('#featured_crs{{ module }}.swiper-container', {
+speed: {{ rew_speed }},
+autoplay: {
+delay: {{ autoplay }},
+},
+slidesPerView: 4,
+{% if products|length > 8 %}
+slidesPerColumn: 2,
+{% endif %}
+watchSlidesVisibility:true,
+watchSlidesProgress:true,
+loop: false,
+preloadImages: true,
+updateOnImagesReady:true,
+grabCursor:true,
+autoHeight:true,
+touchMoveStopPropagation: true,
+autoplayDisableOnInteraction: true,
+slideVisibleClass: 'swiper-slide-visible',
+navigation: {
+nextEl: '#featured_carusel{{ module }} .featured-button-next',
+prevEl: '#featured_carusel{{ module }} .featured-button-prev',
+},
+breakpoints: {
+1599: {
+slidesPerView: 4,
+},
+1199: {
+slidesPerView: 3,
+},
+768: {
+slidesPerView: 2,
+},
+},
+on: {
+imagesReady: function () {
+$('#featured_carusel{{ module }}').css("height", this.height + "px");
+var featured_imgsize = $('#featured_carusel{{ module }} .featured-imgsize').height()/2;
+$('#featured_carusel{{ module }} .button_swiper_car').css("top", featured_imgsize+15 + "px");
+$('#featured_carusel{{ module }} .swiper-lazy-preloader').css("top", featured_imgsize + "px");
+$("#featured_carusel{{ module }} .load_background .swiper-lazy-preloader").remove();
+$("#featured_carusel{{ module }} .load_background").css("z-index","-1");
+},
+resize: function () {
+$('#featured_carusel{{ module }}').css("height", this.height + "px");
+var featured_imgsize = $('#featured_carusel{{ module }} .featured-imgsize').height()/2;
+$('#featured_carusel{{ module }} .button_swiper_car').css("top", featured_imgsize+15 + "px");
+$('#featured_carusel{{ module }} .swiper-lazy-preloader').css("top", featured_imgsize + "px");
+},
+}
+})
+$("#featured_crs{{ module }}.swiper-container").hover(function() {
+featuredSwiper.autoplay.stop();
+}, function() {
+featuredSwiper.autoplay.start();
+});
+</script>
+{% else %}
+<hr>
+<h3 class="title_h title_center">{% if (aridiusfeatured_name[language_id]) %}{{ aridiusfeatured_name[language_id] }}{% else %}{{ heading_title_feat }}{% endif %}</h3>
+<div id="featured_block{{ module }}" class="main_block hover_index">
+<div class="row">
+{% for key,product in products %}
+<div class="product-layoutmod col-xs-6 col-sm-4 col-md-3 col-lg-2 col-ard clear_module">
+{% if (not modern_arrows) %}
+<div class="swiper-button-prev{{ key }} button_prev button_swiper_car" style="top:{{ img_height/2+21 }}px">
+<i class="fa fa-arrow-left"></i>
+</div>
+<div class="swiper-button-next{{ key }} button_next button_swiper_car" style="top:{{ img_height/2+21 }}px">
+<i class="fa fa-arrow-right"></i>
+</div>
+{% endif %}
+<div class="product-layout2">
+<div class="border product-thumb">
+<div class="caption">
+<div id="imgCarousel-featured{{ key }}">
+<div class="featured_block swiper-container">
+{% if (not modern_quickview) %}
+<button class="button_img_quick" data-toggle="tooltip" title="{{ button_quickview }}" onclick="quickview_open('{{ product['product_id'] }}');"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-search fa-stack-1x fa-inverse"></i></span></button>
+{% endif %}
+<div class="swiper-wrapper">
+<div class="item swiper-slide">
+<a href="{{ product['href'] }}"><img class="featured-imgsize img-responsive center-add_img" src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" /></a>
+</div>
+{% if (not modern_arrows) %}
+{% for key2,image in product['images'] %}
+<div class="item swiper-slide addit_lazy">
+<a href="{{ product['href'] }}"><img class="swiper-lazy img-responsive center-add_img" src="catalog/view/theme/modern/image/background_white.jpg" alt="{{ product['name'] }}-foto{{ key2+2 }}" data-src="{{ image['thumb'] }}"/></a>
+<div class="swiper-lazy-preloader" ></div>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+{% if (theme_modern_other9 != '0') %}
+<div class="swiper-pagination swiper-pagination{{ key }}"></div>
+{% endif %}
+</div>
+{% if (not modern_arrows) %}
+<script>
+$(document).ready(function () { var featuredSwiper{{ key }} = new Swiper('#featured_block{{ module }} #imgCarousel-featured{{ key }} .swiper-container', { simulateTouch:false, preloadImages: false, autoHeight:false, loop: false, lazy: true, navigation: { nextEl: '#featured_block{{ module }} .swiper-button-next{{ key }}', prevEl: '#featured_block{{ module }} .swiper-button-prev{{ key }}' },pagination: {el: '#featured_block{{ module }} .swiper-pagination{{ key }}',dynamicBullets: {{ theme_modern_other9 }},dynamicMainBullets:2},on:{init:function(){var a=$("#featured_block{{ module }} .featured-imgsize").height()/2;$("#featured_block{{ module }} .button_swiper_car").css("top",a+15+"px"),$("#featured_block{{ module }} .swiper-lazy-preloader").css("top",a+"px")},resize:function(){var a=$("#featured_block{{ module }} .featured-imgsize").height()/2;$("#featured_block{{ module }} .button_swiper_car").css("top",a+15+"px"),$("#featured_block{{ module }} .swiper-lazy-preloader").css("top",a+"px")}} }) });
+</script>
+{% endif %}
+<div class="positionsticker">
+<!-- special -->
+{% if (modern_sticker_sale_product_auto != 1 and product['special'] and product['price_sticker'] != 0) %}
+{% set percent = (100 - (product['special_sticker'] / product['price_sticker']) * 100)|round %}
+<div class="stickers-special">-{{ percent }}%</div>
+{% endif %}
+<!-- special END -->
+<!-- new -->
+{% set startDate1 = (product['dateadded']|slice(0, 10))|date('U') %}
+{% set endDate2 = ("now"|date("Y/m/d"))|date('U') %}
+{% set days = ((endDate2 / 86400)|round) - ((startDate1 / 86400)|round) %}
+{% if (modern_sticker_new_product_auto != 1 and days < modern_sticker_product_new_day or modern_sticker_new_product_auto != 0 and product['stickers'] == 1) %}
+<div class="stickers-new">{{ modern_name_sticker_product_new[language_id] }}</div>
+{% endif %}
+<!-- new END -->
+<!-- top -->
+{% if (modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 1 and product['rating'] == modern_sticker_product_top_rating or modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 2 and product['viewed'] > modern_sticker_product_top_viewed or modern_sticker_top_product_auto != 0 and product['stickers'] == 2 ) %}
+<div class="stickers-top">{{ modern_name_sticker_product_top[language_id] }}</div>
+{% endif %}
+<!-- top END -->
+</div>
+<div class="rating">
+{% if (rat and product['rating']) %}
+{% set i = 1 %}{% for i in i..5 %}
+{% if (product['rating'] < i) %}
+<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+{% else %}
+<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+{% endif %}
+{% endfor %}
+{% endif %}
+</div>
+<h4><a href="{{ product['href'] }}">
+{% if (product['name'])|length < modern_limit_symbolst %}
+{{ product['name'] }}
+{% else %}
+{{ (product['name']|slice(0, modern_limit_symbolst))~"..." }}
+{% endif %}
+</a></h4>
+{% if (product['price']) %}
+<p class="price">
+{% if (not product['special']) %}
+{{ product['price'] }}
+{% else %}
+<span class="price-new">{{ product['special'] }}</span> <span class="price-old">{{ product['price'] }}</span>
+{% endif %}
+{% if (product['tax']) %}
+<span class="price-tax">{{ text_tax }} {{ product['tax'] }}</span>
+{% endif %}
+</p>
+{% endif %}
+<div class="cart">
+{% if (product['quantity'] <= 0 and aridiusinstock_status ) %}
+<button type="button" class="btn-instock" onclick="instock.add('{{ product['product_id'] }}');" data-product-id=" {{ product['product_id'] }}">{{ button_instock }}</button>
+{% else %}
+<button type="button" class="btn-cartpr" onclick="cart.add('{{ product['product_id'] }}');"><i class="fa fa-shopping-cart"></i> {{ button_cart }}</button>
+{% endif %}
+</div>
+<div class="effect_hover_wc">
+{% if (wish or comp) %}
+<div class = "padding_mini_button">
+{% if (wish) %}
+<a class="wishlist wishlist_set" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product['product_id'] }}');"><i class="fa fa-fw fa-heart-o icon_size_wish"></i></a>
+{% endif %}
+{% if (comp) %}
+<a class="compare compare_set" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product['product_id'] }}');"><i class="fa fa-fw fa-balance-scale icon_size_comp"></i></a>
+{% endif %}
+</div>
+{% endif %}
+</div>
+</div>
+<div class="effect-hover">
+{% if (desc) %}
+<hr>
+<p class="description_cat">{{ product['description'] }}</p>
+{% endif %}
+{% if (product['attribute_groups'] and attribute) %}
+<hr>
+<div class="attribute_cat">
+{% set v = 0 %}
+{% set break = false %}
+{% set break2 = false %}
+{% for attribute_group in product['attribute_groups'] if not break  %}
+{% for key,attribute in attribute_group['attribute'] if not break2 %}
+{% set v = v + 1 %}
+{% if (v + 1 > modern_attribute_see) %}
+{% set break2 = true %}
+{% endif %}
+{{ attribute['name'] }} - {{ attribute['text'] }}
+{% if (v < modern_attribute_see) %}
+/
+{% endif %}
+{% endfor %}
+{% if (v + 1 > modern_attribute_see) %}
+{% set break = true %}
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if buyoneclick_status_product or buyoneclick_status_category or buyoneclick_status_module %}
+					<div id="boc_order" class="modal fade">
+					</div>
+					<div id="boc_success" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="text-center"><h4>Спасибо за Ваш заказ!<br />Мы свяжемся с Вами в самое ближайшее время.</h4></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						$('body').on('click', '.boc_order_btn', function(event) {
+							$.ajax({
+								url: 'index.php?route=extension/module/buyoneclick/common/buyoneclick/info',
+								type: 'post',
+								data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+								dataType: 'json',
+								beforeSend: function() {
+									$(event.target).button('loading');
+									$('#boc_order').empty();
+									$('#boc_order').append('<div class="lds-rolling"><div></div></div>');
+								},
+								complete: function() {
+									$(event.target).button('reset');
+								},
+								success: function(json) {
+									$('.alert, .text-danger').remove();
+									$('.form-group').removeClass('has-error');
+									if (json['error']) {
+										if (json['error']['option']) {
+											for (i in json['error']['option']) {
+												var element = $('#input-option' + i.replace('_', '-'));
+												if (element.parent().hasClass('input-group')) {
+													element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+												} else {
+													element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+												}
+											}
+										}
+
+										if (json['error']['recurring']) {
+											$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+										}
+
+										// Highlight any found errors
+										$('.text-danger').parent().addClass('has-error');
+									} else {
+										$("#boc_order").modal('show');
+										$('#boc_order').empty();
+										$('#boc_order').html(json['success']);
+										{% if buyoneclick_exan_status %} valueData(); {% endif %}
+									}
+								},
+								error: function(xhr, ajaxOptions, thrownError) {
+									console.log(thrownError + " | " + xhr.statusText + " | " + xhr.responseText);
+								}
+							});
+						});
+						$('body').on('click', '.boc_order_category_btn', function(event) {
+							var for_post = {};
+							for_post.product_id = $(this).attr('data-product_id');
+							$.ajax({
+								url: 'index.php?route=extension/module/buyoneclick/common/buyoneclick/info',
+								type: 'post',
+								data: for_post,
+								dataType: 'json',
+								beforeSend: function() {
+									$(event.target).button('loading');
+								},
+								complete: function() {
+									$(event.target).button('reset');
+								},
+								success: function(json) {
+									$('.alert, .text-danger').remove();
+									$('.form-group').removeClass('has-error');
+									if (json['redirect']) {
+										location = json['redirect'];
+									} else {
+										// console.log(json);
+										$("#boc_order").modal('show');
+										$('#boc_order').empty();
+										$('#boc_order').html(json['success']);
+										{% if buyoneclick_exan_status %} valueData(); {% endif %}
+									}
+								},
+								error: function(xhr, ajaxOptions, thrownError) {
+									console.log(thrownError + " | " + xhr.statusText + " | " + xhr.responseText);
+								}
+							});
+						});
+					</script>
+				{% endif %}
+				<script src="catalog/view/javascript/buyoneclick.js" type="text/javascript"></script>
+				<script>
+						function clickAnalytics(){
+							console.log('clickAnalytics');
+							{% if buyoneclick_ya_status and buyoneclick_ya_counter is defined and buyoneclick_ya_counter != '' and buyoneclick_ya_identificator is defined and buyoneclick_ya_identificator != '' %}
+								yaCounter{{ buyoneclick_ya_counter }}.reachGoal('{{ buyoneclick_ya_identificator }}');
+							{% endif %}
+							{% if buyoneclick_google_status and buyoneclick_google_category_btn is defined and buyoneclick_google_category_btn != '' and buyoneclick_google_action_btn is defined and buyoneclick_google_action_btn != '' %}
+								ga('send', 'event', '{{ buyoneclick_google_category_btn }}', '{{ buyoneclick_google_action_btn }}');
+								gtag('event', '{{ buyoneclick_google_action_btn }}', {'event_category': '{{ buyoneclick_google_category_btn }}'});
+							{% endif %}
+							return true;
+						}
+						function clickAnalyticsSend(){
+							console.log('clickAnalyticsSend');
+							{% if buyoneclick_ya_status and buyoneclick_ya_counter is defined and buyoneclick_ya_counter != '' and buyoneclick_ya_identificator_send is defined and buyoneclick_ya_identificator_send != '' %}
+								yaCounter{{ buyoneclick_ya_counter }}.reachGoal('{{ buyoneclick_ya_identificator_send }}');
+							{% endif %}
+							{% if buyoneclick_google_status and buyoneclick_google_category_send is defined and buyoneclick_google_category_send != '' and buyoneclick_google_action_send is defined and buyoneclick_google_action_send != '' %}
+								ga('send', 'event', '{{ buyoneclick_google_category_send }}', '{{ buyoneclick_google_action_send }}');
+								gtag('event', '{{ buyoneclick_google_action_send }}', {'event_category': '{{ buyoneclick_google_category_send }}'});
+							{% endif %}
+							return true;
+						}
+						function clickAnalyticsSuccess(){
+							console.log('clickAnalyticsSuccess');
+							{% if buyoneclick_ya_status and buyoneclick_ya_counter is defined and buyoneclick_ya_counter != '' and buyoneclick_ya_identificator_success is defined and buyoneclick_ya_identificator_success != '' %}
+								yaCounter{{ buyoneclick_ya_counter }}.reachGoal('{{ buyoneclick_ya_identificator_success }}');
+							{% endif %}
+							{% if buyoneclick_google_status and buyoneclick_google_category_success is defined and buyoneclick_google_category_success != '' and buyoneclick_google_action_success is defined and buyoneclick_google_action_success != '' %}
+								ga('send', 'event', '{{ buyoneclick_google_category_success }}', '{{ buyoneclick_google_action_success }}');
+								gtag('event', '{{ buyoneclick_google_action_success }}', {'event_category': '{{ buyoneclick_google_category_success }}'});
+							{% endif %}
+							return true;
+						}
+					</script>
+						{% if buyoneclick_validation_type %}
+							<script src="catalog/view/javascript/jquery.mask.min.js" type="text/javascript"></script>
+							<script>
+								$(document).ready(function(){
+									$('#boc_phone').mask('{{ buyoneclick_validation_type }}');
+								});
+							</script>
+						{% endif %}
+						{% if buyoneclick_exan_status %}
+							<script src="catalog/view/javascript/sourcebuster.min.js" type="text/javascript"></script>
+							<script>
+								sbjs.init({
+									callback: placeData
+								});
+
+								function placeData(sb) {
+									$sb_first_typ		= sb.first.typ;
+									$sb_first_src		= sb.first.src;
+									$sb_first_mdm		= sb.first.mdm;
+									$sb_first_cmp		= sb.first.cmp;
+									$sb_first_cnt		= sb.first.cnt;
+									$sb_first_trm		= sb.first.trm;
+
+									$sb_curr_typ		= sb.current.typ;
+									$sb_curr_src		= sb.current.src;
+									$sb_curr_mdm		= sb.current.mdm;
+									$sb_curr_cmp		= sb.current.cmp;
+									$sb_curr_cnt		= sb.current.cnt;
+									$sb_curr_trm		= sb.current.trm;
+
+									$sb_first_add_fd	= sb.first_add.fd;
+									$sb_first_add_ep	= sb.first_add.ep;
+									$sb_first_add_rf	= sb.first_add.rf;
+
+									$sb_curr_add_fd		= sb.current_add.fd;
+									$sb_curr_add_ep		= sb.current_add.ep;
+									$sb_curr_add_rf		= sb.current_add.rf;
+
+									$sb_session_pgs		= sb.session.pgs;
+									$sb_session_cpg		= sb.session.cpg;
+
+									$sb_udata_vst		= sb.udata.vst;
+									$sb_udata_uip		= sb.udata.uip;
+									$sb_udata_uag		= sb.udata.uag;
+
+									$sb_promo_code		= sb.promo.code;
+								};
+
+								function valueData() {
+									document.getElementById('sb_first_typ').value	= $sb_first_typ;
+									document.getElementById('sb_first_src').value	= $sb_first_src;
+									document.getElementById('sb_first_mdm').value	= $sb_first_mdm;
+									document.getElementById('sb_first_cmp').value	= $sb_first_cmp;
+									document.getElementById('sb_first_cnt').value	= $sb_first_cnt;
+									document.getElementById('sb_first_trm').value	= $sb_first_trm;
+
+									document.getElementById('sb_current_typ').value	 = $sb_curr_typ;
+									document.getElementById('sb_current_src').value	 = $sb_curr_src;
+									document.getElementById('sb_current_mdm').value	 = $sb_curr_mdm;
+									document.getElementById('sb_current_cmp').value	 = $sb_curr_cmp;
+									document.getElementById('sb_current_cnt').value	 = $sb_curr_cnt;
+									document.getElementById('sb_current_trm').value	 = $sb_curr_trm;
+
+									document.getElementById('sb_first_add_fd').value	= $sb_first_add_fd;
+									document.getElementById('sb_first_add_ep').value	= $sb_first_add_ep;
+									document.getElementById('sb_first_add_rf').value	= $sb_first_add_rf;
+
+									document.getElementById('sb_current_add_fd').value = $sb_curr_add_fd;
+									document.getElementById('sb_current_add_ep').value = $sb_curr_add_ep;
+									document.getElementById('sb_current_add_rf').value = $sb_curr_add_rf;
+
+									document.getElementById('sb_session_pgs').value	 = $sb_session_pgs;
+									document.getElementById('sb_session_cpg').value	 = $sb_session_cpg;
+
+									document.getElementById('sb_udata_vst').value	= $sb_udata_vst;
+									document.getElementById('sb_udata_uip').value	= $sb_udata_uip;
+									document.getElementById('sb_udata_uag').value	= $sb_udata_uag;
+
+									document.getElementById('sb_promo_code').value	 = $sb_promo_code;
+								};
+							</script>
+						{% endif %}
+						{% if buyoneclick_style_status %}
+							<link href="catalog/view/theme/default/stylesheet/buyoneclick.css" rel="stylesheet">
+						{% endif %}
+						<style type="text/css">
+							@keyframes lds-rolling {
+								0% {
+									-webkit-transform: translate(-50%, -50%) rotate(0deg);
+									transform: translate(-50%, -50%) rotate(0deg);
+								}
+								100% {
+									-webkit-transform: translate(-50%, -50%) rotate(360deg);
+									transform: translate(-50%, -50%) rotate(360deg);
+								}
+							}
+							@-webkit-keyframes lds-rolling {
+								0% {
+									-webkit-transform: translate(-50%, -50%) rotate(0deg);
+									transform: translate(-50%, -50%) rotate(0deg);
+								}
+								100% {
+									-webkit-transform: translate(-50%, -50%) rotate(360deg);
+									transform: translate(-50%, -50%) rotate(360deg);
+								}
+							}
+							.lds-rolling {
+								position: relative;
+								text-align: center;
+							}
+							.lds-rolling div, .lds-rolling div:after {
+								position: absolute;
+								width: 160px;
+								height: 160px;
+								border: 20px solid #bbcedd;
+								border-top-color: transparent;
+								border-radius: 50%;
+							}
+							.lds-rolling div {
+								-webkit-animation: lds-rolling 1s linear infinite;
+								animation: lds-rolling 1s linear infinite;
+								top: 100px;
+								left: 100px;
+							}
+							.lds-rolling div:after {
+								-webkit-transform: rotate(90deg);
+								transform: rotate(90deg);
+							}
+							.lds-rolling {
+								width: 200px !important;
+								height: 200px !important;
+								-webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+								transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+								margin: 0 auto;
+							}
+							.col-pd-15 {
+								padding-left:15px;
+								padding-right:15px;
+							}
+							.col-mb-10 {
+								margin-bottom:10px;
+							}
+							#boc_order hr {
+								margin-top:0px;
+								margin-bottom:15px;
+							}
+							.boc_product_info > div {
+								line-height: 120px;
+							}
+							.boc_product_info > div > img {
+								max-height: 120px;
+								margin: 0 auto;
+							}
+							.boc_product_info > div > img, .boc_product_info > div > div, .boc_product_info > div > p {
+								display: inline-block;
+								line-height: normal;
+								vertical-align: middle;
+							}
+							#boc_order .checkbox {
+								margin-top: 0;
+								padding: 0 10px;
+								border: 1px solid transparent;
+								border-radius: 6px;
+							}
+							#boc_order .checkbox.has-error {
+								border-color: #a94442;
+							}
+							@media (max-width: 767px) {
+								.boc_product_info > div {
+									line-height:normal;
+									text-align:center;
+								}
+							}
+						</style>

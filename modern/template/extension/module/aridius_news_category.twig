@@ -1,0 +1,32 @@
+<div class="groupcat">
+<h3 class="title_h title_center inl">{{ heading_title_new_cat }}</h3>
+{% if (showbutton) %} 
+<div class="buttonsall_news">
+<div class="pull-right"><a href="{{ aridius_newslist }}"><i class="fa fa-caret-right"></i>&nbsp;{{ text_all_news }}</a></div>
+</div>
+{% endif %} 
+</div>
+<div class="row">
+{% for new in news %} 
+<div class="product-layout news_cat col-lg-3 col-md-3 col-sm-6 col-xs-12">
+<div class="product-thumbleft transition ">
+{% if (new['video']) %} 
+<div class="grid-aridius_news video video_news">
+<iframe class="embed-responsive-item b-lazy" data-src="https://www.youtube.com/embed/{{ new['video'] }}" allowfullscreen></iframe>
+</div>
+{% endif %} 
+{% if (not new['video']) %} 
+<div class="image"><a href="{{ new['href'] }}"><img src="{{ new['thumb'] }}" alt="{{ new['title'] }}" title="{{ new['title'] }}" class="img-responsive" /></a></div>
+{% endif %} 
+<div class="caption">
+{% if (new['aridius_news_id'] == aridius_news_id) %} 
+<h4 class="hstyle"><a href="{{ new['href'] }}" class="active">{{ new['title'] }}</a></h4>
+{% else %} 
+<h4 class="hstyle"><a href="{{ new['href'] }}">{{ new['title'] }}</a></h4>
+{% endif %} 
+<p>{{ new['description'] }}</p>
+</div>
+</div>
+</div>
+{% endfor %} 
+</div>

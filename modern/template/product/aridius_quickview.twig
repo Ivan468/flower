@@ -1,0 +1,704 @@
+<div id="quickview">
+<div class="quickw efect-mfp">
+<div class="quickwgroup">
+<button title="close" type="button" class="mfp-close">&#215;</button>
+<div class="name-popup">{{ heading_title }}</div>
+</div>
+<div class="quickw2">
+<div class="row">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+{% if (not aridius_qckview_tabs) %}
+<div class="tab_mob_main">
+<ul class="nav nav-tabs mod tabst tab_mob_child">
+<li class="active tab_mob_grandchild"><a href="#tab-product" data-toggle="tab">{{ tab_products }}</a></li>
+{% if (not aridius_qckview_tab_description) %}
+<li class="tab_mob_grandchild"><a href="#tab-description" data-toggle="tab">{{ tab_description }}</a></li>
+{% endif %}
+{% if (attribute_groups and not aridius_qckview_tab_character) %}
+<li class="tab_mob_grandchild"><a href="#tab-specification" data-toggle="tab">{{ tab_attribute }}</a></li>
+{% endif %}
+{% if (review_status and not aridius_qckview_tab_reviews) %}
+<li class="tab_mob_grandchild"><a href="#tab-review" data-toggle="tab">{{ tab_review }}</a></li>
+{% endif %}
+{% if (theme_tabs and not aridius_qckview_tab_additional ) %}
+{% for key, theme_tab  in theme_tabs %}
+{% if (theme_tab.title[language_id]) %}
+<li class="tab_mob_grandchild"><a href="#tab-other-{{ key }}" data-toggle="tab">{{ theme_tab['title'][language_id] }} </a></li>
+{% endif %}
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+{% endif %}
+<div class="tab-content">
+<div class="row tab-pane active" id="tab-product">
+{% if (not aridius_qckview_image) %}
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 thumbnails-fix">
+{% if ((special and special_date_end > special_date_start) and (modern_product_timer != 1)) %}
+<div class="special-timer-all">
+<div class = "text-time">{{ text_end_stock }}</div>
+<div class = "special-timere-zone">
+<div id = "time_out"></div>
+</div>
+</div>
+{% endif %}
+<div class="prmain">
+<div class="positionsticker">
+<!-- special -->
+{% if (modern_sticker_sale_product_auto != 1 and special) %}
+<div class="stickers-special"><span class="diamont_st">-{{ saving_product }}%</span></div>
+{% endif %}
+<!-- special END -->
+<!-- new -->
+{% set startDate1 = dateadded|slice(0, 10)|date('U') %}
+{% set endDate2 = ("now"|date("Y/m/d"))|date('U') %}
+{% set days = ((endDate2 / 86400)|round) - ((startDate1 / 86400)|round) %}
+{% if (modern_sticker_new_product_auto != 1 and days < modern_sticker_product_new_day or modern_sticker_new_product_auto != 0 and stickers == 1) %}
+<div class="stickers-new"><span class="diamont_st">{{ modern_name_sticker_product_new[language_id] }}</span></div>
+{% endif %}
+<!-- new END -->
+<!-- top -->
+{% if (modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 1 and rating == modern_sticker_product_top_rating or modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 2 and viewed > modern_sticker_product_top_viewed or modern_sticker_top_product_auto != 0 and stickers == 2 ) %}
+<div class="stickers-top"><span class="diamont_st">{{ modern_name_sticker_product_top[language_id] }}</span></div>
+{% endif %}
+<!-- top END -->
+</div>
+{% if (thumb or images) %}
+<div class="swiper-container gallery-top">
+<div class="swiper-wrapper">
+{% if (thumb) %}
+<div class="swiper-slide">
+<span class="zoom-img thumbnail imglink">
+<img class="main-image imgsize" src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" data-zoom="{{ popup }}" /></span>
+</div>
+{% for image in images %}
+<div class="swiper-slide">
+<span class="zoom-img thumbnail imglink">
+<img class="main-image swiper-lazy" src="catalog/view/theme/modern/image/background_white.jpg" data-src="{{ image['thumb2'] }}" title="{{ heading_title }}" alt="{{ heading_title }}" data-zoom="{{ image['popup'] }}" /></span>
+<div class="swiper-lazy-preloader"></div>
+</div>
+{% endfor %}
+{% endif %}
+{% if (options and modern_option_image !=1) %}
+{% for option in options %}
+{% for option_value in option['product_option_value'] %}
+{% if (option_value['image']) %}
+{% if (not option_value['image_opt_main'] and modern_option_image2 != 0) %}
+{% else %}
+<div class="swiper-slide">
+<span class="zoom-img thumbnail imglink">
+<img class="main-image swiper-lazy" src="catalog/view/theme/modern/image/background_white.jpg" {% if (option_value['image_opt_main']) %} data-src="{{ option_value['image_opt_main'] }}" {% else %} data-src="{{ option_value['optthumb'] }}" {% endif %} title="{{ heading_title }}" alt="{{ heading_title }}" {% if (option_value['image_opt']) %} data-zoom="{{ option_value['image_opt'] }}" {% else %} data-zoom="{{ option_value['optpopup'] }}" {% endif %} /></span>
+<div class="swiper-lazy-preloader"></div>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+</div>
+</div>
+</div>
+{% if ((images and not aridius_qckview_additional_image) or options_img == 1) %}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding_10">
+<div class="addit-button-hor-prev"></div>
+<div id="image-additional2" class="swiper-container gallery-thumbs">
+<div class="swiper-wrapper">
+{% if (thumb_add) %}
+<div class="mini_foto2 swiper-slide"><span class="thumbnail quantity_foto active_add">
+<img src="{{ thumb_add }}" title="{{ heading_title }}" alt="{{ heading_title }}" ></span>
+</div>
+{% endif %}
+{% for key,image in images %}
+<div class="mini_foto2 swiper-slide"><span class="thumbnail imglink quantity_foto">
+<img {% if (key == 0) %} id="mini_foto" {% endif %} src="{{ image['thumb'] }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></span>
+</div>
+{% endfor %}
+{% if (options and modern_option_image !=1) %}
+{% for option in options %}
+{% for option_value in option['product_option_value'] %}
+{% if (option_value['image']) %}
+{% if (not option_value['image_opt_main'] and modern_option_image2 != 0) %}
+{% else %}
+<div class="mini_foto2 swiper-slide"><span class="thumbnail imglink quantity_foto">
+<img {% if (option_value['image_opt_mini']) %} src="{{ option_value['image_opt_mini'] }}" {% else %} src="{{ option_value['optmini'] }}" {% endif %} title="{{ heading_title }}" alt="{{ heading_title }}" /></span>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+</div>
+<div class="swiper-pagination"></div>
+</div>
+<div class="addit-button-hor-next"></div>
+</div>
+{% endif %}
+{% endif %}
+</div>
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border_left">
+{% else %}
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+{% endif %}
+{% if (not aridius_qckview_rating) %}
+<div class="linetoppr">
+{% if (review_status) %}
+<div class="rating">
+<p>
+{% set j = 1 %}{% for j in j..5 %}
+{% if (rating < j) %}
+<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+{% else %}
+<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+{% endif %}
+{% endfor %}
+{% if (not aridius_qckview_tab_reviews) %}
+&nbsp;&nbsp;<a class="review_profile" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ reviews }}</a> <span>/</span> <a class="review_profile" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ text_write }}</a>
+</p>
+{% else %}
+&nbsp;&nbsp;{{ reviews }}
+{% endif %}
+</div>
+{% endif %}
+</div>
+{% endif %}
+{% if (not aridius_qckview_short_info) %}
+<ul class="list-unstyled">
+{% if (manufacturer and not aridius_qckview_manufacturer) %}
+{% if (modern_product_man_img != 1) %}
+<li><a href="{{ manufacturers }}">
+{% if ( manufacturer_img is defined ) %}
+<img  class="pull-right" src="{{ manufacturer_img }}" alt="{{ manufacturer }}" title="{{ manufacturer }}">
+{% endif %}
+</a>
+</li>
+{% endif %}
+<li><span>{{ text_manufacturer }}</span>&nbsp;&nbsp;<a href="{{ manufacturers }}">{{ manufacturer }}</a></li>
+{% endif %}
+{% if (not aridius_qckview_stock) %}
+<li>{{ text_stock }}&nbsp;&nbsp;{{ quantity > 0 ? '<span class = "rewardin">'~ stock ~'</span>' : '<span class = "rewardoff">'~ stock ~'</span>' }}</li>
+{% endif %}
+{% if (not aridius_qckview_code_product) %}
+<li><span>{{ text_model }}</span>&nbsp;&nbsp;{{ model }}</li>
+{% endif %}
+{% if (reward) %}
+<li><span>{{ text_reward }}</span>&nbsp;&nbsp;{{ reward }}</li>
+{% endif %}
+{% if (length and width and height and modern_product_size != 1 ) %}
+<li>{% if (length > 0) %}{{ text_lengthp }} {{ length }} {% if ((length > 0 and width > 0) or (length > 0 and height > 0)) %}x{% endif %} {% endif %}{% if (width > 0) %}{{ text_widthp }} {{ width }} {% if (width > 0 and height > 0) %}x{% endif %} {% endif %}{% if (height > 0) %}{{ text_heightp }} {{ height }}{% endif %}</li>
+{% endif %}
+{% if (weight > 0 and modern_product_weight != 1 ) %}
+<li>{{ text_weightp }} {{ weight }}</li>
+{% endif %}
+{% if (modern_product_show_sku != 1) %}
+<li>{% if (sku) %} {{ modern_product_sku[language_id] }} {% endif %} {{ sku }}</li>
+{% endif %}
+{% if (modern_product_show_upc != 1) %}
+<li>{% if (upc) %} {{ modern_product_upc[language_id] }} {% endif %} {{ upc }}</li>
+{% endif %}
+{% if (modern_product_show_ean != 1) %}
+<li>{% if (ean) %} {{ modern_product_ean[language_id] }} {% endif %} {{ ean }}</li>
+{% endif %}
+{% if (modern_product_show_jan != 1) %}
+<li>{% if (jan) %} {{ modern_product_jan[language_id] }} {% endif %} {{ jan }}</li>
+{% endif %}
+</ul>
+{% if (modern_show_attribute != 1) %}
+<div class="attribute_groups">
+{% if (attribute_groups) %}
+{{ modern_pr_attribute_name[language_id] }}<br />
+{% set v = 0 %}
+{% for attribute_group in attribute_groups %}
+{% if (v < modern_attribute_see) %}
+<strong>{{ attribute_group['name'] }}</strong>
+{% for attribute in attribute_group['attribute'] %}
+{% if (v < modern_attribute_see) %}
+<ul class="atr">
+<li class="art_bottom_line"><span class="art_top">{{ attribute['name'] }}</span> <span class="art_top">{{ attribute['text'] }}</span></li>
+</ul>
+{% endif %}
+{% set v = v + 1 %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% set v = v + 1 %}
+<a class="specification_profile" href="" onclick="$('a[href=\'#tab-specification\']').trigger('click'); return false;">{{ modern_pr_attribute_seeall[language_id] }}</a>
+{% endif %}
+</div>
+{% endif %}
+<hr>
+{% endif %}
+{% if (price) %}
+<div class="line-product">
+{% if (not special) %}
+<span class="priceproduct-new">{{ price }}</span>
+{% else %}
+<span class="priceproduct-new">{{ special }}</span>&nbsp;&nbsp;<span class="priceproduct-old">{{ price }}</span>
+{% endif %}<br />
+</div>
+<ul class="list-unstyled">
+{% if (tax) %}
+<li>{{ text_tax }} {{ tax }}</li>
+{% endif %}
+{% if (points) %}
+<li>{{ text_points }} {{ points }}</li>
+{% endif %}
+{% if (discounts) %}
+<li>
+<hr>
+</li>
+{% for discount in discounts %}
+<li>{{ discount['quantity'] }}{{ text_discount }}{{ discount['price'] }}</li>
+{% endfor %}
+{% endif %}
+</ul>
+{% endif %}
+<div id="product_quickw">
+{% set number_opt = 0 %}
+{% if (options) %}
+<hr>
+<h3>{{ text_option }}</h3>
+{% for option in options %}
+{% if (option['type'] == 'select') %}
+<div class="form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label" for="input-option{{ option['product_option_id'] }}">{{ option['name'] }}</label>
+<select name="option[{{ option['product_option_id'] }}]" id="input-option{{ option['product_option_id'] }}" class="form-control">
+<option value="">{{ text_select }}</option>
+{% for option_value in option['product_option_value'] %}
+<option value="{{ option_value['product_option_value_id'] }}" data-points="{{ option_value['points_value'] is defined ? option_value['points_value'] : 0 }}" data-prefix="{{ option_value['price_prefix'] }}" data-price="{{ option_value['price_value'] }}">{{ option_value['name'] }}
+{% if (option_value['price']) %}
+({{ option_value['price_prefix'] == '+' or option_value['price_prefix'] == '-' ? option_value['price_prefix'] : '' ~ option_value['price'] }})
+{% endif %}
+</option>
+{% endfor %}
+</select>
+</div>
+{% endif %}
+{% if (option['type'] == 'radio') %}
+<div class="options_group form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label">{{ option['name'] }}</label>
+<div id="input-option{{ option['product_option_id'] }}">
+{% for option_value in option['product_option_value'] %}
+<div class="radio">
+<label>
+{% if (option_value['image']) %}
+<span class="opthe">
+{% if (not option_value['image_opt_main'] and modern_option_image2 != 0 or modern_option_image != 0) %}
+<input class="optstyle" type="radio"  name="option[{{ option['product_option_id'] }}]" value="{{ option_value['product_option_value_id'] }}" />
+{% else %}
+{% set number_opt = number_opt + 1 %}
+<input class="optstyle" type="radio" data-numberopt="{{ number_opt }}" name="option[{{ option['product_option_id'] }}]" value="{{ option_value['product_option_value_id'] }}" />
+{% endif %}
+<img src="{{ option_value['image'] }}" data-toggle="tooltip" data-placement="top" title="{{ option_value['name'] }}" {% if (not modern_product_option_form) %} class="img-thumbnail imgpopcat cirle_opt" {% else %}class="img-thumbnail imgpopcat" {% endif %}{% if (option_value['image_opt']) %} data-zoom-imageopt="{{ option_value['image_opt'] }}" {% else %} data-zoom-imageopt="{{ option_value['popup'] }}" {% endif %} alt="{{ option_value['name'] ~ option_value['price'] ? ' ' ~ option_value['price_prefix'] ~ option_value['price'] : '' }}" />
+{% if (option_value['price']) %}
+<br />
+{{ option_value['price_prefix'] }}{{ option_value['price'] }}
+{% endif %}
+</span>
+{% else %}
+<input type="radio" class="options_none" name="option[{{ option['product_option_id'] }}]" value="{{ option_value['product_option_value_id'] }}" />
+<span class="im_option">{{ option_value['name'] }}</span>
+{% if (option_value['price']) %}
+{{ option_value['price_prefix'] }}{{ option_value['price'] }}
+{% endif %}<span class = "options-prheight"></span>
+{% endif %}
+</label>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if (option['type'] == 'checkbox') %}
+<div class="options_group form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label">{{ option['name'] }}</label>
+<div id="input-option{{ option['product_option_id'] }}">
+{% for option_value in option['product_option_value'] %}
+<div class="checkbox">
+<label>
+{% if (option_value['image']) %}
+<span class="opthe">
+{% if (not option_value['image_opt_main'] and modern_option_image2 != 0 or modern_option_image != 0) %}
+<input class="optstyle" type="checkbox" name="option[{{ option['product_option_id'] }}][]" value="{{ option_value['product_option_value_id'] }}" />
+{% else %}
+{% set number_opt = number_opt + 1 %}
+<input class="optstyle" type="checkbox" data-numberopt="{{ number_opt }}" name="option[{{ option['product_option_id'] }}][]" value="{{ option_value['product_option_value_id'] }}" />
+{% endif %}
+<img src="{{ option_value['image'] }}" data-toggle="tooltip" data-placement="top" title="{{ option_value['name'] }}" {% if (not modern_product_option_form) %} class="img-thumbnail imgpopcat cirle_opt" {% else %}class="img-thumbnail imgpopcat" {% endif %} {% if (option_value['image_opt']) %} data-zoom-imageopt="{{ option_value['image_opt'] }}" {% else %} data-zoom-imageopt="{{ option_value['popup'] }}" {% endif %} alt="{{ option_value['name'] ~ option_value['price'] ? ' ' ~ option_value['price_prefix'] ~ option_value['price'] : '' }}" />
+{% if (option_value['price']) %}
+<br />
+{{ option_value['price_prefix'] }}{{ option_value['price'] }}
+{% endif %}
+</span>
+{% else %}
+<input type="checkbox" class="options_none" name="option[{{ option['product_option_id'] }}][]" value="{{ option_value['product_option_value_id'] }}" />
+<span class="im_option">{{ option_value['name'] }}</span>
+{% if (option_value['price']) %}
+{{ option_value['price_prefix'] }}{{ option_value['price'] }}
+{% endif %}<span class = "options-prheight"></span>
+{% endif %}
+</label>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if (option['type'] == 'text') %}
+<div class="form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label" for="input-option{{ option['product_option_id'] }}">{{ option['name'] }}</label>
+<input type="text" name="option[{{ option['product_option_id'] }}]" value="{{ option['value'] }}" placeholder="{{ option['name'] }}" id="input-option{{ option['product_option_id'] }}" class="form-control" />
+</div>
+{% endif %}
+{% if (option['type'] == 'textarea') %}
+<div class="form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label" for="input-option{{ option['product_option_id'] }}">{{ option['name'] }}</label>
+<textarea name="option[{{ option['product_option_id'] }}]" rows="5" placeholder="{{ option['name'] }}" id="input-option{{ option['product_option_id'] }}" class="form-control">{{ option['value'] }}</textarea>
+</div>
+{% endif %}
+{% if (option['type'] == 'file') %}
+<div class="form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label">{{ option['name'] }}</label>
+<button type="button" id="button-upload{{ option['product_option_id'] }}" data-loading-text="{{ text_loading }}" class="btn btn-default btn-block"><i class="fa fa-upload"></i> {{ button_upload }}</button>
+<input type="hidden" name="option[{{ option['product_option_id'] }}]" value="" id="input-option{{ option['product_option_id'] }}" />
+</div>
+{% endif %}
+{% if (option['type'] == 'date') %}
+<div class="form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label" for="input-option{{ option['product_option_id'] }}">{{ option['name'] }}</label>
+<div class="input-group date">
+<input type="text" name="option[{{ option['product_option_id'] }}]" value="{{ option['value'] }}" data-date-format="YYYY-MM-DD" id="input-option{{ option['product_option_id'] }}" class="form-control" />
+<span class="input-group-btn">
+<button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+</span>
+</div>
+</div>
+{% endif %}
+{% if (option['type'] == 'datetime') %}
+<div class="form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label" for="input-option{{ option['product_option_id'] }}">{{ option['name'] }}</label>
+<div class="input-group datetime">
+<input type="text" name="option[{{ option['product_option_id'] }}]" value="{{ option['value'] }}" data-date-format="YYYY-MM-DD HH:mm" id="input-option{{ option['product_option_id'] }}" class="form-control" />
+<span class="input-group-btn">
+<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+</span>
+</div>
+</div>
+{% endif %}
+{% if (option['type'] == 'time') %}
+<div class="form-group{{ option['required'] ? ' required' : '' }}">
+<label class="control-label" for="input-option{{ option['product_option_id'] }}">{{ option['name'] }}</label>
+<div class="input-group time">
+<input type="text" name="option[{{ option['product_option_id'] }}]" value="{{ option['value'] }}" data-date-format="HH:mm" id="input-option{{ option['product_option_id'] }}" class="form-control" />
+<span class="input-group-btn">
+<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+</span>
+</div>
+</div>
+{% endif %}
+{% if ((option['type'] == 'date') or (option['type'] == 'datetime') or (option['type'] == 'time') and (loop.first)) %}
+<style>
+.bootstrap-datetimepicker-widget{top:0;left:0;width:250px;padding:4px;margin-top:1px;z-index:99999!important;border-radius:4px}.bootstrap-datetimepicker-widget.timepicker-sbs{width:600px}.bootstrap-datetimepicker-widget.bottom:before{content:'';display:inline-block;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #ccc;border-bottom-color:rgba(0,0,0,.2);position:absolute;top:-7px;left:7px}.bootstrap-datetimepicker-widget.bottom:after{content:'';display:inline-block;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #fff;position:absolute;top:-6px;left:8px}.bootstrap-datetimepicker-widget.top:before{content:'';display:inline-block;border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid #ccc;border-top-color:rgba(0,0,0,.2);position:absolute;bottom:-7px;left:6px}.bootstrap-datetimepicker-widget.top:after{content:'';display:inline-block;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid #fff;position:absolute;bottom:-6px;left:7px}.bootstrap-datetimepicker-widget .dow{width:14.2857%}.bootstrap-datetimepicker-widget.pull-right:before{left:auto;right:6px}.bootstrap-datetimepicker-widget.pull-right:after{left:auto;right:7px}.bootstrap-datetimepicker-widget>ul{list-style-type:none;margin:0}.bootstrap-datetimepicker-widget a[data-action]{padding:6px 0}.bootstrap-datetimepicker-widget a[data-action]:active{box-shadow:none}.bootstrap-datetimepicker-widget .timepicker-hour,.bootstrap-datetimepicker-widget .timepicker-minute,.bootstrap-datetimepicker-widget .timepicker-second{width:54px;font-weight:700;font-size:1.2em;margin:0}.bootstrap-datetimepicker-widget button[data-action]{padding:6px}.bootstrap-datetimepicker-widget table[data-hour-format="12"] .separator{width:4px;padding:0;margin:0}.bootstrap-datetimepicker-widget .datepicker>div{display:none}.bootstrap-datetimepicker-widget .picker-switch{text-align:center}.bootstrap-datetimepicker-widget table{width:100%;margin:0}.bootstrap-datetimepicker-widget td,.bootstrap-datetimepicker-widget th{text-align:center;border-radius:4px}.bootstrap-datetimepicker-widget td{height:54px;line-height:54px;width:54px}.bootstrap-datetimepicker-widget td.cw{font-size:10px;height:20px;line-height:20px;color:#777}.bootstrap-datetimepicker-widget td.day{height:20px;line-height:20px;width:20px}.bootstrap-datetimepicker-widget td.day:hover,.bootstrap-datetimepicker-widget td.hour:hover,.bootstrap-datetimepicker-widget td.minute:hover,.bootstrap-datetimepicker-widget td.second:hover{background:#eee;cursor:pointer}.bootstrap-datetimepicker-widget td.old,.bootstrap-datetimepicker-widget td.new{color:#777}.bootstrap-datetimepicker-widget td.today{position:relative}.bootstrap-datetimepicker-widget td.today:before{content:'';display:inline-block;border-left:7px solid transparent;border-bottom:7px solid #428bca;border-top-color:rgba(0,0,0,.2);position:absolute;bottom:4px;right:4px}.bootstrap-datetimepicker-widget td.active,.bootstrap-datetimepicker-widget td.active:hover{background-color:#428bca;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,.25)}.bootstrap-datetimepicker-widget td.active.today:before{border-bottom-color:#fff}.bootstrap-datetimepicker-widget td.disabled,.bootstrap-datetimepicker-widget td.disabled:hover{background:0 0;color:#777;cursor:not-allowed}.bootstrap-datetimepicker-widget td span{display:inline-block;width:54px;height:54px;line-height:54px;margin:2px 1.5px;cursor:pointer;border-radius:4px}.bootstrap-datetimepicker-widget td span:hover{background:#eee}.bootstrap-datetimepicker-widget td span.active{background-color:#428bca;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,.25)}.bootstrap-datetimepicker-widget td span.old{color:#777}.bootstrap-datetimepicker-widget td span.disabled,.bootstrap-datetimepicker-widget td span.disabled:hover{background:0 0;color:#777;cursor:not-allowed}.bootstrap-datetimepicker-widget th{height:20px;line-height:20px;width:20px}.bootstrap-datetimepicker-widget th.picker-switch{width:145px}.bootstrap-datetimepicker-widget th.next,.bootstrap-datetimepicker-widget th.prev{font-size:21px}.bootstrap-datetimepicker-widget th.disabled,.bootstrap-datetimepicker-widget th.disabled:hover{background:0 0;color:#777;cursor:not-allowed}.bootstrap-datetimepicker-widget thead tr:first-child th{cursor:pointer}.bootstrap-datetimepicker-widget thead tr:first-child th:hover{background:#eee}.input-group.date .input-group-addon span{display:block;cursor:pointer;width:16px;height:16px}.bootstrap-datetimepicker-widget.left-oriented:before{left:auto;right:6px}.bootstrap-datetimepicker-widget.left-oriented:after{left:auto;right:7px}.bootstrap-datetimepicker-widget ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody>tr>td{padding:0!important}@media screen and (max-width:767px){.bootstrap-datetimepicker-widget.timepicker-sbs{width:283px}}
+</style>
+<script src="catalog/view/javascript/jquery/datetimepicker/moment/moment.min.js"></script>
+<script src="catalog/view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js"></script>
+<script src="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script>
+$('.date').datetimepicker({
+	language: '{{ datepicker }}',
+	pickTime: false
+});
+
+$('.datetime').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: true,
+	pickTime: true
+});
+
+$('.time').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: false
+});
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if (recurrings) %}
+<hr>
+<h3>{{ text_payment_recurring }}</h3>
+<div class="form-group required">
+<select name="recurring_id" class="form-control">
+<option value="">{{ text_select }}</option>
+{% for recurring in recurrings %}
+<option value="{{ recurring['recurring_id'] }}">{{ recurring['name'] }}</option>
+{% endfor %}
+</select>
+<div class="help-block" id="recurring-description"></div>
+</div>
+{% endif %}
+<div class="form-group plus_minus">
+<div class="pull-left">
+<input type="text" name="quantity" value="{{ minimum }}" data-toggle="tooltip" title="{{ entry_qty }}" size="2" id="input-quantity" class="form-control" />
+<input type="hidden" name="product_id" value="{{ product_id }}" />
+</div>
+<div class="custom pull-left">
+<button type="button" id="plus" class="items-count" ><i class="fa fa-angle-up">&nbsp;</i></button>
+<button type="button" id="minus" class="items-count"><i class="fa fa-angle-down">&nbsp;</i></button>
+</div>
+&nbsp;&nbsp;&nbsp;
+{% if (modern_wishlist_cat != 1 and not aridius_qckview_button_wish) %}
+<button type="button" data-toggle="tooltip" class="btn-wishlist" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');"><i class="fa fa-heart"></i></button>
+{% endif %}
+{% if (modern_compare_cat != 1 and not aridius_qckview_button_compare) %}
+<button type="button" data-toggle="tooltip" class="btn-compare" title="{{ button_compare }}" onclick="compare.add('{{ product_id }}');"><i class="fa fa-balance-scale"></i></button>
+{% endif %}
+<div class="clearfix"></div>
+<br />
+<div class="cart pull-left" >
+{% if (quantity <= 0 and aridiusinstock_status ) %}
+<button type="button" class="btn-instock" onclick="quick_instock()" data-product-id="{{ product_id }}">{{ button_instock }}</button>
+{% else %}
+<button type="button" id="button-cart_quickw" onclick="quick_cart()" data-loading-text="{{ text_loading }}" class="btn-cart"><i class="fa fa-shopping-cart"></i> {{ button_cart }}</button>
+{% endif %}
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="form-group ord">
+<p>{{buttonfastorder_title}}</p>
+<form id="boc_form" action="" role="form">
+<div style="display:none">
+							<input id="boc_product_id" type="text" name="boc_product_id">
+						</div>
+<div class="col-mb-10 input-group has-warning">
+<span class="input-group-addon"><i class="fa fa-fw fa-phone-square" aria-hidden="true"></i></span>
+<input id="boc_phone" class="form-control required" type="tel" name="boc_phone" placeholder="Телефон" data-pattern="false" value="">
+
+</div>
+<button type="submit" id="boc_submit" class="btn btn-lg btn-block btn-primary" onClick="clickAnalyticsSend(); return true;">{{buttonfastorder_title}}</button>
+</form>
+<div class="suc">
+Заказ отправлен!
+</div>
+</div>
+<div class="clearfix"></div>
+{% if (minimum > 1) %}
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
+{% endif %}
+</div>
+{% if (review_status and not aridius_qckview_icons_likes) %}
+<div class="rating">
+<p>
+{% if (modern_share) %}
+{{ modern_share }}
+{% endif %}
+</div>
+{% endif %}
+<a class="link_to_product" href="{{ link_product }}">{{ text_link_product }}&nbsp;→</a>
+</div>
+</div>
+<div class="tab-pane" id="tab-description">{{ description }}</div>
+{% if (attribute_groups) %}
+<div class="tab-pane" id="tab-specification">
+<table class="table table-bordered">
+{% for attribute_group in attribute_groups %}
+<thead>
+<tr>
+<td colspan="2"><strong>{{ attribute_group['name'] }}</strong></td>
+</tr>
+</thead>
+<tbody>
+{% for attribute in attribute_group['attribute'] %}
+<tr>
+<td>{{ attribute['name'] }}</td>
+<td>{{ attribute['text'] }}</td>
+</tr>
+{% endfor %}
+</tbody>
+{% endfor %}
+</table>
+</div>
+{% endif %}
+<!-- Atribute end -->
+{% if (review_status) %}
+<div class="tab-pane" id="tab-review">
+<form class="form-horizontal" id="form-review">
+<div id="review"></div>
+<span class="text-write">{{ text_write }}</span>
+{% if (review_guest) %}
+<div class="form-group required">
+<div class="col-sm-12">
+<label class="control-label" for="input-name">{{ entry_name }}</label>
+<input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
+</div>
+</div>
+<div class="form-group required">
+<div class="col-sm-12">
+<label class="control-label" for="input-review">{{ entry_review }}</label>
+<textarea name="text" rows="2" id="input-review" class="form-control"></textarea>
+</div>
+</div>
+
+<div class="form-group required">
+<div class="col-sm-12">
+<label class="control-label">{{ entry_rating }}</label>
+<input type="hidden" name="rating" value="5" class="rating-tooltip"/>
+</div>
+</div>
+{{ captcha }}
+<div class="buttons clearfix">
+<div class="pull-right">
+<button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn-cart">{{ button_continue }}</button>
+</div>
+</div>
+{% else %}
+{{ text_login }}
+{% endif %}
+</form>
+</div>
+{% endif %}
+{% if (theme_tabs ) %}
+{% for key, theme_tab  in theme_tabs %}
+{% if (theme_tab.description) %}
+<div class="tab-pane" id="tab-other-{{ key }}">{{ theme_tab['description'] }}</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function quick_instock(){
+$.magnificPopup.close();
+setTimeout(function(){
+instock.add('{{ product_id }}');
+}, 450)
+}
+</script>
+<script>
+$(function(){$(".rating-tooltip").ar_rating({extendSymbol:function(a){$(this).tooltip({container:"body",placement:"bottom",title:a})}})});
+</script>
+<script><!--
+var popupq;
+function get_timerpopup(isstart) {
+if (!isstart) {clearTimeout (popupq);return;}
+{% set special_res= constant('false') %}
+{% if ((special and special_date_end > special_date_start) and (fractal_product_timer != 1)) %}
+{% set special_res= constant('true') %}
+{% set date_out = (special_date_end|date('Y, m, d')) %}
+get_timer2();
+popupq = setInterval(get_timer2,1000);
+{% endif %}
+}
+function get_timer2() {
+var timeendpopup= new Date();
+timeendpopup = new Date({% if (special_res) %} {{ date_out }}{% endif %});
+var day = new Date();
+day.setMonth(day.getMonth() + 1);
+day = Math.floor((timeendpopup-day)/1000);
+var sec=day%60; day=Math.floor(day/60);
+var min=day%60; day=Math.floor(day/60);
+var hour=day%24; day=Math.floor(day/24);
+if(day<10)day='0'+day;
+if(hour<10)hour='0'+hour;
+if(min<10)min='0'+min;
+if(sec<10)sec='0'+sec;
+var timestr =  "<span class='special-timer-info'>"+day+"<span class='special-timer-text'>{{ day }}</span></span><span class='special-timer-line'>:</span><span class='special-timer-info'>"+hour+"<span class='special-timer-text'><p>{{ hour }}</p></span></span><span class='special-timer-line'>:</span><span class='special-timer-info'>"  +min+   "<span class='special-timer-text'>{{ minute }}</span></span><span class='special-timer-line'>:</span><span class='special-timer-info'>"   +sec+   "<span class='special-timer-text'>{{ second }}</span></span>"; document.getElementById('time_out').innerHTML=timestr; }
+//-->
+</script>
+<!--button-cart-quick-->
+<script ><!--
+function quick_cart() {
+   	$.ajax({
+   url: 'index.php?route=checkout/cart/add',
+   type: 'post',
+   data: $('#product_quickw input[type=\'text\'], #product_quickw input[type=\'hidden\'], #product_quickw input[type=\'radio\']:checked, #product_quickw input[type=\'checkbox\']:checked, #product_quickw select, #product_quickw textarea'),
+   dataType: 'json',
+   beforeSend: function() {
+   			$('#button-cart_quickw').button('loading');
+   		},
+	complete: function() {
+   			$('#button-cart_quickw').button('reset');
+   		},
+   success: function(json) {
+   			$('.alert, .text-danger').remove();
+   			$('.form-group').removeClass('has-error');
+   			if (json['error']) {
+   				if (json['error']['option']) {
+   					for (i in json['error']['option']) {
+   						var element = $('#input-option' + i.replace('_', '-'));
+   						if (element.parent().hasClass('input-group')) {
+   							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+   						} else {
+   							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+   						}
+   					}
+   				}
+   				if (json['error']['recurring']) {
+   					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+   				}
+   				// Highlight any found errors
+   				$('.text-danger').parent().addClass('has-error');
+   			}
+   			if (json['success']) {
+			$.magnificPopup.open({
+   				items: {
+					src: 'index.php?route=common/aridius_cart/info',
+					type: 'ajax'
+   				},
+   			});	
+			$('#cart button > span').html('<span> &nbsp;' + json['total'] + '&nbsp;<span class="caret"></span></span>');
+   			$('#cart > ul').load('index.php?route=common/cart/info ul li');	
+   			}
+   		},
+   	});
+}
+   //-->
+</script>
+<script >
+$("#review").delegate(".pagination a","click",function(a){a.preventDefault(),$("#review").fadeOut("slow"),$("#review").load(this.href),$("#review").fadeIn("slow")}),$("#review").load("index.php?route=product/product/review&product_id={{ product_id }}"),$("#button-review").on("click",function(){$.ajax({url:"index.php?route=product/product/write&product_id={{ product_id }}",type:"post",dataType:"json",data:$("#form-review").serialize(),beforeSend:function(){$("#button-review").button("loading")},complete:function(){$("#button-review").button("reset")},success:function(a){$(".alert-success, .alert-danger").remove(),a.error&&$("#review").after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> '+a.error+"</div>"),a.success&&($("#review").after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> '+a.success+"</div>"),$("input[name='name']").val(""),$("input[name='dignity']").val(""),$("input[name='limitations']").val(""),$("textarea[name='text']").val(""),$("input[name='rating']:checked").prop("checked",!1)){{ '}}' }})});
+</script>
+<script>
+function minus(){return document.getElementById("input-quantity").value<=1?!1:void document.getElementById("input-quantity").value--}function plus(){document.getElementById("input-quantity").value++}$("#minus").click(function(){minus()}),$("#plus").click(function(){plus()});
+</script>
+<!--review stars -->
+<script >
+$(".review_profile").click(function(){$(".nav-tabs").offset().top});
+</script>
+<script>
+$(document).ready(function(){var a=window.location.hash;if(a){var b=a.split("#"),c=b[1].split("-");for(i=0;i<c.length;i++)$("div.options").find('select option[value="'+c[i]+'"]').attr("selected",!0).trigger("select"),$("div.options").find('input[type="radio"][value="'+c[i]+'"]').attr("checked",!0).trigger("click")}});
+</script>
+<script>
+$(document).ready(function(){
+		galleryThumbsquick = new Swiper('.quickw2 .gallery-thumbs', {
+			spaceBetween: 10,
+			slidesPerView: 4,
+			watchSlidesVisibility: true,
+			watchSlidesProgress: true,
+			navigation: {
+				nextEl: '.quickw .addit-button-hor-next',
+				prevEl: '.quickw .addit-button-hor-prev',
+			}
+		});
+		galleryTopquick = new Swiper('.quickw2 .gallery-top', {
+			spaceBetween: 10,
+			lazy: true,
+			preloadImages: false,
+			thumbs: {
+				swiper: galleryThumbsquick,
+			}
+		});
+		var imgsize = $(".imgsize");
+		imgsize.on("load", function() {
+			var a=$(".quickw2 .imgsize").height()/2;
+			$(".quickw2 .swiper-lazy-preloader").css("top",a+"px");
+        })
+		//select_options_gallery
+		$('.quickw2 .optstyle').unbind('click');
+		$(".quickw2 .optstyle").on("click", function(){
+			var number = $(".quickw2 .mini_foto2").length - {{ number_opt }} + $(this).data('numberopt')-1;
+			galleryTopquick.slideTo(number,1000,false);
+		});	
+
+});
+</script>
+</div>
+</div>

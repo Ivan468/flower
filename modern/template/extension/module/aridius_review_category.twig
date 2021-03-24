@@ -1,0 +1,90 @@
+<script>
+$(document).ready(function () {
+var reviewstoreSwiper = new Swiper ('#review_carusel.swiper-container', {
+slidesPerView: 3,
+loop: false,
+grabCursor:true,
+touchMoveStopPropagation: true,
+autoplayDisableOnInteraction: true,
+navigation: {
+nextEl: '.review-widg-button-next',
+prevEl: '.review-widg-button-prev',
+},
+speed: {{ rew_speed }},
+{% if (on_autoplay != 1) %}
+autoplay: {
+delay: {{ autoplay }},
+},
+{% endif %}
+breakpoints: {
+1599: {
+slidesPerView: 2,
+},
+1199: {
+slidesPerView: 2,
+},
+992: {
+slidesPerView: 2,
+},
+768: {
+slidesPerView: 1,
+}
+},
+})
+{% if (on_autoplay != 1) %}
+$("#review_carusel.swiper-container").hover(function() {
+viewedSwiper.autoplay.stop();
+}, function() {
+viewedSwiper.autoplay.start();
+});
+{% endif %}
+});
+</script>
+<h3 class="title_h title_center">{{ heading_title_rev_cat }}</h3>
+<div class="row">
+<div class="col-xs-12 col-sm-2 avr_all cl1">
+<div class="cl1_sp">
+<div class="avr">
+{{ text_avr }}
+</div>
+<div class="avr_rating">
+{{ rating_avr|round(1) }}
+</div>
+<div class="avr_rating2">
+<input type="hidden" class="rating" data-readonly value="{{ rating_avr|round(2) }}"/>
+</div>
+<div class="avr_sum">
+{{ text_sum }} <a class ="colorhr" href="index.php?route=extension/module/aridius_store_review">{{ review_total }}</a>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-10">
+<div class="padding-carusel row">
+<div id="review_carusel" class="swiper-container padding_swiper button-next-prev">
+<div class="swiper-wrapper">
+{% for review in reviews %}
+<div class="swiper-slide">
+<div class="product-layout2 review_widget">
+<div class="review-thumb transition">
+<div class="rev_author">
+{{ review['author'] }}
+</div>
+<div class="rev_rating">
+<input type="hidden" class="rating" data-readonly value="{{ review['rating'] }}"/>
+</div>
+<div class="rev_text">
+{{ review['text'] }}
+</div>
+</div>
+</div></div>
+{% endfor %}
+</div></div>
+<div class="review-widg-button-prev modern-button-prev"></div>
+<div class="review-widg-button-next modern-button-next"></div>
+</div>
+</div>
+<div class="col-sm-12 right_text">
+<a class ="go_text" href="index.php?route=extension/module/aridius_store_review">{{ text_go_page }}</a>
+</div>
+</div>
+<div class="clearfix"></div>

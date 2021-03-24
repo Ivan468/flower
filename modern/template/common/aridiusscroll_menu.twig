@@ -1,0 +1,352 @@
+<div class="fix_scroll_menu fix_scroll_addit">
+<div class="container">
+<div class="row postion_fullmenu">
+<div id="logo" class="col-lg-1 col-md-1 col-sm-1 col-xs-12 hidden-xs">
+{% if (logo) %}
+{% if (location_home == 'common-home') %}
+<img id="logo_img" src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+{% else %}
+<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+{% endif %}
+{% else %}
+<h1><a href="{{ home }}">{{ name }}</a></h1>
+{% endif %}
+</div>
+<div class="{% if (theme_modern_other4 == 1 and theme_modern_other5 == 1) %}col-lg-9 col-md-9 col-sm-10{% else %}col-lg-8 col-md-8 col-sm-9{% endif %} col-xs-12 postion_fullmenu2 hidden-xs">
+<div class="top-menu">
+<div id="top-menu" >
+<div class="nobackground">
+<nav id="menu" class="navbar">
+<div class="navbar-header">
+<button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+</div>
+<div class="collapse navbar-collapse navbar-ex1-collapse menu_adapt_coll">
+<ul class="nav navbar-nav">
+{% if (modern_ico_home != 1 and location_home != 'common-home') %}
+<li><a href="{{ base }}"><i class="fa fa-home fa_homemenu"></i></a></li>
+{% endif %}
+{% if (modern_ico_home_text != 1 and location_home != 'common-home') %}
+<li><a href="{{ base }}">{{ text_homel }}</i></a></li>
+{% endif %}
+</ul>
+{% if (modern_seevmenu_menu !=1) %}
+<ul class="nav navbar-nav">
+<li class="dropdown">
+<a class="with-child dropdown-toggle size" {% if (modern_link_menucatalog is not empty) %} href="{{ modern_link_menucatalog }}" {% endif %} data-hover="dropdown" data-delay="1" data-close-others="false">
+{% if (modern_seevmenuico != 1) %}
+<i class="fa fa-bars"></i>&nbsp;&nbsp;
+{% endif %}
+{{ modern_vmenu_menu[language_id] }}<span class="fa fa-angle-down menu"></span></a>
+<ul class="dropdown-menu multi-level" role="menu">
+{% for category in categories %}
+{% if (category['children']) %}
+<li class="dropdown-submenu li-drop" >
+<a class="dr_menu" tabindex="-1" href="{{ category['href'] }}">{{ category['name'] }}<span class="arrowvertmenu"></span></a>
+<ul class="dropdown-menu2 column_width3">
+<li class="{% if (category['image_main'] and modern_main_photos_menu != 1) %}col-sm-9{% else %}col-sm-12{% endif %}">
+<ul class="row">
+{% for child in category['children'] %}
+<li class="mcol {% if (category['image_main'] and modern_main_photos_menu != 1) %}col-sm-4 menu_clear2{% else %}col-sm-3 menu_clear2_noimage{% endif %}">
+<span class = "hidden-xs">{% if (modern_photos_menu != 1 and (child['image2'] is not empty)) %}<a href="{{ child['href'] }}"><img class="vopmen img-responsive" src="{{ child['image2'] }}" alt="{{ child['name'] }}" title="{{ child['name'] }}" ></a>{% endif %}</span>
+<a class="submenu_main" href="{{ child['href'] }}">{{ child['name'] }}</a>
+{% if (modern_3lv_menu != 1) %}
+{% if (child['children_lv3'] is defined and child['children_lv3']) %}
+{% set v = 0 %}
+{% set break = false %}
+{% for child_lv3 in child['children_lv3'] if not break %}
+<div><a class = "menuv_3lv " href="{{ child_lv3['href'] }}">&nbsp;&nbsp;- {{ child_lv3['name'] }}</a></div>
+{% set v = v + 1 %}
+{% if (v >modern_countvmenulv - 1) %}
+<div><a class="menuv-allv" href="{{ child['href'] }}">{{ modern_seeall_menu[language_id] }}&nbsp;→</a></div>
+{% set break = true %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+</li>
+{% if (category['image_main'] and modern_main_photos_menu != 1) %}
+<li class="col-lg-3 col-md-3 col-sm-3 li-main-foto">
+<a href="{{ category['href'] }}">
+<div class="main-foto-pos"><img class="main-foto-menu img-responsive" alt="{{ category['name'] }}" title="{{ category['name'] }}" src="{{ category['image_main'] }}"><span class="main-foto-back"></span></div>
+</a>
+</li>
+{% endif %}
+</ul>
+</li>
+{% else %}
+<li class="v3hover li-drop"><a class="dr_menu" href="{{ category['href'] }}">{{ category['name'] }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+</li>
+</ul>
+{% else %}
+<ul class="nav navbar-nav">
+{% for category in categories %}
+{% if (category['children']) %}
+<li class="{% if (category['category_id'] == category_id) %}{{ 'activetopmenu' }}{% endif %} dropdown postion_fullmenu2">
+<a class="with-child dropdown-toggle" href="{{ category['href'] }}" data-hover="dropdown" data-delay="1" data-close-others="false">{{ category['name'] }}<span class="fa fa-angle-down menu"></span></a>
+<div class="dropdown-menu marg_top">
+<div class="dropdown-inner children-category">
+<ul class="{% if (category['image_main'] and modern_main_photos_menu != 1) %} col-lg-10 col-md-10 col-sm-10 clear_menu_cat_img {% else %} col-lg-12 col-md-12 col-sm-12 clear_menu_cat_noimg {% endif %}">
+<li class="row list_type">
+{% for child in category['children'] %}
+<ul class="list-unstyled {% if (category['image_main'] and modern_main_photos_menu != 1) %}col-lg-2 col-md-3 col-sm-3 menu_clear{% else %}col-lg-2 col-md-2 col-sm-3 menu_clear_noimage{% endif %}" >
+{% if (child['children_lv3'] is defined and child['children_lv3']) %}
+<li class="with-child" >
+<span class = "hidden-xs hidden-sm">{% if (modern_photos_menu != 1 and (child['image2'] is not empty)) %}<a href="{{ child['href'] }}"><img class="opacityhv img-responsive" src="{{ child['image2'] }}" alt="{{ child['name'] }}" title="{{ child['name'] }}" ></a>{% endif %}</span>
+<a href="{{ child['href'] }}"><span class="style2lv">{{ child['name'] }}</span></a>
+</li>
+{% if (modern_3lv_menu != 1) %}
+{% set m = 0 %}
+{% set break = false %}
+{% for child_lv3 in child['children_lv3'] if not break %}
+<li class="children_lv3"><a href="{{ child_lv3['href'] }}">&nbsp;&nbsp;- {{ child_lv3['name'] }}</a>
+{% set m = m + 1 %}
+{% if (m >modern_countvmenulv - 1) %}
+<a class="menuv-all" href="{{ child['href'] }}">{{ modern_seeall_menu[language_id] }}</a>
+{% set break = true %}
+{% endif %}
+</li>
+{% endfor %}
+{% endif %}
+{% else %}
+<li>{% if (modern_photos_menu != 1 and (child['image2'] is not empty)) %}<span class = "hidden-xs hidden-sm"><a href="{{ child['href'] }}"><img class="opacityhv img-responsive" src="{{ child['image2'] }}" alt="{{ child['name'] }}" title="{{ child['name'] }}" ></a></span>{% endif %}<a href="{{ child['href'] }}"><span class="style2lv">{{ child['name'] }}</span></a></li>
+{% endif %}
+</ul>
+{% endfor %}
+</li>
+</ul>
+{% if (category['image_main'] and modern_main_photos_menu != 1) %}
+<ul class="col-lg-2 col-md-3 col-sm-3 li-main-foto"><li class="list_type">
+<a href="{{ category['href'] }}">
+<div class="main-foto-pos"><img class="image_main main-foto-menu img-responsive" alt="{{ category['name'] }}" title="{{ category['name'] }}" src="{{ category['image_main'] }}"><span class="main-foto-back"></span></div>
+</a>
+</li></ul>
+{% endif %}
+</div>
+</div>
+</li>
+{% else %}
+<li class="{% if (category['category_id'] == category_id) %}{{ 'activetopmenu' }}{% endif %}"><a href="{{ category['href'] }}">{{ category['name'] }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+{% endif %}
+<ul class="nav navbar-nav">
+<!--add menu link-->
+{% if (modern_top_links8 ) %}
+{% for modern_top_link8 in modern_top_links8 %}
+<li>
+<a {% if (modern_top_link8['link_top'][language_id]) %} href="{{ modern_top_link8['link_top'][language_id] }}"{% endif %}>{% if (modern_top_link8['faicons_top']) %} <i class="{{ modern_top_link8['faicons_top'] }}"></i> {% endif %}{% if (modern_top_link8['title']) %}{{ modern_top_link8['title'][language_id] }}{% endif %}</a>
+</li>
+{% endfor %}
+{% endif %}
+<!--add menu link-->
+<!--other link-->
+{% if (modern_main_link_menu[language_id]) %}
+<li class="dropdown">
+<a class="with-child dropdown-toggle" {% if (modern_main_link_href_menu[language_id] is not empty) %} href="{{ modern_main_link_href_menu[language_id] }}" {% else %} href="javascript:void(0)" {% endif %} data-hover="dropdown" data-delay="1" data-close-others="false">{{ modern_main_link_menu[language_id] }}<span class="fa fa-angle-down menu"></span></a>
+<div class="dropdown-menu">
+<div class="dropdown-inner1 children-category">
+<ul class="list-unstyled">
+{% if (modern_top_links4 ) %}
+{% for modern_top_link4 in modern_top_links4 %}
+<li>
+<a {% if (modern_top_link4['link_top'][language_id]) %} href="{{ modern_top_link4['link_top'][language_id] }}"{% endif %} title="{{ modern_top_link4['title'][language_id] }}">{% if (modern_top_link4['faicons_top']) %} <i class="{{ modern_top_link4['faicons_top'] }}"></i>{% endif %}{% if (modern_top_link4['title']) %} {{ modern_top_link4['title'][language_id] }}{% endif %}</a>
+</li>
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+</div>
+</li>
+{% endif %}
+<!--other link END-->
+<!--informations-->
+{% if (modern_info_menu != 1) %}
+{% if (informations) %}
+<li class="dropdown">
+<a class="with-child dropdown-toggle" data-hover="dropdown" data-delay="1" data-close-others="false">{{ text_information }}<span class="fa fa-angle-down menu"></span></a>
+<div class="dropdown-menu">
+<div class="dropdown-inner1 children-category">
+<ul class="list-unstyled">
+{% for information in informations %}
+<li><a href="{{ information['href'] }}">{{ information['title'] }}</a></li>
+{% endfor %}
+</ul>
+</div>
+</div>
+</li>
+{% endif %}
+{% endif %}
+<!--informations END-->
+<!--manufacturer-->
+{% if (modern_man_menu != 1) %}
+{% if (manufacturers) %}
+<li class="dropdown manuf_drop postion_fullmenu2">
+<a class="with-child dropdown-toggle" href="{{ href_manufacturer }}" data-hover="dropdown" data-delay="1" data-close-others="false">{{ text_manufacturer }}<span class="fa fa-angle-down menu"></span></a>
+<div class="dropdown-menu mancss">
+<div class="dropdown-inner children-category">
+{% for manufacturer in manufacturers %}
+<ul class="list-unstyled" style="width: {{ 100/modern_menuman_column-1 }}%">
+<li><span class = "hidden-xs hidden-sm ">{% if (modern_photos_menu_manuf != 1) %}<a class = "manufac-menu" href="{{ manufacturer['href'] }}"><img class="opacityhv manimgmen" src="{{ manufacturer['manufacturer_image'] }}" alt="{{ manufacturer['name'] }}" title="{{ manufacturer['name'] }}" ></a></span>{% endif %}<a class = "manufac-menu" href="{{ manufacturer['href'] }}">{{ manufacturer['name'] }}</a></li>
+</ul>
+{% endfor %}
+</div>
+</div>
+</li>
+{% endif %}
+{% endif %}
+<!--manufacturer END-->
+</ul>
+</div>
+</nav>
+</div>
+</div>
+</div>
+</div>
+{% if (theme_modern_other4 != 1 or theme_modern_other5 != 1) %}
+<div class="col-lg-1 col-md-1 col-sm-1 col-xs-8 block_fon_search block_mob_sch">
+{% if (theme_modern_other5 != 1) %}
+<div class="{% if (theme_modern_other4 == 1) %}fn_header2{% endif %} fn_header hidden-xs">
+<div class="dropdown">
+<div class="listunstyled dropdown-toggle fon_icon" data-toggle="dropdown">
+<i class="fa fa-phone"></i></div>
+<ul class="dropdown-menu fixxsmenu_tel">
+{% if (modern_telephone_mainheader2[language_id] or modern_telephone_mainheader[language_id]) %}
+<table class="table table_minimenu">
+<tbody>
+<tr>
+<td rowspan="{% if (modern_telephone_mainheader2[language_id]) %}2{% else %}1{% endif %}">
+<div class="circleout2"><i class="fa fa-phone"></i></div>
+</td>
+<td>
+<div><a href="tel:{{ modern_telephone_mainheader[language_id] }}" class="tell_nav">{{ modern_telephone_mainheader[language_id] }}</a></div>
+</td>
+</tr>
+{% if (modern_telephone_mainheader2[language_id]) %}
+<tr>
+<td>
+<div class="phone">
+<div class="listunstyled "><a href="tel:{{ modern_telephone_mainheader2[language_id] }}" class="tell_nav">{{ modern_telephone_mainheader2[language_id] }}</a></div>
+</div>
+</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+{% endif %}
+{% if (modern_top_links3 ) %}
+{% set modern_top_links3_key = 0 %}
+{% for modern_top_link3 in modern_top_links3 %}
+<li>
+<div class="{% if (modern_top_links3_key == 0 and (modern_telephone_mainheader2[language_id] or modern_telephone_mainheader[language_id])) %}drop_head_first{% endif %}">{{ modern_top_link3['name'][language_id] }}</div>
+<a {% if (modern_top_link3['title'][language_id]) %} href="tel:{{ modern_top_link3['title'][language_id] }}"{% endif %} >{% if (modern_top_link3['faicons_top']) %}<i class="{{ modern_top_link3['faicons_top'] }}"></i>{% endif %} {{  modern_top_link3['title'][language_id] }}</a>
+</li>
+{% set modern_top_links3_key = modern_top_links3_key + 1 %}
+{% endfor %}
+{% endif %}
+{% if (modern_top_links5 ) %}
+{% for modern_top_link5 in modern_top_links5 %}
+<li>
+<div class="drop_head">{{ modern_top_link5['name'][language_id] }}</div>
+<a {% if (modern_top_link5['title'][language_id]) %} href="{{ modern_top_link5['link'][language_id] }}"{% endif %} >{% if (modern_top_link5['faicons_top']) %}<i class="{{ modern_top_link5['faicons_top'] }}"></i>{% endif %} {{ modern_top_link5['title'][language_id] }}</a>
+</li>
+{% endfor %}
+{% endif %}
+{% if (modern_mail_header[language_id] ) %}
+<li>
+<div class="drop_head">{{ modern_tittle_name[language_id] }}</div>
+<a onClick="javascript:window.location.href='mailto:{{ modern_mail_header[language_id] }}';return false;" href="javascript:close_window();" ><i class="fa fa-envelope-o "></i> {{ modern_mail_header[language_id] }}</a>
+</li>
+{% endif %}
+<li>
+{% if (aridiuscallback_status and modern_calltop != 1) %}
+<div class="drop_head"></div>
+<a class = "call-order-scroll" ><i class="fa fa-phone"></i>&nbsp;{{ buttoncallback_title }}</a>
+{% endif %}
+</li>
+</ul>
+</div>
+</div>
+{% endif %}
+{% if (theme_modern_other4 != 1) %}
+<div class="search_input_head" id="search_scroll">
+<div class="dropdown">
+<div class="listunstyled dropdown-toggle seaech_icon hidden-xs" data-toggle="dropdown">
+<i class="fa fa-search"></i>
+</div>
+<div id="search_src" class="dropdown-menu fixxsmenu_search">
+{{ search }}
+</div></div>
+</div>
+{% endif %}
+</div>
+{% endif %}
+<div class="col-lg-2 col-md-2 col-sm-1 col-xs-12 cart cart_slide">
+{{ cart }}
+</div>
+</div>
+</div>
+<script>
+	/* Search_scroll */
+	$('#search_src input[name=\'search\']').parent().find('button').on('click', function() {
+		var url = $('base').attr('href') + 'index.php?route=product/search';
+        var value = $('#search_src input[name=\'search\']').val();
+		if (value) {
+			url += '&search=' + encodeURIComponent(value);
+		}
+		var category_id = $('select[name=\'category_id\']').val();
+		if (category_id > 0) {
+		url += '&category_id=' + encodeURIComponent(category_id);
+		url += '&sub_category=true';
+		}
+		location = url;
+	});
+	$('#search_src input[name=\'search\']').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$('#search_src input[name=\'search\']').parent().find('button').trigger('click');
+		}
+	});
+</script>
+<script>
+$('#search_scroll input[name=\'search\']').livesearch({
+'source': function(request, response) {
+$.ajax({
+url: 'index.php?route=extension/module/aridius_livesearch/livesearch&search=' +  encodeURIComponent(request),
+dataType: 'json',
+success: function(json) {
+response($.map(json, function(item) {
+return {
+label: item['name'],
+price: item['price'],
+special: item['special'],
+image: item['image'],
+href: item['href'],
+value: item['product_id']
+}
+}));
+}
+});
+},
+'select': function(item) {
+$('#search_scroll input[name=\'search\']').val(item['label']);
+}
+});
+</script>
+<script>
+$(".call-order-scroll").bind("click",function(){
+	$.magnificPopup.open({
+		closeBtnInside:!0,
+		fixedContentPos:!0,
+		items:{src:"index.php?route=extension/module/aridiuscallback/getForm"},
+		type:"ajax",
+		mainClass:"mfp-fade"
+	})
+})
+</script>
+</div>

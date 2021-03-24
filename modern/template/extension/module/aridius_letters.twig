@@ -1,0 +1,30 @@
+<script>
+function subscribe(){return $.ajax({url:"index.php?route=extension/module/aridius_letters/add_email",type:"post",data:"email="+$("#mail_letters").val(),dataType:"json",success:function(a){a.error&&($(".textsuccess").remove(),a.error.email?$(".message_email").html('<span class="textdanger">'+a.error.email+"</span>").show():$(".message_email").hide().empty(),a.error.compare_email?$(".message_compare").html('<span class="textdanger">'+a.error.compare_email+"</span>").show():$(".message_compare").hide().empty()),a.success&&($(".textdanger").remove(),$(".message_success").html('<span class="textsuccess">'+a.success_email+"</span>")){{ '}}' }}),!1}
+</script>
+<form class="form_mail" action="#" method="post">
+<div class="container">
+<div class="row">
+<div class="message_email letter_margin"><br></div>
+<div class="message_compare letter_margin"></div>
+<div class="message_success letter_margin"></div>
+<div class="col-xs-offset-0 col-sm-offset-2 col-lg-offset-2 col-lg-8 col-md-9 col-sm-9 col-xs-12 all_mailblock">
+<div class="inline_emailim hidden-xs"></div>
+<div class="inline_email head_letter">{{ heading_letters_title }}</div>
+<div class="mailletters input-group">
+<input type="email" name="mail_letters" id="mail_letters" value="" placeholder="{{ aridius_letters_placeholder[language_id] }}" class="form-control input-lg" />
+<button type="submit" class="btn btn-send btn-lg button_email" onclick="return subscribe();" ><span class="">{{ aridius_letters_pl[language_id] }}</span></button>
+</div>
+<br>
+{% if (aridius_lettersdes_status == '1') %}
+{{ aridius_letters_description }}
+{% endif %}
+</div>
+</div>
+</div>
+</form>
+
+
+
+
+
+

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}" style="">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+{% if robots %}
+<meta name="robots" content="{{ robots }}" />
+{% endif %}
+<base href="{{ base }}" />
+{% if (description) %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if (keywords) %}
+<meta name="keywords" content= "{{ keywords }}" />
+{% endif %}
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ og_url }}" />
+{% if og_image %}
+<meta property="og:image" content="{{ og_image }}" />
+{% else %}
+<meta property="og:image" content="{{ logo }}" />
+{% endif %}
+<meta property="og:site_name" content="{{ name }}" />
+{% if (modern_other1 != 1 or modern_other1 is empty) %}
+{% if (modern_template_variant != 1) %}
+<link type="text/css" rel="stylesheet" href="/min/b=catalog/view&amp;f=theme/modern/js/bootstrap/css/bootstrap.min.css,theme/modern/js/jquery/magnific/magnific-popup.css,theme/modern/js/font-awesome/css/font-awesome.min.css,theme/modern/js/font-viber/fa-viber.css,theme/modern/stylesheet/skins/stylesheet.css,theme/modern/stylesheet/skins/modern.css,theme/modern/stylesheet/skins/modern_variant1.css,theme/modern/js/jquery/swiper/css/swiper.min.css,theme/modern/stylesheet/skins/modern_modules.css" />
+{% else %}
+<link type="text/css" rel="stylesheet" href="/min/b=catalog/view&amp;f=theme/modern/js/bootstrap/css/bootstrap.min.css,theme/modern/js/jquery/magnific/magnific-popup.css,theme/modern/js/font-awesome/css/font-awesome.min.css,theme/modern/js/font-viber/fa-viber.css,theme/modern/stylesheet/skins/stylesheet.css,theme/modern/stylesheet/skins/modern.css,theme/modern/stylesheet/skins/modern_variant2.css,theme/modern/js/jquery/swiper/css/swiper.min.css,theme/modern/stylesheet/skins/modern_modules.css" />
+{% endif %}
+<script src="/min/b=catalog/view/theme/modern/js&amp;f=jquery/jquery.3.3.1.min.js,bootstrap/js/bootstrap.min.js,blazy.min.js,jquery/magnific/jquery.magnific-popup.min.js,jquery/swiper/js/swiper.min.js,common.min.js"></script>
+{% else %}
+<script src="catalog/view/theme/modern/js/jquery/jquery.3.3.1.min.js" ></script>
+<link href="catalog/view/theme/modern/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="catalog/view/theme/modern/js/bootstrap/js/bootstrap.min.js" ></script>
+<script src="catalog/view/theme/modern/js/blazy.min.js"></script>
+<link href="catalog/view/theme/modern/js/jquery/magnific/magnific-popup.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/theme/modern/js/jquery/magnific/jquery.magnific-popup.min.js" ></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="catalog/view/theme/modern/js/font-viber/fa-viber.css" rel="stylesheet">
+<link href="catalog/view/theme/modern/stylesheet/skins/stylesheet.css" rel="stylesheet">
+<link href="catalog/view/theme/modern/stylesheet/skins/modern.css" rel="stylesheet">
+{% if (modern_template_variant != 1) %}
+<link href="catalog/view/theme/modern/stylesheet/skins/modern_variant1.css" rel="stylesheet">
+{% else %}
+<link href="catalog/view/theme/modern/stylesheet/skins/modern_variant2.css" rel="stylesheet">
+{% endif %}
+<link href="catalog/view/theme/modern/js/jquery/swiper/css/swiper.min.css" rel="stylesheet">
+<script src="catalog/view/theme/modern/js/jquery/swiper/js/swiper.min.js" ></script>
+<script async src="catalog/view/theme/modern/js/common.min.js" ></script>
+<link href="catalog/view/theme/modern/stylesheet/skins/modern_modules.css" rel="stylesheet">
+{% endif %}
+{% for style in styles %}
+<link href="{{ style['href'] }}" type="text/css" rel="{{ style['rel'] }}" media="{{ style['media'] }}" />
+{% endfor %}
+{% for link in links %}
+<link href="{{ link['href'] }}" rel="{{ link['rel'] }}" />
+{% endfor %}
+{% for script in scripts %}
+<script src="{{ script }}"></script>
+{% endfor %}
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+<style>
+{{ modern_css }}
+.title_center, .title_style, h1 {color: {{ theme_modern_other2 }}}
+{% if (footer_back is empty) %}.back_news {background: {{ modern_main_background_color }};}{% else %}.back_news {background: url('{{ footer_back }}');}{% endif %}
+{% if (footer_back2 is empty) %}.back_articles {background: {{ modern_main_background_color }};}{% else %}.back_articles {background: url('{{ footer_back2 }}');}{% endif %}
+{% if (letters_back is empty) %}.form_mail {background: {{ modern_main_background_color }};}{% else %}.form_mail {background: url('{{ letters_back }}');}{% endif %}
+{% if (modern_seevmenu_menu != 1) %}@media (min-width: 992px) {.hidem{display: none!important;}}{% endif %}
+{% if (modern_header_transp != 1 and class == 'common-home' and modern_header_var) %}
+@media (min-width: 992px) {
+#menu .nav > li > a, .fon_icon .fa-phone, .seaech_icon .fa-search, #cart > .btn{color: {{ modern_color_menu }}}
+}
+{% endif %}
+#top {background: {{ modern_main_background_color }}}
+.nav-tabs.mod>li.active>a, .nav-tabs.mod>li.active>a:focus, .nav-tabs.mod>li.active>a:hover, #product-tab .nav-tabs.mod > li.active > a, #product-tab .nav-tabs.mod > li.active > a:focus, #product-tab .nav-tabs.mod > li.active > a:hover  {background: {{ modern_main_tab }}}
+@media (max-width: 991px) {
+/*.block_logo_drop,  */
+.top-header, .top-header3, .top_mob_tab, .nav-tabs.mod>li.active>a, .nav-tabs.mod>li.active>a:focus, .nav-tabs.mod>li.active>a:hover {background: {{ modern_color_headmob }}}
+.top_mob_tab .tab_mob_child .tab_mob_grandchild {border-bottom: 2px solid {{ modern_color_headmob }}}
+}
+#menu .btn-navbar, .fa.fa-bars {border-color: {{ modern_main_color_text }};}
+#menu #category, #top-links2 a, #top .btn-link, #top-links a, .nav-tabs.mod>li.active>a, .nav-tabs.mod>li.active>a:focus, .nav-tabs.mod>li.active>a:hover, .inline_email {color: {{ modern_main_color_text }};}
+.log {border-right: 2px solid {{ modern_main_color_text }};}
+.current_col, .log a {color: {{ modern_main_color_text2 }}!important;}
+.aboutus_footer, .footer_h5, .copyrightf {color: {{ modern_main_color_text3 }};}
+.btn-cartpr, .btn-cart, .btn-primary, .btn-default {border: 1px solid {{ modern_text_color_border_btn }};background: {{ modern_background_btn }};color: {{ modern_text_color_btn }};}
+.button_email {background: {{ modern_background_btn }};color: {{ modern_text_color_btn }};}
+.btn-instock:hover, .btn-instock2:hover, .btn-cartpr:hover, .btn-cart:hover, .btn-primary:hover, .btn-default:hover {background: {{ modern_background_btn_hover }};color: {{ modern_text_color_btn_hover }};border: 1px solid {{ modern_text_color_border_btn_hover }};}
+.circleout {background: {{ modern_color_callback }};}
+.circle {box-shadow: 0 0 8px 35px {{ modern_color_callback }};}
+.back_news .fa-clock-o, .back_news .posted-aridius_news, .back_news .description-aridius_news p, .back_news .read-more a {color: {{ modern_color_text_news }};}
+.back_news .title_center, .back_news .pull-center a, .back_news a {color: {{ modern_color_tittle_news }};}
+.block-contacts {
+/*background-color: {{ modern_color4 }};  */
+opacity: 1;}
+.footer_contacts, .block-contacts li, .block-contacts li a {color: {{ modern_color5 }};}
+.block-contacts li:hover, .block-contacts li a:hover {color: {{ modern_color6 }};}
+footer h5, .footer_socialpay {color: {{ modern_color8 }};}
+footer {background-color: {{ modern_color2 }};}
+.footer, #scr_map {background-color: {{ modern_color1 }};}
+footer .list-unstyled li, footer .list-unstyled li a {color: {{ modern_color3 }};}
+footer .list-unstyled li:hover, footer .list-unstyled li a:hover {color: {{ modern_color7 }};}
+.diamont_seti {border: 3px solid {{ modern_color9 }};color: {{ modern_color9 }};background: {{ modern_color10 }};}
+{% if (theme_modern_other7 == 1) %}
+.button_swiper_car.button_prev{left:-10px;padding:7px 3px 4px 0;border-top:1px solid #ffae00;border-bottom:1px solid #ffae00;border-left:1px solid #ffae00;box-shadow:3px 0 13px 1px rgba(0,0,0,0.4);z-index:1}
+.button_swiper_car.button_next{right:-10px;padding:7px 0 4px 3px;border-top:1px solid #ffae00;border-bottom:1px solid #ffae00;border-right:1px solid #ffae00;box-shadow:3px 0 13px 1px rgba(0,0,0,0.4);z-index:1}
+.button_swiper_car{color:#fff!important;height:35px;top:130px;color:#fff;opacity:.8;background:-ms-linear-gradient(top,#514f53 0%,#927f5f 100%);background:-moz-linear-gradient(top,#514f53 0%,#927f5f 100%);background:-o-linear-gradient(top,#514f53 0%,#927f5f 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#514f53),color-stop(1,#927f5f));background:-webkit-linear-gradient(top,#514f53 0%,#927f5f 100%);background:linear-gradient(to bottom,#514f53 0%,#927f5f 100%);width:30px}
+{% elseif (theme_modern_other7 == 2) %}
+.button_prev.swiper-button-disabled, .button_next.swiper-button-disabled{opacity:0.6}
+.button_swiper_car.button_prev {left:31px;padding:7px 3px 4px 0;z-index:11}
+.button_swiper_car.button_next {right:31px;padding:7px 0 4px 3px;z-index:11}
+.button_swiper_car {color: #333!important;height: 35px;top: 130px;color: #fff;border-radius: 35px;width: 35px;background-color: rgba(255,255,255);opacity:0.9}
+{% else %}
+.button_swiper_car{display:none!important}
+{% endif %}
+{% if (theme_modern_other8 == 1) %}
+.button_img_quick .fa-circle{color:rgba(146,127,95,0.5)}
+.button_img_quick .fa-stack .fa-search{color:rgba(255,255,255,0.7)}
+{% elseif (theme_modern_other8 == 2) %}
+.button_img_quick .fa-circle{color:rgba(255,255,255,0.8)}
+.button_img_quick .fa-stack .fa-search{color:rgba(1,1,1,0.7)}
+{% else %}
+.button_img_quick{display:none!important}
+{% endif %}
+</style>
+{% if (modern_header_var != 1) %}
+<style>
+@media (min-width: 992px) {
+.bottom_menu{margin-bottom:65px}
+}
+</style>
+{% else %}
+{% if (modern_header_transp != 1 and class == 'common-home') %}
+<style>
+.top-header3.slide .fix_scroll_addit #menu .nav > li > a,.top-header3.slide .fix_scroll_addit .fon_icon .fa-phone,.top-header3.slide .fix_scroll_addit .seaech_icon .fa-search,.top-header3.slide .fix_scroll_addit #cart > .btn{color:#404040!important}
+.text-slider1{top:75px!important}
+.text-slider2{top:112px!important}
+.text-slider3{top:149px!important}
+.text-slider4{top:186px!important}
+@media (min-width: 992px) {
+.top-header3.slide .fix_scroll_addit{background-color:#fff}
+.top-header3 .fix_scroll_addit{background-color:rgba(51,51,51,0.3)}
+}
+</style>
+{% else %}
+<style>
+@media (min-width: 992px) {
+.bottom_menu{margin-bottom:65px}
+.top-header3 .fix_scroll_addit{background-color:#fff}
+}
+</style>
+{% endif %}
+{% endif %}
+{% if (not modern_header_var) %}
+<style>
+@media (min-width: 992px) and (max-width: 1199px) {
+.dropdown.open .dropdown-menu > li.li-drop.close-button:nth-last-child(-n+{{ category_menu_sm }}) {display: none;}
+.dropdown.open .dropdown-menu > li.li-drop.close-button:nth-child(-n+{{ modern_menu_category_sm }}) {display: list-item!important;}
+.dropdown.slide .dropdown-menu > li.li-drop, .dropdown.open .dropdown-menu > li.li-drop.open-button {display: list-item!important;}
+}
+@media (min-width: 1200px) and (max-width: 1599px) {
+.dropdown.open .dropdown-menu > li.li-drop.close-button:nth-last-child(-n+{{ category_menu_md }}) {display: none;}
+.dropdown.open .dropdown-menu > li.li-drop.close-button:nth-child(-n+{{ modern_menu_category_md }}) {display: list-item!important;}
+.dropdown.slide .dropdown-menu > li.li-drop, .dropdown.open .dropdown-menu > li.li-drop.open-button {display: list-item!important;}
+}
+@media (min-width: 1600px) {
+.dropdown.open .dropdown-menu > li.li-drop.close-button:nth-last-child(-n+{{ category_menu_lg }}) {display: none;}
+.dropdown.open .dropdown-menu > li.li-drop.close-button:nth-child(-n+{{ modern_menu_category_lg }}) {display: list-item!important;}
+.dropdown.slide .dropdown-menu > li.li-drop, .dropdown.open .dropdown-menu > li.li-drop.open-button {display: list-item!important;}
+}
+</style>
+{% endif %}
+</head>
+<body class="{{ class }}">
+<script>
+function scrWidthCheck(funcDesk,funcMob) {
+var widthcheck = $(window).width();
+function initCheck(firstloadfix) {
+	if($(window).width() != widthcheck || firstloadfix == 0) {
+		if(widthcheck < 992 && $(window).width() > 991 || firstloadfix == 0 && $(window).width() > 991) {
+				funcDesk();
+		} else if (widthcheck > 991 && $(window).width() < 992 || firstloadfix == 0 && $(window).width() < 992) {
+				funcMob();
+		}
+		widthcheck = $(window).width();
+	} 
+}
+initCheck(0);
+$(window).resize(function () {
+	initCheck(1);
+});
+}
+function scrWidthCheckFull(func) {
+var widthcheck = $(window).width();
+function initCheckFull(firstloadfix) {
+	if($(window).width() != widthcheck || firstloadfix == 0) {
+			func();
+		widthcheck = $(window).width();
+	} 
+}
+initCheckFull(0);
+$(window).resize(function () {
+	initCheckFull(1);
+});
+}
+</script>
+{% if (not modern_preloader) %}
+<div id="page-preloader">
+<div id="loader"></div>
+</div>
+<script>
+function scrollbarWidth(){var a=$("<div>").css({height:"50px",width:"50px"}),b=$("<div>").css({height:"200px"});$("body").append(a.append(b));var c=$("div",a).innerWidth();a.css("overflow-y","scroll");var d=$("div",a).innerWidth();return $(a).remove(),c-d}var scrollwidth=scrollbarWidth();$("html").css({overflow:"hidden","margin-right":+scrollwidth+"px"}),$(document).ready(function(){$("#page-preloader").delay(350).fadeOut(function(){$("html").css({overflow:"","margin-right":""}),$(".fix_scroll,.fix_scroll_menu").css("margin-right",""),$(this).remove()})});
+</script>
+{% endif %}
+<div id="slide_menu" class="{% if (not modern_header_var) %}top-header2{% else %}top-header3{% endif %}"></div>
+<div id="menu_adapt" class="hidden-lg hidden-md hidden-sm"><div id="mob_menu_opacity"></div></div>
+<div class="overlay" style="display: none;"></div>
+
+<div id="block_adapt">
+<a href="{{ home }}"> <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="logo-mob-header" ></a>
+<div class="hidden-lg hidden-md hidden-sm col-xs-2 block_mob_bt">
+<button type="button" class="btn btn-navbar navbar-toggle" id="button_menu"><i class="fa fa-bars"></i></button>
+</div>
+
+ <div class="cart_and_wishlist__wrap mob-block">
+<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}">
+  <svg width="33" height="31" viewBox="0 0 33 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.5 30.1641C16.0302 30.1641 15.5772 29.9939 15.2243 29.6847C13.8911 28.519 12.6059 27.4236 11.4719 26.4573L11.4661 26.4522C8.14147 23.6191 5.27054 21.1724 3.273 18.7622C1.04006 16.0677 0 13.513 0 10.7222C0 8.0106 0.929785 5.50901 2.6179 3.67789C4.32616 1.82511 6.67013 0.804688 9.21879 0.804688C11.1237 0.804688 12.8682 1.40692 14.4037 2.59452C15.1787 3.19398 15.8811 3.92764 16.5 4.78341C17.1191 3.92764 17.8213 3.19398 18.5965 2.59452C20.132 1.40692 21.8765 0.804688 23.7814 0.804688C26.3298 0.804688 28.674 1.82511 30.3823 3.67789C32.0704 5.50901 32.9999 8.0106 32.9999 10.7222C32.9999 13.513 31.9601 16.0677 29.7272 18.7619C27.7296 21.1724 24.859 23.6188 21.5349 26.4517C20.3989 27.4195 19.1116 28.5168 17.7754 29.6852C17.4227 29.9939 16.9695 30.1641 16.5 30.1641ZM9.21879 2.73778C7.21647 2.73778 5.37704 3.5369 4.03889 4.9881C2.68084 6.4612 1.93283 8.49752 1.93283 10.7222C1.93283 13.0694 2.80522 15.1687 4.76121 17.5288C6.65175 19.8101 9.46377 22.2064 12.7196 24.9812L12.7257 24.9862C13.8639 25.9563 15.1543 27.056 16.4972 28.2302C17.8482 27.0537 19.1405 25.9522 20.281 24.9807C23.5367 22.2059 26.3484 19.8101 28.239 17.5288C30.1947 15.1687 31.0671 13.0694 31.0671 10.7222C31.0671 8.49752 30.3191 6.4612 28.9611 4.9881C27.6231 3.5369 25.7835 2.73778 23.7814 2.73778C22.3146 2.73778 20.9679 3.20406 19.7788 4.12352C18.7191 4.94328 17.9809 5.97957 17.5481 6.70467C17.3255 7.07754 16.9338 7.3001 16.5 7.3001C16.0662 7.3001 15.6744 7.07754 15.4519 6.70467C15.0193 5.97957 14.2811 4.94328 13.2212 4.12352C12.0321 3.20406 10.6854 2.73778 9.21879 2.73778Z" fill="#956D84"/>
+</svg>
+  <span class="">{{ text_wishlist }}</span></a> 
+{{ cart }}
+  </div>
+
+</div>
+
+
+{% if (modern_arrowup != 1) %}
+<span class="visible-md visible-lg"><a href="#" class="scup fix_scroll"><i class="fa fa-angle-up active"></i></a></span>
+{% endif %}
+<div id="wishlist" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">
+<p></p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn-cart" data-dismiss="modal">{{ text_continue2 }}</button>
+<a href="{{ wishlist }}" class="btn-cart">{{ text_wishlist2 }}</a>
+</div>
+</div>
+</div>
+</div>
+<div id="compare" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">
+<p></p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn-cart" data-dismiss="modal">{{ text_continue2 }}</button>
+<a href="{{ compare }}" class="btn-cart">{{ text_compare2 }}</a>
+</div>
+</div>
+</div>
+</div>
+{% if (not modern_header_var) %}
+<nav id="top" class="hidden-xs">
+{% else %}
+<nav id="top" class="bottom_menu hidden-xs">
+{% endif %}
+<div class="container nobackground">
+<div class="left_block_head">
+{{ currency }}
+{{ language }}
+{{ blog_menu }}
+<div id="top-links2" class="nav pull-left">
+<ul class="list-inline top center-header">
+{% if (modern_wishlist_top != 1) %}
+<li class="marg_link"><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}">
+<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 16C8.74374 16 8.49669 15.9072 8.30415 15.7388C7.577 15.1035 6.87593 14.5065 6.2574 13.9799L6.25424 13.9772C4.44081 12.4332 2.87485 11.0998 1.78528 9.7863C0.567307 8.31791 0 6.92567 0 5.40473C0 3.92701 0.507156 2.56372 1.42795 1.56581C2.35973 0.556101 3.63826 0 5.02844 0C6.06747 0 7.01903 0.3282 7.8566 0.975406C8.2793 1.3021 8.66245 1.70192 9 2.16828C9.33769 1.70192 9.7207 1.3021 10.1435 0.975406C10.9811 0.3282 11.9327 0 12.9717 0C14.3617 0 15.6404 0.556101 16.5722 1.56581C17.493 2.56372 18 3.92701 18 5.40473C18 6.92567 17.4328 8.31791 16.2149 9.78616C15.1253 11.0998 13.5595 12.433 11.7463 13.9769C11.1267 14.5043 10.4245 15.1023 9.69571 15.739C9.50331 15.9072 9.25612 16 9 16V16ZM5.02844 1.05348C3.93626 1.05348 2.93294 1.48897 2.20303 2.27983C1.46228 3.08263 1.05428 4.19236 1.05428 5.40473C1.05428 6.68391 1.53012 7.82794 2.59703 9.11412C3.62823 10.3574 5.16206 11.6633 6.938 13.1755L6.9413 13.1782C7.56216 13.7069 8.26598 14.3062 8.99849 14.9461C9.7354 14.3049 10.4403 13.7047 11.0624 13.1752C12.8382 11.663 14.3719 10.3574 15.4031 9.11412C16.4699 7.82794 16.9457 6.68391 16.9457 5.40473C16.9457 4.19236 16.5377 3.08263 15.797 2.27983C15.0672 1.48897 14.0637 1.05348 12.9717 1.05348C12.1716 1.05348 11.437 1.30758 10.7884 1.80866C10.2104 2.25541 9.80777 2.82016 9.5717 3.21531C9.4503 3.41852 9.23662 3.53981 9 3.53981C8.76338 3.53981 8.5497 3.41852 8.4283 3.21531C8.19237 2.82016 7.78972 2.25541 7.21156 1.80866C6.56296 1.30758 5.82838 1.05348 5.02844 1.05348V1.05348Z" fill="#956D84"/>
+</svg>&nbsp; <span class="hidden-xs hidden-sm ">{{ text_wishlist }}</span></a> <a href="{{ wishlist }}"><span class="hidden-xs hidden-sm ">Закладки</span></a></li>
+{% endif %}
+{% if (modern_compare_top != 1) %}
+<li class="marg_link"><a href="{{ compare }}" id="compare-total" title="{{ text_compare }}"><i class="fa fa-balance-scale"></i>&nbsp; <span class="hidden-xs hidden-sm ">{{ text_compare }}</span></a></li>
+{% endif %}
+{% if (modern_top_links6 ) %}
+{% for modern_top_link6 in modern_top_links6 %}
+<!-- Delyvery -->
+<li>
+<a {% if (modern_top_link6['link_top'][language_id]) %} href="{{ modern_top_link6['link_top'][language_id] }}"{% endif %} title="{{ modern_top_link6['title'][language_id] }}">{% if (modern_top_link6['faicons_top']) %} 
+<i class="{{ modern_top_link6['faicons_top'] }}"></i>
+{# <img src="./catalog/view/theme/modern/image/shablon/delywery.svg" style="width: 22px; height: 22px;" /> #}
+&nbsp;{% endif %}{% if (modern_top_link6['title']) %}<span class="hidden-xs hidden-sm "> {{ modern_top_link6['title'][language_id] }}</span>{% endif %}</a>
+</li>
+<!-- END Delyvery -->
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+</div>
+<div id="top-links" class="nav pull-right">
+<ul class="list-inline top right-header">
+{% if (modern_account_top != 1) %}
+{% if (logged) %}
+<div class="nav pull-right">
+<ul class="list-inline perc_cab">
+<li class="dropdown">
+<a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>{{ text_account }}</span> <span class="caret"></span></a>
+<ul class="dropdown-menu dropdown-menu-right">
+{% if (logged) %}
+<li><a href="{{ account }}">{{ text_account }}</a></li>
+{% if (modern_order_top != 1) %}
+<li><a href="{{ order }}">{{ text_order }}</a></li>
+{% endif %}
+{% if (modern_transaction_top != 1) %}
+<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+{% endif %}
+{% if (modern_download_top != 1) %}
+<li><a href="{{ download }}">{{ text_download }}</a></li>
+{% endif %}
+<li><a href="{{ logout }}">{{ text_logout }}</a></li>
+{% else %}
+<li><a href="{{ register }}">{{ text_register }}</a></li>
+<li><a href="{{ login }}">{{ text_login }}</a></li>
+{% endif %}
+</ul>
+</li>
+</ul>
+</div>
+{% else %}
+<li>
+	<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M13.6569 10.3431C12.7855 9.47181 11.7484 8.82678 10.6168 8.43631C11.8288 7.60159 12.625 6.20463 12.625 4.625C12.625 2.07478 10.5502 0 8 0C5.44978 0 3.375 2.07478 3.375 4.625C3.375 6.20463 4.17122 7.60159 5.38319 8.43631C4.25163 8.82678 3.2145 9.47181 2.34316 10.3431C0.832156 11.8542 0 13.8631 0 16H1.25C1.25 12.278 4.27803 9.25 8 9.25C11.722 9.25 14.75 12.278 14.75 16H16C16 13.8631 15.1678 11.8542 13.6569 10.3431ZM8 8C6.13903 8 4.625 6.486 4.625 4.625C4.625 2.764 6.13903 1.25 8 1.25C9.86097 1.25 11.375 2.764 11.375 4.625C11.375 6.486 9.86097 8 8 8Z" fill="#956D84"/>
+	</svg>
+</li>
+<li class="log"><a href="{{ login }}">{{ text_login }}</a></li>
+<li class="reg"><a href="{{ register }}">{{ text_register }}</a></li>
+{% endif %}
+{% endif %}
+{% if (modern_cart_top != 1) %}
+<li><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart hidden-lg hidden-md"></i> <span class="hidden-xs hidden-sm ">{{ text_shopping_cart }}</span></a></li>
+{% endif %}
+{% if (modern_checkout_top != 1) %}
+<li><a href="{{ checkout }}" title="{{ text_checkout }}"><i class="fa fa-share hidden-lg hidden-md"></i> <span class="hidden-xs hidden-sm ">{{ text_checkout }}</span></a></li>
+{% endif %}
+</ul>
+</div>
+</div>
+</nav>
+{% if (not modern_header_var) %}
+<div class="top-header" id="hidden_mobscroll">
+<div class="container">
+<div class="table-header">
+{# <div class="hidden-lg hidden-md hidden-sm col-xs-2 block_mob_bt">
+<button type="button" class="btn btn-navbar navbar-toggle" id="button_menu"><i class="fa fa-bars"></i></button>
+</div> #}
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 navcentr table-cell-header hidden-xs">
+<div id="logo">
+{% if (logo) %}
+{% if (class == 'common-home') %}
+<img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+{% else %}
+<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+{% endif %}
+{% else %}
+<h1><a href="{{ home }}">{{ name }}</a></h1>
+{% endif %}
+</div>
+</div>
+<div class="col-lg-8 col-md-8 col-sm-9 col-xs-8 table-cell-header block_mob_sch">
+<div class="row height_search_tel table-header">
+
+<div id="search_head" class="col-lg-10 col-md-8 col-sm-8 col-xs-12 head_search table-cell-header">
+{{ search }}
+
+</div>
+</div>
+<!-- Start MENU BLOCK migrate-->
+<!-- start menuBlock-->
+{{ menu }}
+<!-- End menuBlock-->
+
+</div>
+<div class="col-lg-2 col-md-2 col-sm-1 col-xs-2 cart table-cell-header block_mob_cart">
+<!-- Start phone block-->
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fn_header table-cell-header hidden-xs">
+{% if (modern_telephone_mainheader2[language_id] or modern_telephone_mainheader[language_id]) %}
+<table class="table drop_tel">
+<tbody>
+<tr>
+{# <td class="fa_table" rowspan="2">
+<div class="circleout2"><i class="fa fa-phone"></i></div>
+</td> #}
+<td>
+<div class="header__social-block"> 
+<a class="viber-linc" href="tel:+380678293030"> <img style="width: 15px;height:15px;" src="/catalog/view/theme/modern/image/social-ico/viber.svg"/></a> 
+<a class="instagram-linc" href="https://www.instagram.com/s.flowersukraine/"> <img style="width: 14.5px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/inst.svg"/></a> 
+<a class="instagram-linc" href="https://t.me/sflowersukraine"> <img style="width: 14px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/telegr.svg"/></a> 
+<a class="instagram-linc" href="https://www.facebook.com/s.flowersukraine"> <img style="width: 14px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/fb.svg"/></a> 
+</div>
+<div><a class="tell_nav" href="tel:{{ modern_telephone_mainheader2[language_id] }}">{{ modern_telephone_mainheader2[language_id] }}</a></div>
+</td>
+</tr>
+<tr>
+<td>
+{% if ((modern_top_links3 or modern_top_links5 or modern_mail_header[language_id]) and not modern_header_info) %}
+<div class="dropdown">
+<div class="listunstyled dropdown-toggle"><a class="tell_nav" href="tel:{{ modern_telephone_mainheader[language_id] }}">{{ modern_telephone_mainheader[language_id] }}</a>
+{# <b class="caret"></b> #}
+</div>
+<ul class="dropdown-menu fixxsmenu">
+{% if (modern_top_links3 ) %}
+{% for modern_top_link3 in modern_top_links3 %}
+<li>
+<div class="drop_head">{{ modern_top_link3['name'][language_id] }}</div>
+<a {% if (modern_top_link3['title'][language_id]) %} href="tel:{{ modern_top_link3['title'][language_id] }}"{% endif %} >{% if (modern_top_link3['faicons_top']) %}<i class="{{ modern_top_link3['faicons_top'] }}"></i>{% endif %} {{ modern_top_link3['title'][language_id] }}</a>
+</li>
+{% endfor %}
+{% endif %}
+{% if (modern_top_links5 ) %}
+{% for modern_top_link5 in modern_top_links5 %}
+<li>
+<div class="drop_head">{{ modern_top_link5['name'][language_id] }}</div>
+<a href="{% if (modern_top_link5['link'][language_id] is defined) %} {{ modern_top_link5['link'][language_id] }}{% endif %}" >{% if (modern_top_link5['faicons_top']) %}<i class="{{ modern_top_link5['faicons_top'] }}"></i>{% endif %} {{ modern_top_link5['title'][language_id] }}</a>
+</li>
+{% endfor %}
+{% endif %}
+{% if (modern_mail_header[language_id] ) %}
+<li>
+<div class="drop_head">{{ modern_tittle_name[language_id] }}</div>
+<a onClick="javascript:window.location.href='mailto:{{ modern_mail_header[language_id] }}';return false;" href="javascript:close_window();" ><i class="fa fa-envelope-o "></i> {{ modern_mail_header[language_id] }}</a>
+</li>
+{% endif %}
+<li>
+{% if (aridiuscallback_status and modern_calltop != 1) %}
+<div class="drop_head"></div>
+<a class="call-order"><i class="fa fa-phone"></i>&nbsp;{{ buttoncallback_title }}</a>
+{% endif %}
+</li>
+</ul>
+</div>
+{% else %}
+<div class="phone">
+<div class="listunstyled "><a class="tell_nav" href="tel:{{ modern_telephone_mainheader[language_id] }}">{{ modern_telephone_mainheader[language_id] }}</a></div>
+</div>
+{% endif %}
+</td>
+</tr>
+{% if (modern_header_info) %}
+{% if (modern_top_links3 ) %}
+{% for modern_top_link3 in modern_top_links3 %}
+<tr>
+<td style="text-align:center;font-size: 20px;">{% if (modern_top_link3['faicons_top']) %}<i class="{{ modern_top_link3['faicons_top'] }}"></i>{% endif %}</td>
+<td><a class="tell_nav" {% if (modern_top_link3['title'][language_id]) %} href="tel:{{ modern_top_link3['title'][language_id] }}"{% endif %} > {{ modern_top_link3['title'][language_id] }}</a></td>
+</tr>
+{% endfor %}
+{% endif %}
+{% if (modern_top_links5 ) %}
+{% for modern_top_link5 in modern_top_links5 %}
+<tr>
+<td style="text-align:center;font-size: 20px;">{% if (modern_top_link5['faicons_top']) %}<i class="{{ modern_top_link5['faicons_top'] }}"></i>{% endif %}</td>
+<td><a class="tell_nav"  href="{% if (modern_top_link5['link'][language_id] is defined) %} {{ modern_top_link5['link'][language_id] }}{% endif %}" > {{ modern_top_link5['title'][language_id] }}</a></td>
+</tr>
+{% endfor %}
+{% endif %}
+{% if (modern_mail_header[language_id] ) %}
+<tr>
+<td style="text-align:center;font-size: 20px;"><i class="fa fa-envelope-o"></i></td>
+<td><a class="tell_nav" onClick="javascript:window.location.href='mailto:{{ modern_mail_header[language_id] }}';return false;" href="javascript:close_window();" > {{ modern_mail_header[language_id] }}</a></td>
+</tr>
+{% endif %}
+{% endif %}
+</tbody>
+</table>
+{% endif %}
+</div>
+<!-- END phone block-->
+ <div class="cart_and_wishlist__wrap">
+<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}">
+  <svg width="33" height="31" viewBox="0 0 33 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.5 30.1641C16.0302 30.1641 15.5772 29.9939 15.2243 29.6847C13.8911 28.519 12.6059 27.4236 11.4719 26.4573L11.4661 26.4522C8.14147 23.6191 5.27054 21.1724 3.273 18.7622C1.04006 16.0677 0 13.513 0 10.7222C0 8.0106 0.929785 5.50901 2.6179 3.67789C4.32616 1.82511 6.67013 0.804688 9.21879 0.804688C11.1237 0.804688 12.8682 1.40692 14.4037 2.59452C15.1787 3.19398 15.8811 3.92764 16.5 4.78341C17.1191 3.92764 17.8213 3.19398 18.5965 2.59452C20.132 1.40692 21.8765 0.804688 23.7814 0.804688C26.3298 0.804688 28.674 1.82511 30.3823 3.67789C32.0704 5.50901 32.9999 8.0106 32.9999 10.7222C32.9999 13.513 31.9601 16.0677 29.7272 18.7619C27.7296 21.1724 24.859 23.6188 21.5349 26.4517C20.3989 27.4195 19.1116 28.5168 17.7754 29.6852C17.4227 29.9939 16.9695 30.1641 16.5 30.1641ZM9.21879 2.73778C7.21647 2.73778 5.37704 3.5369 4.03889 4.9881C2.68084 6.4612 1.93283 8.49752 1.93283 10.7222C1.93283 13.0694 2.80522 15.1687 4.76121 17.5288C6.65175 19.8101 9.46377 22.2064 12.7196 24.9812L12.7257 24.9862C13.8639 25.9563 15.1543 27.056 16.4972 28.2302C17.8482 27.0537 19.1405 25.9522 20.281 24.9807C23.5367 22.2059 26.3484 19.8101 28.239 17.5288C30.1947 15.1687 31.0671 13.0694 31.0671 10.7222C31.0671 8.49752 30.3191 6.4612 28.9611 4.9881C27.6231 3.5369 25.7835 2.73778 23.7814 2.73778C22.3146 2.73778 20.9679 3.20406 19.7788 4.12352C18.7191 4.94328 17.9809 5.97957 17.5481 6.70467C17.3255 7.07754 16.9338 7.3001 16.5 7.3001C16.0662 7.3001 15.6744 7.07754 15.4519 6.70467C15.0193 5.97957 14.2811 4.94328 13.2212 4.12352C12.0321 3.20406 10.6854 2.73778 9.21879 2.73778Z" fill="#956D84"/>
+</svg>
+  <span class="">{{ text_wishlist }}</span></a> 
+{{ cart }}
+  </div>
+</div>
+</div>
+<div class="table-header hidden-lg hidden-md hidden-sm col-xs-12 block_mob_bt2">
+{{ currency }}
+<div class="delyvery_block">
+<a href="/delivery_information" id="deliv" title="{{ dost }}"> 
+	<img style="width: 16px; height:auto" src="catalog/view/theme/modern/image/shablon/delywery.svg"/>&nbsp;<span class=""> {{ dost }}</span></a>
+</div>
+{{ language }}
+<div class="pull-left">
+
+{# <a href="/delivery_information" id="deliv" title="{{ dost }}"> 
+	<img style="width: 16px; height:auto" src="catalog/view/theme/modern/image/shablon/delywery.svg"/>&nbsp;<span class=""> {{ dost }}</span></a> #}
+<!--<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i>&nbsp; <span class="">{{ text_wishlist }}</span></a> -->
+</div>
+</div>
+{# <!-- start menuBlock-->
+{{ menu }}
+<!-- End menuBlock--> #}
+</div>
+</div>
+{% else %}
+<div class="top-header3" id="hidden_mobscroll">
+<div class="fix_scroll fix_scroll_addit">
+<div class="container">
+<div class="row postion_fullmenu">
+<div class="hidden-lg hidden-md hidden-sm col-xs-2 block_mob_bt">
+<button type="button" class="btn btn-navbar navbar-toggle" id="button_menu"><i class="fa fa-bars"></i></button>
+</div>
+<div id="logo" class="col-lg-1 col-md-1 col-sm-1 col-xs-2 hidden-xs">
+{% if (logo) %}
+{% if (class == 'common-home') %}
+{% if (modern_header_transp != 1 and modern_header_var) %}
+<img id="logo_img" src="{{ logo_mini }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+{% else %}
+<img id="logo_img" src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+{% endif %}
+{% else %}
+<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+{% endif %}
+{% else %}
+<h1><a href="{{ home }}">{{ name }}</a></h1>
+{% endif %}
+</div>
+{{ menu }}
+<div class="col-lg-1 col-md-1 col-sm-1 col-xs-8 block_fon_search block_mob_sch">
+<div class="fn_header hidden-xs">
+<div class="dropdown">
+<div class="listunstyled dropdown-toggle fon_icon" data-toggle="dropdown">
+<i class="fa fa-phone"></i></div>
+<ul class="dropdown-menu fixxsmenu_tel">
+{% if (modern_telephone_mainheader2[language_id] or modern_telephone_mainheader[language_id]) %}
+<li>
+<table class="table table_minimenu">
+<tbody>
+<tr>
+<td rowspan="{% if (modern_telephone_mainheader2[language_id]) %}2{% else %}1{% endif %}">
+<div class="circleout2"><i class="fa fa-phone"></i></div>
+</td>
+<td>
+<div><a href="tel:{{ modern_telephone_mainheader[language_id] }}" class="tell_nav">{{ modern_telephone_mainheader[language_id] }}</a></div>
+</td>
+</tr>
+{% if (modern_telephone_mainheader2[language_id]) %}
+<tr>
+<td>
+<div class="phone">
+<div class="listunstyled "><a href="tel:{{ modern_telephone_mainheader2[language_id] }}" class="tell_nav">{{ modern_telephone_mainheader2[language_id] }}</a></div>
+</div>
+</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+</li>
+{% endif %}
+{% if (modern_top_links3 ) %}
+{% set modern_top_links3_key = 0 %}
+{% for modern_top_link3 in modern_top_links3 %}
+<li>
+<div class="{% if (modern_top_links3_key == 0 and (modern_telephone_mainheader2[language_id] or modern_telephone_mainheader[language_id])) %}drop_head_first{% endif %}">{{ modern_top_link3['name'][language_id] }}</div>
+<a {% if (modern_top_link3['title'][language_id]) %} href="tel:{{ modern_top_link3['title'][language_id] }}"{% endif %} >{% if (modern_top_link3['faicons_top']) %}<i class="{{ modern_top_link3['faicons_top'] }}"></i>{% endif %} {{  modern_top_link3['title'][language_id] }}</a>
+</li>
+{% set modern_top_links3_key = modern_top_links3_key + 1 %}
+{% endfor %}
+{% endif %}
+{% if (modern_top_links5 ) %}
+{% for modern_top_link5 in modern_top_links5 %}
+<li>
+<div class="drop_head">{{ modern_top_link5['name'][language_id] }}</div>
+<a href="{% if (modern_top_link5['link'][language_id] is defined) %} {{ modern_top_link5['link'][language_id] }}{% endif %}" >{% if (modern_top_link5['faicons_top']) %}<i class="{{ modern_top_link5['faicons_top'] }}"></i>{% endif %} {{ modern_top_link5['title'][language_id] }}</a>
+</li>
+{% endfor %}
+{% endif %}
+{% if (modern_mail_header[language_id] ) %}
+<li>
+<div class="drop_head">{{ modern_tittle_name[language_id] }}</div>
+<a onClick="javascript:window.location.href='mailto:{{ modern_mail_header[language_id] }}';return false;" href="javascript:close_window();" ><i class="fa fa-envelope-o "></i> {{ modern_mail_header[language_id] }}</a>
+</li>
+{% endif %}
+<li>
+{% if (aridiuscallback_status and modern_calltop != 1) %}
+<div class="drop_head"></div>
+<a class = "call-order" ><i class="fa fa-phone"></i>&nbsp;{{ buttoncallback_title }}</a>
+{% endif %}
+</li>
+</ul>
+</div>
+</div>
+<div class="search_input_head">
+<div class="dropdown">
+<div class="listunstyled dropdown-toggle seaech_icon hidden-xs" data-toggle="dropdown">
+<i class="fa fa-search"></i>
+</div>
+<div id="search_head" class="dropdown-menu fixxsmenu_search">
+{{ search }}
+</div></div>
+</div>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-1 col-xs-2 cart block_mob_cart">
+{{ cart }}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+{% if (modern_arrowup != 1) %}
+<!--scrollUp-->
+<script>
+if ($(window).width() > 991) {
+$(document).ready(function(){
+	var scrollup = $('.scup');
+	$(window).scroll(function(){if($(window).scrollTop()>400){scrollup.addClass('show');} else {scrollup.removeClass('show');}});
+	scrollup.on('click', function(e){e.preventDefault();$('html, body').animate({scrollTop:0}, '600');});
+});
+}
+</script>
+{% endif %}
+{% if (not modern_preloader) %}
+<script>
+//preloader
+window.innerWidth>991&&$(".fix_scroll").css("margin-right",+scrollwidth+"px");
+</script>
+{% endif %}
+<script>
+//mobile_menu
+$(document).ready(function(){
+$('#button_menu').on('click', function() {
+sessionStorage.setItem('popup_open', '1');
+$.ajax({
+	    type: 'POST',
+		url: 'index.php?route=common/header',
+		data:"aridiusmob_menu=1&location={{ class }}",
+		beforeSend: function(){
+			$("html").addClass('scroll-disabled');
+			$(".overlay").css({display:""});
+			$('.overlay').html('<div id="loader_mob"></div>');
+		},
+		success: function(msg){
+			$('#mob_menu_opacity').html(msg);
+			$("#menu_adapt").addClass('show');
+			$('#loader_mob').remove();
+	    }
+});
+});
+$('.overlay').on('click', function() {
+$('#menu_adapt').removeClass('show');
+$(".overlay").css({display:"none"});
+$("html").removeClass('scroll-disabled');
+sessionStorage.setItem('popup_open', '0');
+});
+if(!$("#menu_adapt").hasClass("show")) {
+sessionStorage.setItem('popup_open', '0');
+}
+});
+</script>
+<script>
+//menu_scroll
+var scrollthrough = $(window).scrollTop();
+var menuscrolltop = {% if (modern_scrollmenu) %}{{ modern_scrollmenu }}{% else %}220{% endif %};
+var countfirstscroll = 0;
+function scrollMenu() {
+		if(scrollthrough < menuscrolltop && $(window).scrollTop() > menuscrolltop -1) {
+		if (countfirstscroll == 0) {
+			$.ajax({
+				type: 'POST',
+				url: 'index.php?route=common/header',
+				data:"aridiusscroll_menu=1&location={{ class }}",
+				success: function(msg){
+					$('#slide_menu').html(msg);
+					$("#slide_menu").addClass("slide");
+				}
+			});
+		} else {
+			$("#slide_menu").addClass("slide");
+		}
+		} else if (scrollthrough > menuscrolltop-1 && $(window).scrollTop() < menuscrolltop) {
+			$("#slide_menu .block_fon_search .dropdown.open").removeClass('open');
+			$("#slide_menu").removeClass("slide");
+			countfirstscroll = 1;
+		}
+		scrollthrough = $(window).scrollTop();
+}
+if ($(window).width() > 991) {
+	$(window).scroll(function() {
+		scrollMenu();
+	});
+}
+</script>
+<script>
+//hidden_mobibe_menu
+if ($(window).width() < 992) {
+var lastpos = 0;
+var checkdirection = 0;
+$(window).scroll(function(){
+   var curpos = $(this).scrollTop();
+   if (curpos > lastpos && curpos > 85){
+	 // down	
+		if (checkdirection == 0) {
+			$("#hidden_mobscroll").css({top:"-120px"});
+			$("#tabhidden_mobscroll").css({top:0});
+		}
+		checkdirection = 1;
+   } else if (curpos <= lastpos) {
+   // up
+		if (checkdirection == 1 && curpos > 85) {
+			$("#hidden_mobscroll").css({top:0});
+			$("#tabhidden_mobscroll").css({top:"120px"});
+		}
+		checkdirection = 0; 
+   }
+   lastpos = curpos;
+});
+}
+</script>

@@ -1,0 +1,16 @@
+<script>
+$(document).ready(function(){new Swiper("#carousel{{ module }}.swiper-container",{slidesPerView:8,watchSlidesVisibility:!0,watchSlidesProgress:!0,loop:!1,grabCursor:!0,speed:1e3,autoplayDisableOnInteraction:!0,breakpoints:{1599:{slidesPerView:7},1199:{slidesPerView:5},768:{slidesPerView:3},479:{slidesPerView:1{{ '}}' }},autoplay:{delay:2e3{{ '}}' }})});
+</script>
+<div id="carousel{{ module }}" class="swiper-container carousel-bw">
+<div class="swiper-wrapper">
+{% for banner in banners %} 
+<div class="item text-center swiper-slide">
+{% if (banner['link']) %} 
+<a href="{{ banner['link'] }}"><img src="{{ banner['image'] }}" alt="{{ banner['title'] }}" class="carousel_center img-responsive" /></a>
+{% else %} 
+<img src="{{ banner['image'] }}" alt="{{ banner['title'] }}" class="carousel_center img-responsive" />
+{% endif %} 
+</div>
+{% endfor %} 
+</div>
+</div>
