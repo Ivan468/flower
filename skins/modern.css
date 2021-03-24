@@ -2079,7 +2079,7 @@ background: left/ cover  no-repeat  url(../../image/banner-home/gift-bg-behome.p
     .banhome p {display: none;}
 .banhome a {
 font-size: 14px;
-opacity: 0;
+/* opacity: 0; */
 }
 .row.banhome > div {
   width: 91px;
@@ -2117,7 +2117,7 @@ opacity: 0;
     border: 0;
 }
 .banhome a {
-    font-family: Museo Sans Cyrl;
+    font-family: Museo Sans Cyrl, sans-serif;
 font-style: normal;
 font-weight: 300;
 font-size: 24px;
@@ -2130,7 +2130,7 @@ color: #333333;
 	box-shadow: none;
 }
 
-.foto-behome::after {
+/* .foto-behome::after {
  
     content: "Фото доставок" attr(href);
     font-size: 10px;
@@ -2142,7 +2142,7 @@ color: #333333;
     align-items: center;
     text-align: center;
     width: 100%;
-}
+} */
 .video-behome a::after, .foto-behome a::after, .gift-behome a::after {
        content: ' ';
     font-size: 10px;
@@ -2156,7 +2156,7 @@ color: #333333;
     text-align: center;
     width: 100%;
 }
-.video-behome::after {
+/* .video-behome::after {
     content: "Видео отчеты";
     font-size: 10px;
     font-family: Museo Sans Cyrl;
@@ -2181,7 +2181,23 @@ color: #333333;
     width: 97px;
     right: 8px;
     position: relative;
-}
+} */
+
+.banhome a > span {
+     font-size: 13px;
+    font-family: Museo Sans Cyrl, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 15px;
+    display: block;
+    align-items: center;
+    text-align: center;
+    width: 90px;
+    position: relative;max-height: 33px;
+    overflow: hidden;
+    top: 100px;opacity: 1;    left: 50%;
+    transform: translate(-50%);
+ }
 }
 
 

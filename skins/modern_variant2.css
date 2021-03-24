@@ -6,24 +6,19 @@ font-weight: bold;
 font-size: 18px;
 line-height: 18px;
 color: #FFFFFF;}
-.title_center{  
-  
-    text-align: center;
+.title_center{      text-align: center;
     color: #777;
-     
-    font-family: Museo Sans Cyrl;
+    font-family: Museo Sans Cyrl, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
-    line-height: 58px;
     align-items: center;
     text-align: center;
     color: #333333;
     text-transform: none;
-    margin: 44px 0px 33px 0px;
 }
 h1.title_h.title_center.name_prod_h1 {
-    font-family: Museo Sans Cyrl;
+    font-family: Museo Sans Cyrl, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
