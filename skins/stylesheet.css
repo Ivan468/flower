@@ -187,6 +187,7 @@ color: #828282;
     background: linear-gradient(0deg
 , #956D84 65%, #00ffff00 24%);
     margin: 10px 10px;
+    width: calc(100%/3.2);
 }
 .header__social-block {
   display: grid;
@@ -529,6 +530,10 @@ display: block;
 @media screen and (max-width: 991px) {
 #content_news .col-xs-6:nth-child(2n+1){clear:left}
 .breadcrumb{padding:10px 10px 6px 5px;border-bottom:1px #EEE solid}
+
+#boc_phone1 {
+    width: 75%;
+}
 }
 @media (min-width:992px) and (max-width: 1199px) {
 #content_news .col-sm-4:nth-child(3n+1){clear:left}
@@ -569,9 +574,10 @@ transform: translate(-50%, -50%);
     font-size: 16px;
     line-height: 18px;
     text-transform: none;
+    background: center/ auto  no-repeat  url(../../image/bg-btn-arr.svg), right/ contain no-repeat url(../../image/bg-button.png),  #956D84!important;
 }
 
-.ord #boc_form1{position: relative;}
+.ord #boc_form1{position: relative;background: white;}
 
  @media screen and    (max-width:768px) {
      .logo-mob-header {
