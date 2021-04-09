@@ -8,6 +8,7 @@
 	font-weight: 500;    font-display: swap;
 	font-style: normal;  
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-300Italic.eot');
@@ -18,6 +19,7 @@
 	font-weight: 300;    font-display: swap;
 	font-style: italic;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-500Italic.eot');
@@ -28,6 +30,7 @@
 	font-weight: 500;    font-display: swap;
 	font-style: italic;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-900.eot');
@@ -38,6 +41,7 @@
 	font-weight: 900;    font-display: swap;
 	font-style: normal;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-700.eot');
@@ -48,6 +52,7 @@
 	font-weight: 700;    font-display: swap;
 	font-style: normal;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-700Italic.eot');
@@ -58,6 +63,7 @@
 	font-weight: 700;    font-display: swap;
 	font-style: italic;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-300.eot');
@@ -68,6 +74,7 @@
 	font-weight: 300;    font-display: swap;
 	font-style: normal;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-100.eot');
@@ -78,6 +85,7 @@
 	font-weight: 300;     font-display: swap;
 	font-style: normal;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-100Italic.eot');
@@ -88,6 +96,7 @@
 	font-weight: 300;     font-display: swap;
 	font-style: italic;
 }
+
 @font-face {
 	font-family: 'Museo Sans Cyrl';
 	src: url('../fonts/museosanscyrl/MuseoSansCyrl-900Italic.eot');
@@ -98,6 +107,7 @@
 	font-weight: 900;     font-display: swap;
 	font-style: italic;
 }
+/*  */
 @font-face {
     font-family: 'Euclid Circular B';
     src: url(EuclidCircularB-Bold.eot);
@@ -107,7 +117,9 @@
         url('../fonts/euclid/EuclidCircularB-Bold.woff') format('woff'),
         url('../fonts/euclid/EuclidCircularB-Bold.ttf') format('truetype');
     font-weight: bold;font-display: swap;
-    font-style: normal;}
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'Euclid Circular B';
     src: url('../fonts/euclid/EuclidCircularB-Italic.eot');
@@ -117,7 +129,9 @@
         url('../fonts/euclid/EuclidCircularB-Italic.woff') format('woff'),
         url('../fonts/euclid/EuclidCircularB-Italic.ttf') format('truetype');
     font-weight: normal;font-display: swap;
-    font-style: italic;}
+    font-style: italic;
+}
+
 @font-face {
     font-family: 'Euclid Circular B';
     src: url('../fonts/euclid/EuclidCircularB-Medium.eot');
@@ -127,7 +141,9 @@
         url('../fonts/euclid/EuclidCircularB-Medium.woff') format('woff'),
         url('../fonts/euclid/EuclidCircularB-Medium.ttf') format('truetype');
     font-weight: 500;font-display: swap;
-    font-style: normal;}
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'Euclid Circular B';
     src: url('../fonts/euclid/EuclidCircularB-SemiBoldItalic.eot');
@@ -137,7 +153,9 @@
         url('../fonts/euclid/EuclidCircularB-SemiBoldItalic.woff') format('woff'),
         url('../fonts/euclid/EuclidCircularB-SemiBoldItalic.ttf') format('truetype');
     font-weight: 600;font-display: swap;
-    font-style: italic;}
+    font-style: italic;
+}
+
 @font-face {
     font-family: 'Euclid Circular B';
     src: url('../fonts/euclid/EuclidCircularB-BoldItalic.eot');
@@ -1142,12 +1160,12 @@ font-size: 38px;}
 .rev-button-next{right:-15px}
 .product-layoutcatnew:hover .product-thumb{background-clip:padding-box;-webkit-box-shadow:0 0 13px 0 rgba(0,0,0,0.4);-moz-box-shadow:0 0 13px 0 rgba(0,0,0,0.4);box-shadow:0 0 13px 0 rgba(0,0,0,0.4)}
 .product-layoutmod:hover .product-thumb{background-clip:padding-box;-webkit-box-shadow:0 0 13px 0 rgba(0,0,0,0.4);-moz-box-shadow:0 0 13px 0 rgba(0,0,0,0.4);box-shadow:0 0 13px 0 rgba(0,0,0,0.4)}
-.product-layoutcatnew .product-layout2 .cart, .product-layoutmod .product-layout2 .cart{margin-bottom:5px;
-    
+.product-layoutcatnew .product-layout2 .cart, .product-layoutmod .product-layout2 .cart{margin-bottom:5px; padding: 5px;
 }
 .product-layoutcatnew:hover .effect-hover,.product-layoutcatnew:hover .button_img_quick, .product-layoutcatnew:hover .effect_hover_wc, .product-layoutmod:hover .effect-hover,.product-layoutmod:hover .button_img_quick, .product-layoutmod:hover .effect_hover_wc{display:block}
 .product_ardlist .effect-hover{display:inline!important}
-.product-layout2{border:1px solid #956D84;;margin-bottom:1px;background:#fff;position:relative;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;width:100%;z-index:5}
+.product-layout2{border:1px solid #956d8483;margin-bottom:1px;background:#fff;position:relative;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;width:100%;z-index:5;
+box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);}
 .product-layout2:before{content:'';display:block;position:absolute;left:0;right:0;bottom:0;height:40px}
 .product-layout2:hover .gtile-short-detail{z-index:11!important;max-height:none}
 .product-layout2:hover:before{display:none}
@@ -1491,7 +1509,7 @@ margin: 0 auto;
 #menu_adapt	.circleout2 {font-size: 12px;line-height: 22px;width: 22px;height: 22px}
 #menu_adapt .table>tbody>tr>td {vertical-align: middle;border:none;padding: 5px}
 #menu_adapt .table {border-bottom: 1px solid #dedede;margin-bottom: 0px}
-#menu_adapt	.static_pos, #menu_adapt .postion_fullmenu2 {position: relative!important;z-index: 100}
+#menu_adapt	.static_pos, #menu_adapt .postion_fullmenu2 {position: relative!important;z-index: 100; border-bottom: 1px solid #00000040;}
 .menu_mob_cat {margin: 7.5px 0px;border-bottom: 1px solid #dedede;}
 #menu_adapt #menu .plus {color: #777}
 #menu_adapt #menu li {font-size:15px}
@@ -1500,7 +1518,7 @@ margin: 0 auto;
 .mob_wish {padding: 4px 0px 8px 0px; display: flex; justify-content: space-between;}
 .mob_compare {padding:8px 0px 16px 0px}
 #wishlist-total, #compare-total, .mob_other_info ul li a, .mob_info ul li a,.mob_info_first ul li a, .mob_main ul li a{color: #333;font-size: 15px}
-.mob_other_info ul li, .mob_info ul li, .mob_info_first ul li, .mob_main ul li{padding: 8px 0px}
+.mob_other_info ul li, .mob_info ul li, .mob_info_first ul li, .mob_main ul li{padding: 12px 0px}
 .form_cur_lang {display: none;flex-flow: row nowrap;justify-content: flex-end;align-items: center;height: 30px}
 .form_cur_lang button:last-of-type {border:none!important}
 .btn_cur_lang {color:#999;padding: 0 5px!important;border-right: 1px solid #999!important}
@@ -1547,7 +1565,7 @@ margin: 0 auto;
 #menu .nav > li > a:hover,#menu .nav > li.open > a{border-top:none}
 #menu .navbar-collapse{margin:0 15px}
 #menu .nav > li > a{padding:15px 0;border-top:none;color:#333}
-#menu.nav > li > a{border-top:none;color:#333;padding:10px 15px}
+#menu.nav > li > a{border-top:none;color: #956D84;padding:26px 15px}
 .hidev{display:none!important}
 .circle{animation:spinfon 1.4s infinite linear;-moz-animation:spinfon 1.4s infinite ease-in-out;-webkit-animation:spinfon 1.4s infinite linear;border-radius:300px;height:30px;margin:0 auto;width:30px}
 .circleout{animation:spintell 2s infinite linear;-webkit-animation:spintell 2s infinite linear;-moz-animation:spintell 2s infinite linear;border-radius:55px;color:#fff;font-size:15px;line-height:33px;height:35px;margin:0 auto;text-align:center;position:relative;top:-32px;width:35px}
@@ -1569,7 +1587,11 @@ margin: 0 auto;
 #menu .dropdown-inner{display:block}
 #menu .dropdown-inner a{width:100%}
 #menu .dropdown-menu a:hover,#menu .dropdown-menu ul li a:hover{color:#000}
-#menu_adapt #menu a:hover {    background: #956D84;}
+#menu_adapt #menu a:hover, .style2lv:hover {    background: #956D84; color:#fff;font-weight: 900;}
+.header__social-block a:hover {
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.473));
+    opacity: 0.8;
+}
 #menu .see-all{margin-top:0;border:none;border-radius:0;color:#fff}
 #menu .dropdown-inner1 a{color:#fff}
 #top-menu{top:0;z-index:101;width:100%;position:relative!important}
@@ -1584,7 +1606,7 @@ a.plus-link{position:relative;right:-30px;text-align:left;top:-30px;background:t
 #menu .pad_a_child {padding: 7px 25px 7px 10px!important;text-transform: none!important;}
 .children_lv3 a{padding: 7px 5px!important}
 .mob_home {padding: 10px 15px}
-#menu .plus {margin-top: 12px;margin-right: 5px;position: absolute;right: 0px;width: 50px;text-align: center;height: 25px}
+#menu .plus {margin-top: 30px;margin-right: 5px;position: absolute;right: 0px;width: 50px;text-align: center;height: 25px}
 .block_mob_cart.cart, .block_mob_cart #cart {margin-bottom:0}
 #cart .img-responsive {max-width:none;height: 30px;margin-top: 3px}
 #search input{border-radius:6px}
@@ -1636,6 +1658,7 @@ a.plus-link{position:relative;right:-30px;text-align:left;top:-30px;background:t
     flex-direction: row-reverse;
     align-items: baseline;
     justify-content: space-evenly;
+    padding: 5px;
 }
 
 .positionsticker {right: 0px}
@@ -1951,7 +1974,7 @@ background: none;
 div.cart > button:nth-child(1) {
     width: 35px;
     height: 35px;
-    background: center/ auto  no-repeat  url(../../image/cart-btn.svg), #956d84!important;
+    background: 6px 8px/ auto  no-repeat  url(../../image/cart-btn.svg), right/ contain no-repeat url(../../image/mob-btn-bg.png), #956d84!important;
     box-shadow: inset 0px 5px 5px rgb(0 0 0 / 15%);
     border-radius: 50%;
     font-size: 0;

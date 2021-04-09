@@ -248,6 +248,7 @@ border-radius: 50%;
 display: inline-flex;
     justify-content: center;
     align-items: center;
+    transition: .8s all;
 }
 a.footer-tel {
     color: white;
@@ -299,7 +300,7 @@ background: transparent;
 
 }
 #cart .dropdown-menu li p{margin:20px 0}
-#menu .nav > li > a{background-color:transparent;color:#404040;font-weight:900;line-height:20px;margin-top:-2px;min-height:15px;padding:15px;text-transform:none}
+#menu .nav > li > a{background-color:transparent;color:#404040;font-weight:900;line-height:20px;margin-top:-2px;min-height:15px;padding:15px;text-transform:none;transition: 0.3s all;}
 #menu .nav > li > a:hover,#menu .nav > li.open > a{position:relative}
 #menu .nav > li > a:hover:before{top:-2px;height:2px;background:#51473c}
 #menu .nav > li.activetopmenu > a:before{top:-2px;height:2px;background:#51473c}
@@ -406,7 +407,7 @@ footer h5{padding:0 0 15px;font-size:17px;font-weight:500;letter-spacing:1px;tex
 .product-list .product-thumb .image{float:left}
 }
 .product-thumb h4{font-weight:700;height:33px}
-.product-layout2 .caption{padding:5px;text-align:center}
+.product-layout2 .caption{text-align:center}
 @media (max-width: 767px) {
 .product-list .product-layout2 .caption{min-height:0;margin-left:0}
 .product-grid .product-layout2 .caption{min-height:0}
@@ -577,7 +578,7 @@ transform: translate(-50%, -50%);
     background: center/ auto  no-repeat  url(../../image/bg-btn-arr.svg), right/ contain no-repeat url(../../image/bg-button.png),  #956D84!important;
 }
 
-.ord #boc_form1{position: relative;background: white;}
+.ord #boc_form1{position: relative;background: white; display: none;}
 
  @media screen and    (max-width:768px) {
      .logo-mob-header {
