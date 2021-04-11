@@ -1337,6 +1337,20 @@ $(document).ready(function(){
 			jQuery('.swiper-slide').removeAttr('style');
 		 galleryTop = 0;
 		}
+		var	galleryThumbs = new Swiper('.gallery-thumbs', {
+			spaceBetween: 10,
+			slidesPerView: 5,
+			watchSlidesVisibility: true,
+			watchSlidesProgress: true,
+			breakpoints:{
+				1599:{slidesPerView:4},
+				1199:{slidesPerView:3},
+			},
+			navigation: {
+				nextEl: '.addit-button-hor-next',
+				prevEl: '.addit-button-hor-prev',
+			}
+		});
 		galleryTopmob = new Swiper('.gallery-top', {
 			spaceBetween: 10,
 			pagination: {
@@ -1347,6 +1361,7 @@ $(document).ready(function(){
 				swiper: galleryThumbs,
 			},
 		});		
+	
 		//select_options_gallery
 		$('.optstyle').unbind('click');
 		$(".optstyle").on("click", function(){
@@ -1403,6 +1418,20 @@ window.onload=function(){
 			jQuery('.swiper-slide').removeAttr('style');
 			galleryTop = 0;
 		}
+		var	galleryThumbs = new Swiper('.gallery-thumbs', {
+			spaceBetween: 10,
+			slidesPerView: 5,
+			watchSlidesVisibility: true,
+			watchSlidesProgress: true,
+			breakpoints:{
+				1599:{slidesPerView:4},
+				1199:{slidesPerView:3},
+			},
+			navigation: {
+				nextEl: '.addit-button-hor-next',
+				prevEl: '.addit-button-hor-prev',
+			}
+		});
 		galleryTopmob = new Swiper('.gallery-top', {
 			spaceBetween: 10,
 			pagination: {
@@ -1413,6 +1442,8 @@ window.onload=function(){
 				swiper: galleryThumbs,
 			},
 		});
+	
+		
 		//select_options_gallery
 		$('.optstyle').unbind('click');
 		$(".optstyle").on("click", function(){
