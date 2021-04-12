@@ -11,7 +11,7 @@
 {% endfor %} <i class="fa fa-caret-down"></i></button>
 <ul class="dropdown-menu">
 {% for language in languages %}
-<li><button class="btn btnh btn-link btn-block language-select language-push-js" type="button" name="{{ language['code'] }}">
+<li><button class="btn btnh btn-link btn-block language-select language-push-js" type="button" name="{{ language['name'] }}">
 {# <img src="catalog/language/{{ language['code'] }}/{{ language['code'] }}.png" alt="{{ language['name'] }}" title="{{ language['name'] }}" />  #}
 {{ language['name'] }}</button></li>
 {% endfor %}

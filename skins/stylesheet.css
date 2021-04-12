@@ -582,12 +582,12 @@ transform: translate(-50%, -50%);
 .ord #boc_form1{position: relative;background: white; display: none;}
 
  @media screen and    (max-width:768px) {
-     .logo-mob-header {
-    width: 85px;
+    .logo-mob-header {
+  max-width: 170px;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    top: 40%;
+    top: 34%;
 }
  #mob_menu_opacity h4 {
         font-family: Museo Sans Cyrl;

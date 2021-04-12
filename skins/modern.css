@@ -1489,13 +1489,13 @@ a.plus-link{display:none!important}
 }
 @media (max-width: 991px) {
 	.block_mob_bt2{display: flex;
-    justify-content: center; position: absolute;
-
+    justify-content: center; position: absolute;}
+div#tab-product {
+    background: #ffffffcf;
 }
 .prmain {
     border: none;
 }
-
 .pull-left {
 margin: 0 auto;
 }
@@ -1628,7 +1628,7 @@ a.plus-link{position:relative;right:-30px;text-align:left;top:-30px;background:t
     max-width: 100vw;
     width: 100%; height: 43px;}
 #block_adapt {height:83px;position:relative}
-#block_adapt_product {height:42px;position:relative}
+#block_adapt_product {height:auto;position:relative}
 .menu_button {width: 100%;padding: 0;margin: 0;border: none;text-align: left;font-size: 15px;padding-right: 8px;line-height: 45px}
 .fa_menu {float: right;transition: .3s;top: 8px;position: relative;-webkit-transform: rotate(90deg);transform: rotate(90deg)}
 .menu_button.collapsed .fa_menu {-webkit-transform: rotate(-90deg);transform: rotate(-90deg)}
@@ -1656,17 +1656,11 @@ a.plus-link{position:relative;right:-30px;text-align:left;top:-30px;background:t
 .special-timer-text{font-size:10px}
 .stickers-special, .stickers-top, .stickers-new {font-size: 10px;height: 30px;width: 30px;line-height: 30px; top: 91px;}
 .tab_mob_main .breadcrumb {
-    display: none;
-}
+    display: none;}
 .product-layoutcatnew .product-layout2 .cart, .product-layoutmod .product-layout2 .cart {
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: baseline;
-    justify-content: space-evenly;
-    padding: 5px;
+    margin-bottom: 5px;display: flex;flex-direction: row-reverse;
+    align-items: baseline;justify-content: space-evenly;padding: 5px;
 }
-
 .positionsticker {right: 0px}
 .price-new, .product-thumb .price, #cart_block .price {font-size:22px}
 .btn-cartpr,.btn-instock, .btn-instock2 {font-size:12px;     width: 100px;}

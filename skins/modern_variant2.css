@@ -80,4 +80,8 @@ h1.title_h.title_center.name_prod_h1 {
     display: block;
     margin: 3px 0px 9px;
 }
+h1.title_h.title_center.name_prod_h1 {
+    font-size: 18px;
+    margin-top: 10px;
+}
 }
