@@ -1492,6 +1492,12 @@ a.plus-link{display:none!important}
     justify-content: center; position: absolute;
 
 }
+.prmain {
+    border: none;
+}
+.breadcrumb {
+    display: none;
+}
 .pull-left {
 margin: 0 auto;
 }
