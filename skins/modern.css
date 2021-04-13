@@ -1167,7 +1167,9 @@ li.active a.tab-linck:after {
     width: 12px;
     height: 12px;
 }
-
+a.wishlist.wishlist_set {
+    display: none;
+}
 
 #block_max_foto{height:100px}
 .swiper-container{width:100%;height:100%}

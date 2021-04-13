@@ -125,6 +125,9 @@ color: #414141;
     top: -3px;
     left: 24px;
 }
+#aridius_cart > div.aridius_cart_body > div > table > tbody > tr:nth-child(1) {
+    display: none;
+}
 
 a{color:#A7A7A7}
 a:hover{text-decoration:none}
