@@ -560,13 +560,13 @@ $('.product-info.block0').parent().addClass('hidden');
 {% if (theme_tabs ) %}
 {% for key, theme_tab  in theme_tabs %}
 {% if (theme_tab.title[language_id]) %}
-<li class="tab_padding tab_mob_grandchild"><a href="#tab-other-{{ key }}" data-toggle="tab">{{ theme_tab['title'][language_id] }} <i class="fa fa-caret-down hidden"></i></a></li>
+<li class="active tab_padding tab_mob_grandchild"><a href="#tab-other-{{ key }}" data-toggle="tab">{{ theme_tab['title'][language_id] }} <i class="fa fa-caret-down hidden"></i></a></li>
 {% endif %}
 {% endfor %}
 {% endif %}
 <!-- custom_tabs -->
 
-<li class="active tab_padding tab_mob_grandchild"><a data-toggle="tab" href="#tab-product1">{{ tab_description }} <i class="fa fa-caret-down hidden"></i></a></li>
+<li class=" tab_padding tab_mob_grandchild"><a data-toggle="tab" href="#tab-product1">{{ tab_description }} <i class="fa fa-caret-down hidden"></i></a></li>
 {% if (attribute_groups) %}
 
 <li class="tab_padding tab_mob_grandchild"><a data-toggle="tab" href="#tab-specification">{{ tab_attribute }} <i class="fa fa-caret-down hidden"></i></a></li>
