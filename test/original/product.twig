@@ -173,7 +173,13 @@
 <div class="addit-button-next"></div>
 </div>
 {% else %}
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding_30 hidden-xs opacity_block">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding_30 hidden-xs opacity_block thumb-img">
+<style>
+.thumb-img {
+	display:block!important;
+	opacity: 1!important;
+}
+</style>
 <div class="addit-button-hor-prev"></div>
 <div id="image-additional2" class="swiper-container gallery-thumbs">
 <div class="swiper-wrapper">
@@ -554,13 +560,13 @@ $('.product-info.block0').parent().addClass('hidden');
 {% if (theme_tabs ) %}
 {% for key, theme_tab  in theme_tabs %}
 {% if (theme_tab.title[language_id]) %}
-<li class="tab_padding tab_mob_grandchild"><a href="#tab-other-{{ key }}" data-toggle="tab">{{ theme_tab['title'][language_id] }} <i class="fa fa-caret-down hidden"></i></a></li>
+<li class="active tab_padding tab_mob_grandchild"><a href="#tab-other-{{ key }}" data-toggle="tab">{{ theme_tab['title'][language_id] }} <i class="fa fa-caret-down hidden"></i></a></li>
 {% endif %}
 {% endfor %}
 {% endif %}
 <!-- custom_tabs -->
 
-<li class="active tab_padding tab_mob_grandchild"><a data-toggle="tab" href="#tab-product1">{{ tab_description }} <i class="fa fa-caret-down hidden"></i></a></li>
+<li class=" tab_padding tab_mob_grandchild"><a data-toggle="tab" href="#tab-product1">{{ tab_description }} <i class="fa fa-caret-down hidden"></i></a></li>
 {% if (attribute_groups) %}
 
 <li class="tab_padding tab_mob_grandchild"><a data-toggle="tab" href="#tab-specification">{{ tab_attribute }} <i class="fa fa-caret-down hidden"></i></a></li>
@@ -1324,20 +1330,38 @@ $(document).ready(function(){
 		$(".opacity_block").css("opacity","1");
 	}
 	function initSwiperMob() {
-		if (galleryThumbs != 0 && galleryTop != 0) {
-			galleryThumbs.destroy();
+		if ( galleryTop != 0) {
+		
 			galleryTop.destroy();
 			jQuery('.swiper-wrapper').removeAttr('style');
 			jQuery('.swiper-slide').removeAttr('style');
-			galleryThumbs, galleryTop = 0;
+		 galleryTop = 0;
 		}
+		var	galleryThumbs = new Swiper('.gallery-thumbs', {
+			spaceBetween: 10,
+			slidesPerView: 5,
+			watchSlidesVisibility: true,
+			watchSlidesProgress: true,
+			breakpoints:{
+				1599:{slidesPerView:4},
+				1199:{slidesPerView:3},
+			},
+			navigation: {
+				nextEl: '.addit-button-hor-next',
+				prevEl: '.addit-button-hor-prev',
+			}
+		});
 		galleryTopmob = new Swiper('.gallery-top', {
 			spaceBetween: 10,
 			pagination: {
 				el: '.swiper-pagination',
 				type: 'progressbar',
-			}
-		});
+			},
+			thumbs: {
+				swiper: galleryThumbs,
+			},
+		});		
+	
 		//select_options_gallery
 		$('.optstyle').unbind('click');
 		$(".optstyle").on("click", function(){
@@ -1387,20 +1411,39 @@ window.onload=function(){
 		});		
 	}
 	function initSwiperMob() {
-		if (galleryThumbs != 0 && galleryTop != 0) {
-			galleryThumbs.destroy();
+		if ( galleryTop != 0) {
+		
 			galleryTop.destroy();
 			jQuery('.swiper-wrapper').removeAttr('style');
 			jQuery('.swiper-slide').removeAttr('style');
-			galleryThumbs, galleryTop = 0;
+			galleryTop = 0;
 		}
+		var	galleryThumbs = new Swiper('.gallery-thumbs', {
+			spaceBetween: 10,
+			slidesPerView: 5,
+			watchSlidesVisibility: true,
+			watchSlidesProgress: true,
+			breakpoints:{
+				1599:{slidesPerView:4},
+				1199:{slidesPerView:3},
+			},
+			navigation: {
+				nextEl: '.addit-button-hor-next',
+				prevEl: '.addit-button-hor-prev',
+			}
+		});
 		galleryTopmob = new Swiper('.gallery-top', {
 			spaceBetween: 10,
 			pagination: {
 				el: '.swiper-pagination',
 				type: 'progressbar',
-			}
+			},
+			thumbs: {
+				swiper: galleryThumbs,
+			},
 		});
+	
+		
 		//select_options_gallery
 		$('.optstyle').unbind('click');
 		$(".optstyle").on("click", function(){
