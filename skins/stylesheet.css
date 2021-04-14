@@ -1,4 +1,4 @@
-body{background:#fff;font-weight:400;color:#2F2F2F;line-height:20px;width:100%}
+body{background:#fff;font-weight:400;color:#2F2F2F;line-height:20px;width:100%;font-family: Museo Sans Cyrl, sans-serif;}
 h1,h2,h3,h4,h5,h6{color:#777}
 h1{font-size:30px;margin-bottom:20px;color:#D4D4D4;font-weight:500;margin-top:10px}
 h2{font-size:27px;color:#777}
@@ -148,7 +148,9 @@ div.required .control-label:before{content:'* ';color:red;font-weight:700}
 #top #form-currency .currency-select:hover,#top #form-language .language-select:hover{text-shadow:none;color:#51473c; background: #956D84;}
 #top .btn-link{font-size:16px;font-weight:300}
 #top-links a{font-size:16px;font-weight:300}
-.dropdown-menu .btn-link{color:#777!important}
+.dropdown-menu .btn-link{color:#777!important; 
+    font-size: 15px;}
+
 .dropdown-menu .btn-link:hover,.dropdown-menu a:hover{color:white!important}
 li.mcol.col-sm-4.menu_clear2:hover {
     background: #956D84;
@@ -404,7 +406,7 @@ footer h5{padding:0 0 15px;font-size:17px;font-weight:500;letter-spacing:1px;tex
 .product-thumb{overflow-x:none}
 .product-thumb .image{text-align:center}
 .product-thumb .image a{display:block}
-.product-thumb .image :hover{opacity:.8}
+.product-thumb .image :hover{opacity:1}
 .product-thumb .image img{margin-left:auto;margin-right:auto}
 .product-grid .product-thumb .image{float:none}
 @media (min-width: 767px) {
@@ -421,12 +423,13 @@ footer h5{padding:0 0 15px;font-size:17px;font-weight:500;letter-spacing:1px;tex
 .rating .fa-star-o, .rating .fa-star{font-size:11px}
 h2.price{margin:0}
 .product-thumb .price,#cart_block .price{padding-bottom:4px;margin:0;height:40px;
-    font-family: Museo Sans Cyrl;
+font-family: Museo Sans Cyrl, sans-serif;
 font-style: normal;
 font-weight: bold;
 font-size: 23px;
 line-height: 23px;
 color: #956D84;
+text-transform: lowercase;
 }
 .price-new{  font-family: Museo Sans Cyrl;
 font-style: normal;
@@ -534,7 +537,7 @@ display: block;
 #top-links2 a{font-size:16px;font-weight:300}
 @media screen and (max-width: 991px) {
 #content_news .col-xs-6:nth-child(2n+1){clear:left}
-.breadcrumb{padding:10px 10px 6px 5px;border-bottom:1px #EEE solid}
+.breadcrumb{padding:6px 10px 3px 5px;display: none; }
 
 #boc_phone1 {
     width: 75%;
@@ -596,11 +599,17 @@ transform: translate(-50%, -50%);
         font-family: Museo Sans Cyrl;
 font-style: normal;
 font-weight: bold;
-font-size: 14px;
+font-size: 20px;
 line-height: 18px;
 text-align: left;
-color: #FFFFFF;padding: 17px 27px 5px 0px;
+color: #FFFFFF;padding: 27px 27px 5px 0px;
     margin: 0;
+    }
+.mfp-close { 
+     width: 67px;
+    height: 67px;
+    line-height: 46px;
+    font-size: 44px!important;
     }
   #mob_menu_opacity .fa-plus::before {
     background-image: url("data:image/svg+xml,%3Csvg width='7' height='14' viewBox='0 0 7 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.74815 6.30693L1.46799 0.287337C1.1321 -0.0957794 0.587529 -0.0957794 0.25181 0.287337C-0.0839366 0.670113 -0.0839366 1.29094 0.25181 1.67368L4.92394 7.0001L0.251945 12.3263C-0.0838008 12.7093 -0.0838008 13.33 0.251945 13.7128C0.587692 14.0957 1.13224 14.0957 1.46812 13.7128L6.74829 7.69312C6.91616 7.50164 7 7.25095 7 7.00013C7 6.74919 6.916 6.49832 6.74815 6.30693Z' fill='%23333333'/%3E%3C/svg%3E%0A");
@@ -691,5 +700,14 @@ footer .header__social-block {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+}
+@media (max-width: 320px) {
+.block_mob_bt2 #wishlist-total, .block_mob_bt2 #deliv {
+    color: #fff;
+    font-size: 13px;
+    display: block;
+    margin-left: 0px;
+    margin-top: 0;
 }
 }
