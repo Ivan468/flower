@@ -412,7 +412,7 @@ footer h5{padding:0 0 15px;font-size:17px;font-weight:500;letter-spacing:1px;tex
 @media (min-width: 767px) {
 .product-list .product-thumb .image{float:left}
 }
-.product-thumb h4{font-weight:700;height:33px}
+.product-thumb h4{font-weight:700;}
 .product-layout2 .caption{text-align:center}
 @media (max-width: 767px) {
 .product-list .product-layout2 .caption{min-height:0;margin-left:0}

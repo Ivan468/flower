@@ -353,10 +353,9 @@
     margin-left: -13px;
     border-radius: 50%;
 }
-#oneclick, .category2lv-center, #content > div.col-sm-12.catfl > div > div.col-sm-9 > div.col-xs-12.col-sm-5.col-md-4.col-lg-3.navright {
+#oneclick, .showcase-list .buttons , .category2lv-center, #content > div.col-sm-12.catfl > div > div.col-sm-9 > div.col-xs-12.col-sm-5.col-md-4.col-lg-3.navright {
     display: none;
 }
-
 #aridius_cart .cart{
     display: flex;
     flex-direction: column-reverse;
@@ -375,10 +374,9 @@
     line-height: 16px;
     border-radius: 50%;
     background: #956D84;}
-   #boc_phone1 {
+#boc_phone1 {
         width: 64%;height: 61px;border: 1px solid #E0E0E0;
-background: none;
-    }
+        background: none; }
 .img_tabl{width:80px}
 .center-add_img{margin:0 auto; }
 .common-home .center-add_img {
@@ -408,7 +406,6 @@ ul.fixxsmenu li:first-child .drop_head{margin-top:0;margin-bottom:5px;padding-to
 .back_news{height:100%;background-repeat:no-repeat;background-size:cover;background-position:center center;background-attachment:fixed;
     background: none!important; margin-bottom: 80px
 }
-
 .back_news .title_center {
     color: #000000!important;
 }
@@ -813,7 +810,7 @@ hr{border-top:1px solid #ddd; display: none;}
 .form-group #input-quantity{background:#f1f1f1 none repeat scroll 0 0!important;border:0 none;border-radius:0;box-shadow:none;color:#2f2f2f;display:inline-block;float:left;font-size:15px;height:35px;margin:0;padding:0;text-align:center;width:60px!important}
 .priceproduct-old {
   line-height:12px;
- font-family: Museo Sans Cyrl;
+ font-family: Museo Sans Cyrl, sans-serif;
  font-style: normal;
  font-weight: 300;vertical-align: 5px;
  font-size: 24px;
@@ -821,7 +818,7 @@ hr{border-top:1px solid #ddd; display: none;}
  color: #BDBDBD;
 }
 .priceproduct-new{
-      font-family: Museo Sans Cyrl;
+      font-family: Museo Sans Cyrl, sans-serif;
 font-style: normal;
 font-weight: bold;
 font-size: 36px;color: #956D84;
@@ -945,7 +942,7 @@ footer .fa-stack:hover{color:#9AB9A5!important}
 .icon_size_wish, .icon_size_comp {font-size:1.6em;color:#111}
 .wishlist_set {padding-top: 8px!important; }
 
-.cat_news .wishlist_set, .cat_news .morecolor, .cat_news .fa-link:before, .cat_news .news_hr a, .cat_news .caption{padding-top: 8px!important; color: white;}
+.cat_news .wishlist_set, .cat_news .morecolor, .cat_news .fa-link:before, .cat_news .news_hr a, .cat_news .caption{padding-top: 8px!important; color: white;padding-bottom: 5px;}
 .cat_news.product-layoutcatnew:hover .product-thumb{
    background: linear-gradient( 0deg, #956D84 65%, #00ffff00 24%);
 }
@@ -984,7 +981,10 @@ footer .fa-stack:hover{color:#9AB9A5!important}
 .groupcat{padding-top:35px;padding-bottom:20px}
 .fixnewsgrid{padding-top: 0px !important;padding-right: 0px !important;padding-left: 0px !important}
 .fixnewslist{margin:10px 10px -1px -5px}
-.newsdesc{padding:15px;text-align:left}
+.newsdesc{padding:15px;text-align:left; display: none;}
+.video_cat img.img-responsive {
+    margin: 0 auto;
+}
 .timespecial.image{float:left}
 #column-left{padding-left:0;padding-right:20px}
 #column-left .product-thumbleft .image{float:left;margin-right:10px}
@@ -1760,8 +1760,8 @@ a.plus-link{position:relative;right:-30px;text-align:left;top:-30px;background:t
 .price-new, .product-thumb .price, #cart_block .price {font-size:22px}
 .btn-cartpr,.btn-instock, .btn-instock2 {font-size:12px;     width: 100px;}
 .button_img_quick{height: 50px;width: 50px;margin-left: -25px;font-size: 15px}
-.product-thumb h4 {height: 35px;overflow: hidden;font-size: 15px}
-.product-thumb h4 a {font-size: 12px}
+.product-thumb h4 {overflow: hidden;font-size: 15px}
+.product-thumb h4 a {font-size: 13px; padding: 0 5px;}
 .block_wish_comp .wishlist, .block_wish_comp .compare, .effect-hover .wishlist, .effect-hover .compare, .effect_hover_wc .wishlist, .effect_hover_wc .compare{font-size: 11px}
 #product-tab .tab_mob_main {border-bottom: 1px solid #ddd;margin-bottom: 20px}
 #block_foto .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {background: #956d84}
@@ -2111,20 +2111,19 @@ footer h5{font-size:12px;letter-spacing:1px}
 background: none;
     height: 56px;}
   .product-thumb .price, #cart_block .price {
-    font-size: 18px;
     font-family: Museo Sans Cyrl;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+  font-size: 20px;
     line-height: 18px;
     /* display: flex; */
     align-items: center;
     color: #956D84;
 }
 div.cart > button:nth-child(1) {
-    width: 35px;
-    height: 35px;
-    background: 6px 8px/ auto  no-repeat  url(../../image/cart-btn.svg), right/ contain no-repeat url(../../image/mob-btn-bg.png), #956d84!important;
+   width: 45px;
+    height: 45px;
+    background: center/auto no-repeat url(../../image/cart-btn.svg), right/ contain no-repeat url(../../image/mob-btn-bg.png), #956d84!important;
     box-shadow: inset 0px 5px 5px rgb(0 0 0 / 15%);
     border-radius: 50%;
     font-size: 0;
@@ -2137,7 +2136,7 @@ span.price-new {
     font-family: Museo Sans Cyrl;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 18px;
     align-items: center;
     color: #956D84;
@@ -2166,9 +2165,8 @@ span.price-old {
     box-shadow: none;
     text-transform: none;
     padding: 0;
-    width: 100%;
     height: 35px;
-    font-family: Euclid Circular B;
+    font-family: Euclid Circular B, sans-serif;
 }
 body {
     background: #FFF;
