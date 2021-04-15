@@ -1,0 +1,357 @@
+{{ header }}
+<div class="container" >
+<div class="row">
+<div id="cont" class="col-sm-12">
+{{ column_left }}
+{% if (column_left and column_right) %}
+{% set class = 'col-sm-6 padding-mobile' %}
+{% elseif (column_left or column_right) %}
+{% set class = 'col-aridius' %}
+{% else %}
+{% set class = 'col-sm-12 padding-mobile' %}
+{% endif %}
+<div id="content" class="{{ class }}">
+{{ content_top }}
+<div class="tab_mob_main">
+<ul class="breadcrumb tab_mob_child" itemscope itemtype="http://schema.org/BreadcrumbList">
+{% for i,breadcrumb in breadcrumbs %}
+	{% if (i == 0) %}
+		<li class="tab_mob_grandchild"><a href="{{ breadcrumb['href'] }}" class="current-link">{{ breadcrumb['text'] }}</a></li>
+	{% elseif (breadcrumbs|length > i+1 ) %}
+		<li class="tab_mob_grandchild" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="{{ breadcrumb['href'] }}" itemprop="item" itemscope itemtype="https://schema.org/Thing" itemid="{{ breadcrumb['href'] }}" title="{{ breadcrumb['text'] }}"><span itemprop="name">{{ breadcrumb['text'] }}</span></a><meta itemprop="position" content="{{ i }}">
+		</li>
+	{% else %}
+		<li class="tab_mob_grandchild" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<span itemprop="item" itemscope itemtype="https://schema.org/Thing" itemid="{{ breadcrumb['href'] }}" title="{{ breadcrumb['text'] }}"><span itemprop="name">{{ breadcrumb['text'] }}</span></span><meta itemprop="position" content="{{ i }}">
+		</li>
+	{% endif %}
+{% endfor %}
+</ul>
+</div>
+<h1 class="title_style">{{ heading_title }}</h1>
+{% if (modern_description_top_or_bot != 1) %}
+{% if (thumb or description) %}
+<div class="row desc-cat_top">
+{% if (thumb and not modern_image_main_cat) %}
+<div class="col-sm-2 cat_img_centr"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></div>
+{% endif %}
+{% if (description) %}
+{% if (modern_description_length != 1 and description|length > 2200 ) %}
+{% if (thumb and not modern_image_main_cat) %}
+<div class="col-sm-10">
+{% else %}
+<div class="col-sm-12">
+{% endif %}
+<div class="block_desc">
+{{ description }}
+</div>
+<a class="button_sh">{{ text_show_desc }}</a>
+</div>
+{% else %}
+{% if (thumb and not modern_image_main_cat) %}
+<div class="col-sm-10">
+{% else %}
+<div class="col-sm-12">{% endif %}{{ description }}</div>
+{% endif %}
+{% endif %}
+</div>
+{% endif %}
+{% endif %}
+{% if (categories) %}
+<div class="col-sm-12">
+<hr>
+<div class="category2lv-center">
+<div class="row">
+{% for category in categories %}
+<div class="cat_clear col-xs-4 col-sm-3 col-md-2 col-lg-2 catpr-all">
+{% if (modern_categories_2lv != 1 and (category['thumb'] is not empty)) %}
+<a class="catpr" href="{{ category['href'] }}"><img src="{{ category['thumb'] }}" alt="{{ category['name'] }}" class="img-responsive opacityhv fixcenter" /></a>
+{% endif %}
+<a class="catpr2" href="{{ category['href'] }}">{{ category['name'] }}</a>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+{% endif %}
+{% if (products) %}
+<div class="clearfix">	</div>
+<div class="col-sm-12 catfl">
+<div class="row">
+<div class="col-sm-3">
+<div class="btn-group hidden-xs">
+<button type="button" id="list-view" class="btn btn-default2" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
+<button type="button" id="grid-view" class="btn btn-default2" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
+</div>
+</div>
+<div class="col-sm-9">
+<div class="col-xs-12 col-sm-7 col-md-5 col-lg-4 navright">
+{% if (modern_sort_cat != 1) %}
+<div class="form-group input-group input-group-sm">
+<label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+<select id="input-sort" class="form-control" onchange="location = this.value;">
+{% for sorts in sorts %}
+{% if (sorts['value'] == sort ~ '-' ~ order) %}
+<option value="{{ sorts['href'] }}" selected="selected">{{ sorts['text'] }}</option>
+{% else %}
+<option value="{{ sorts['href'] }}">{{ sorts['text'] }}</option>
+{% endif %}
+{% endfor %}
+</select>
+</div>
+{% endif %}
+</div>
+<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 navright">
+{% if (modern_count_cat != 1) %}
+<div class="form-group input-group input-group-sm">
+<label class="input-group-addon" for="input-limit">{{ text_limit }}</label>
+<select id="input-limit" class="form-control" onchange="location = this.value;">
+{% for limits in limits %}
+{% if (limits['value'] == limit) %}
+<option value="{{ limits['href'] }}" selected="selected">{{ limits['text'] }}</option>
+{% else %}
+<option value="{{ limits['href'] }}">{{ limits['text'] }}</option>
+{% endif %}
+{% endfor %}
+</select>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12" id="product_block">
+{% for key,product in products %}
+{% if (column_left and column_right) %}
+<div class="product-layoutcatnew product_block product-list col-lg-4 col-md-6 col-sm-6 col-xs-6 two_cols">
+{% elseif (column_left or column_right) %}
+<div class="product-layoutcatnew product_block product-list col-lg-3 col-md-4 col-sm-6 col-xs-6 one_cols">
+{% else %}
+<div class="product-layoutcatnew product_block product-list col-lg-3 col-md-3 col-sm-4 col-xs-6 none_cols">
+{% endif %}
+{% if (not modern_arrows) %}
+<div class="swiper-button-prev{{ key }} button_prev button_swiper_car">
+<i class="fa fa-arrow-left"></i>
+</div>
+<div class="swiper-button-next{{ key }} button_next button_swiper_car" >
+<i class="fa fa-arrow-right"></i>
+</div>
+{% endif %}
+<div class="product-layout2">
+<div class="product-thumb">
+<div class="caption ">
+<div class="product_list_block">
+<div class="category_block swiper-container" id="category_block{{ key }}">
+{% if (not modern_quickview) %}
+<button class="button_img_quick" data-toggle="tooltip" title="{{ button_quickview }}" onclick="quickview_open('{{ product['product_id'] }}');"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-search fa-stack-1x fa-inverse"></i></span></button>
+{% endif %}
+<div class="swiper-wrapper">
+<div class="item swiper-slide">
+<a href="{{ product['href'] }}"><img {% if (key == 0) %}id="category-imgsize"{% endif %} class="img-responsive center-add_img" src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" /></a>
+</div>
+{% if (not modern_arrows) %}
+{% for key2,image in product['images'] %}
+<div class="item swiper-slide addit_lazy">
+<a href="{{ product['href'] }}"><img class="swiper-lazy img-responsive center-add_img" src="catalog/view/theme/modern/image/background_white.jpg" alt="{{ product['name'] }}-foto{{ key2+2 }}" data-src="{{ image['thumb'] }}"/></a>
+<div class="swiper-lazy-preloader"></div>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+{% if (theme_modern_other9 != '0') %}
+<div class="swiper-pagination swiper-pagination{{ key }}"></div>
+{% endif %}
+</div>
+{% if (not modern_arrows) %}
+<script>
+$(document).ready(function () { var categorySwiper{{ key }} = new Swiper('#category_block{{ key }}.swiper-container', { observer:true, observeParents:true, preloadImages: false, autoHeight:false, loop: false, lazy: true, navigation: { nextEl: '#product_block .swiper-button-next{{ key }}', prevEl: '#product_block .swiper-button-prev{{ key }}' },pagination: {el: '#product_block .swiper-pagination{{ key }}',dynamicBullets: {{ theme_modern_other9 }},dynamicMainBullets:2}, }) });
+</script>
+{% endif %}
+{% if (modern_wishlist_cat != 1 or modern_compare_cat != 1) %}
+<div class="block_wish_comp">
+<div class = "padding_mini_button">
+{% if (modern_wishlist_cat != 1) %}
+<a class="wishlist wishlist_set" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product['product_id'] }}');"><i class="fa fa-fw fa-heart-o icon_size_wish"></i></a>
+{% endif %}
+{% if (modern_compare_cat != 1) %}
+<a class="compare compare_set" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product['product_id'] }}');"><i class="fa fa-fw fa-balance-scale icon_size_comp"></i></a>
+{% endif %}
+</div>
+</div>
+{% endif %}
+<div class="positionsticker">
+<!-- special -->
+{% if (modern_sticker_sale_product_auto != 1 and product['special'] and product['price_sticker'] != 0) %}
+{% set percent = (100 - (product['special_sticker'] / product['price_sticker']) * 100)|round %}
+<div class="stickers-special">-{{ percent }}%</div>
+{% endif %}
+<!-- special END -->
+<!-- new -->
+{% set startDate1 = (product['dateadded']|slice(0, 10))|date('U') %}
+{% set endDate2 = ("now"|date("Y/m/d"))|date('U') %}
+{% set days = ((endDate2 / 86400)|round) - ((startDate1 / 86400)|round) %}
+{% if (modern_sticker_new_product_auto != 1 and days < modern_sticker_product_new_day or modern_sticker_new_product_auto != 0 and product['stickers'] == 1) %}
+<div class="stickers-new">{{ modern_name_sticker_product_new[language_id] }}</div>
+{% endif %}
+<!-- new END -->
+<!-- top -->
+{% if (modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 1 and product['rating'] == modern_sticker_product_top_rating or modern_sticker_top_product_auto != 1 and modern_sticker_product_top_ratinr == 2 and product['viewed'] > modern_sticker_product_top_viewed or modern_sticker_top_product_auto != 0 and product['stickers'] == 2 ) %}
+<div class="stickers-top">{{ modern_name_sticker_product_top[language_id] }}</div>
+{% endif %}
+<!-- top END -->
+</div>
+<div class="rating">
+{% if (modern_rating_cat != 1 and product['rating']) %}
+{% set i = 1 %}{% for i in i..5 %}
+{% if (product['rating'] < i) %}
+<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+{% else %}
+<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+{% endif %}
+{% endfor %}
+{% endif %}
+</div>
+</div>
+<div class="product_list_block2">
+<h4 class="name_pricelist"><a href="{{ product['href'] }}">
+{% if (product['name'])|length < modern_limit_symbolst %}
+{{ product['name'] }}
+{% else %}
+{{ (product['name']|slice(0, modern_limit_symbolst))~"..." }}
+{% endif %}
+</a>
+</h4>
+{% if (product['price']) %}
+<p class="price price_pricelist">
+{% if (not product['special']) %}
+{{ product['price'] }}
+{% else %}
+<span class="price-new">{{ product['special'] }}</span> <span class="price-old">{{ product['price'] }}</span>
+{% endif %}
+{% if (product['tax']) %}
+<span class="price-tax">{{ text_tax }} {{ product['tax'] }}</span>
+{% endif %}
+</p>
+{% endif %}
+<div class="cart cart_pricelist">
+{% if (product['quantity'] <= 0 and aridiusinstock_status ) %}
+<button type="button" class="btn-instock" onclick="instock.add('{{ product['product_id'] }}');" data-product-id=" {{ product['product_id'] }}">{{ button_instock }}</button>
+{% else %}
+<button type="button" class="btn-cartpr" onclick="cart.add('{{ product['product_id'] }}');"><i class="fa fa-shopping-cart"></i> {{ button_cart }}</button>
+{% endif %}
+</div>
+{% if ((product['attribute_groups'] and modern_atribute != 1) or modern_description_cat != 1) %}
+<div class="effect-hover">
+{% if (modern_description_cat != 1 ) %}
+<hr>
+<p class="description_cat">{{ product['description'] }}</p>
+{% endif %}
+{% if (product['attribute_groups'] and modern_atribute != 1) %}
+<hr>
+<div class="attribute_cat">
+{% set v = 0 %}
+{% set break = false %}
+{% set break2 = false %}
+{% for attribute_group in product['attribute_groups'] if not break  %}
+{% for key,attribute in attribute_group['attribute'] if not break2 %}
+{% set v = v + 1 %}
+{% if (v + 1 > modern_attribute_see) %}
+{% set break2 = true %}
+{% endif %}
+{{ attribute['name'] }} - {{ attribute['text'] }}
+{% if (v < modern_attribute_see) %}
+/
+{% endif %}
+{% endfor %}
+{% if (v + 1 > modern_attribute_see) %}
+{% set break = true %}
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="col-sm-6 text-left">{{ pagination }}</div>
+<div class="col-sm-6 text-right">{{ results }}</div>
+</div>
+</div>
+{% endif %}
+{% if (not categories and not products) %}
+<p>{{ text_empty }}</p>
+<div class="buttons">
+<div class="pull-right"><a href="{{ continue }}" class="btn-cart">{{ button_continue }}</a></div>
+</div>
+{% endif %}
+<br />
+{% if (modern_description_top_or_bot != 0) %}
+<div class="row">
+<div class="col-sm-12">
+{% if (thumb or description) %}
+<div class="row desc-cat_top">
+{% if (thumb and not modern_image_main_cat) %}
+<div class="col-sm-2"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></div>
+{% endif %}
+{% if (description) %}
+{% if (modern_description_length != 1 and description|length > 2200 ) %}
+{% if (thumb and not modern_image_main_cat) %}
+<div class="col-sm-10">
+{% else %}
+<div class="col-sm-12">
+{% endif %}
+<div class="block_desc">
+{{ description }}
+</div>
+<a class="button_sh">{{ text_show_desc }}</a>
+</div>
+{% else %}
+{% if (thumb and not modern_image_main_cat) %}
+<div class="col-sm-10">
+{% else %}
+<div class="col-sm-12">{% endif %}{{ description }}</div>
+{% endif %}
+{% endif %}
+</div>
+{% endif %}
+</div>
+</div>
+{% endif %}
+{{ content_bottom }}
+</div>
+{{ column_right }}
+</div>
+</div>
+</div>
+<script>
+$(document).ready(function(){$(".button_sh").click(function(){$(this).toggleClass("active"),$(".block_desc").toggleClass("opener"),$(this).data("status")?$(this).data("status",!1).html("{{ text_show_desc }}"):$(this).data("status",!0).html("{{ text_hide_desc }}")})});
+</script>
+<script>
+$(document).ready(function() {
+	function sizeProduct() {
+        var a = $("#category-imgsize");
+        a.on("load", function() {
+                var b = $("#category-imgsize").height() / 2;
+                $("#product_block .button_swiper_car").css("top", b + 15 + "px"),
+                    $("#product_block .swiper-lazy-preloader").css("top", b + "px")
+            }),
+            a.each(function() {
+                var a = $(this).attr("src");
+                $(this).attr("src", ""),
+                    $(this).attr("src", a)
+            })
+	}		
+	scrWidthCheckFull(sizeProduct);
+});
+</script>
+{{ footer }}

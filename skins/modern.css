@@ -353,8 +353,16 @@
     margin-left: -13px;
     border-radius: 50%;
 }
-#oneclick {
+#oneclick, .category2lv-center, #content > div.col-sm-12.catfl > div > div.col-sm-9 > div.col-xs-12.col-sm-5.col-md-4.col-lg-3.navright {
     display: none;
+}
+
+#aridius_cart .cart{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .cart-item-after{width: 16px;
@@ -377,6 +385,7 @@ background: none;
     margin: 0 auto;
     width: 100%;
 }
+#content_news .catfl {display: none;}
 .fixxsmenu{left:-20px;padding:7px 15px}
 .fixxsmenu li a{font-size:15px;letter-spacing:1.5px;color:#333!important}
 .product-info{margin-bottom:15px}
@@ -1603,6 +1612,7 @@ li.active a.tab-linck:after {
 #menu_adapt #menu li {font-size:15px}
 #menu_adapt .dropdown-inner {padding: 0 13px 0 15px}
 .mob_wish_com, .mob_other_info, .mob_info {border-bottom: 1px solid #dedede}
+.mob_other_info {text-align: center;}
 .mob_wish {padding: 4px 0px 8px 0px; display: flex; justify-content: space-between;}
 .mob_compare {padding:8px 0px 16px 0px}
 #wishlist-total, #compare-total, .mob_other_info ul li a, .mob_info ul li a,.mob_info_first ul li a, .mob_main ul li a{color: #333;font-size: 15px}
@@ -1763,7 +1773,6 @@ a.plus-link{position:relative;right:-30px;text-align:left;top:-30px;background:t
 .linetoppr{padding-top: 20px; display: none;}
 }
 @media(min-width:768px) {
-
 .tab_padding{width:auto!important}
 .modal:before{display:inline-block;vertical-align:middle;content:" ";height:100%}
 .effect-phoebe p a{opacity:0}
@@ -1841,6 +1850,9 @@ button#button_menu i.fa.fa-bars {
     .delyvery_block {
    position: relative;
     top: 0px;
+}
+h1 {
+    font-size: 24px;margin-bottom: 20px; color: #333333!important; font-weight: bold;margin-top: 5px;text-align: center;
 }
 .delyvery_block:before {
     content: " ";
@@ -2180,10 +2192,7 @@ body {
 @media screen and (min-width:0\0) {
 .swiper-lazy-preloader{display:none}
 }
-.banhome{
-    margin-top: 20px;
-margin-bottom: 65px;
-}
+.banhome{margin-bottom: 65px;}
 
 .banhome a span {
     max-width: 213px;
