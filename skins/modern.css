@@ -323,7 +323,7 @@
 .mfp-gallery .mfp-figure::after{margin:7px}
 .image_price .priceproduct-old{font-size:12px}
 .image_price2 .priceproduct-new{color:#ccc;font-size:18px!important}
-.title_news{margin-top:25px!important}
+.title_news{margin-top:17px!important}
 .col-left{width:23%;float:left;position:relative}
 .col-right{width:23%;float:left;position:relative;padding-left:15px}
 .col-aridius{width:77%;float:left;position:relative}
@@ -404,10 +404,13 @@ ul.fixxsmenu li:first-child .drop_head{margin-top:0;margin-bottom:5px;padding-to
 .catwall{margin-bottom:20px}
 .attribute_groups{margin-bottom:20px;margin-top:20px}
 .back_news{height:100%;background-repeat:no-repeat;background-size:cover;background-position:center center;background-attachment:fixed;
-    background: none!important; margin-bottom: 80px
+    background: none!important; margin-bottom: 20px
 }
 .back_news .title_center {
     color: #000000!important;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 24px;
 }
 .footer_cont{padding-left:0!important;position: relative}
 .footer_socialpay{font-size:13px;font-weight:200; text-transform:uppercase;padding: 0 30px;}
@@ -609,6 +612,7 @@ margin: 14px 24px;
 #column-left .news_cat .product-thumbleft .image img{margin:0 auto}
 #column-left .news_cat .product-thumbleft .caption{text-align:center}
 #column-left .news_cat .caption p{margin:0}
+#content_news div.list_block .caption p{margin: 10px 0 10px;}
 #column-left .positionsticker{position:absolute;top:0;right:0px;z-index:10;display:table}
 .positionsticker_spec{position:absolute;top:-5px;left:55px}
 .setifooter{position:relative;float:left}
@@ -2075,7 +2079,9 @@ footer h5{font-size:12px;letter-spacing:1px}
 .hide-news.product-layoutcat.col-xs-6.col-sm-4.col-md-4.col-lg-3 {  margin:0px 0px;}
 }
 @media screen and (max-width: 560px) {
-.foto_cart{display:none}
+.foto_cart{
+    /* display:none */
+}
 
 .cat_news{width:100%!important}
 .icon_size_wish, .icon_size_comp {font-size: 1.2em}

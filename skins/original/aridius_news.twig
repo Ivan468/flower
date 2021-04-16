@@ -6,7 +6,9 @@
 <div class="row mt">
 <div class="col-xs-12 col-sm-12 col-md-12 aridius_news_margin">
 <h3 class="title_h title_center title_news col-xs-6 col-sm-3 col-md-2">{{ heading_title_news }}</h3>
-
+{% if (showbutton) %} 
+<div class="pull-center all_new"><a href="{{ aridius_newslist }}">{{ buttonlist }}<span class="fa fa-angle-down menu"></span></a></div>
+{% endif %} 
 </div>
 {% for aridius_news_story in aridius_news %} 
 <div class="hide-news product-layoutcat col-xs-6 col-sm-4 col-md-4 col-lg-3">
@@ -43,7 +45,4 @@
 </div>
 </div>
 </div>
-{% if (showbutton) %} 
-<div class="pull-center all_new"><a href="{{ aridius_newslist }}">{{ buttonlist }}<span class="fa fa-angle-down menu"></span></a></div>
-{% endif %} 
 </div>
