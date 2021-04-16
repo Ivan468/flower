@@ -60,7 +60,7 @@ window.bLazy = new Blazy({
 </div>
 </div>
 {% if (modern_show_fluid_map_footer == '0') %}
-<div  id="map123" {% if (modern_open_map_footer != 1) %}style="height:508px"{% endif %}>
+<div  id="map123" {% if (modern_open_map_footer != 1) %}style="min-height:508px"{% endif %}>
 {% if (modern_open_map_footer) %}
 <a class="img_map"><img  class="img-responsive img_map2" alt="marker" title="marker" src="catalog/view/theme/modern/image/shablon/map_icon.png" ><span class="text_map">{{ text_footer_map }}</span></a>
 {% endif %}
@@ -71,27 +71,51 @@ window.bLazy = new Blazy({
 {% endif %}
 <div class="container footer_cont">
 <div class="block-contacts ">
-<img url="http://test.flowers-ukraine.com/image/catalog/123/logof.png" style="width: 106px; height: 107px;" alt="logo"/>
+  <div class="contacts-logo-footer">
+<img src="/image/catalog/123/logof.png" style="width: 106px; height: 107px;" alt="logo"/>
+  </div>
 <div class="info-block">
 
-<div class="footer_contacts">
+{# <div class="footer_contacts">
 {{ text_footer_contacts }}
-</div>
+</div> #}
 <ul class="fa-ul">
 {% if (modern_telephone_footer[language_id] is not empty) %}
-<li><i class="fa-li fa fa-phone"></i><a href="tel:{{ modern_telephone_footer[language_id] }}">{{ modern_telephone_footer[language_id] }}</a></li>
-{% endif %}
-{% if (modern_telephone1_footer[language_id] is not empty) %}
-<li><i class="fa-li fa fa-phone"></i><a href="tel:{{ modern_telephone1_footer[language_id] }}">{{ modern_telephone1_footer[language_id] }}</a></li>
+      <div class="contact-info-wrap">
+          <li> 
+          <img style="display: inline-block; height: 18px; width:auto" src="/catalog/view/theme/modern/image/social-ico/tel.png" />
+          <h3 style="display: inline-block;"> Телефон </h3>
+          </li>
+          <div>
+              <li>{# <i class="fa-li fa fa-phone"></i> #} <a href="tel:{{ modern_telephone_footer[language_id] }}">{{ modern_telephone_footer[language_id] }}</a></li> </div></div>   
+                {% endif %}
+                {% if (modern_telephone1_footer[language_id] is not empty) %}
+                <li>
+                {# <i class="fa-li fa fa-phone"></i> #}
+                <a href="tel:{{ modern_telephone1_footer[language_id] }}">{{ modern_telephone1_footer[language_id] }}</a></li>
+         
+      
 {% endif %}
 {% if (modern_telephone2_footer[language_id] is not empty) %}
-<li><i class="fa-li fa fa-phone"></i><a href="tel:{{ modern_telephone2_footer[language_id] }}">{{ modern_telephone2_footer[language_id] }}</a></li>
+
+<li>
+{# <i class="fa-li fa fa-phone"></i> #}
+<a href="tel:{{ modern_telephone2_footer[language_id] }}">{{ modern_telephone2_footer[language_id] }}</a></li>
 {% endif %}
 {% if (modern_skype_footer[language_id] is not empty) %}
-<li><i class="fa-li fa fa-skype"></i><a href="callto:{{ modern_skype_footer[language_id] }}">{{ modern_skype_footer[language_id] }}</a></li>
+     <div class="contact-info-wrap">
+        <li>
+        <img style="display: inline-block; height: 18px; width:auto" src="/catalog/view/theme/modern/image/social-ico/skupe.png" /><h3 style="display: inline-block;">Skype</h3> 
+        <li><a href="callto:{{ modern_skype_footer[language_id] }}">{{ modern_skype_footer[language_id] }}</a></li>
+     </div>   
 {% endif %}
 {% if (modern_mail_footer[language_id] is not empty) %}
-<li><i class="fa-li fa fa-envelope-o "></i><a onClick="javascript:window.open('mailto:{{ modern_mail_footer[language_id] }}', 'Mail');event.preventDefault()" >{{ modern_mail_footer[language_id] }}</a></li>
+ 
+        <li class="contact-info-wrap"> 
+          <div> <img style="display: inline-block; height: 13px; width:auto" src="/catalog/view/theme/modern/image/social-ico/mail.png" /> <h3 style="display: inline-block;">Почта</h3> </div>
+          <div><a onClick="javascript:window.open('mailto:{{ modern_mail_footer[language_id] }}', 'Mail');event.preventDefault()" >{{ modern_mail_footer[language_id] }}</a></div>
+        </li>
+       
 {% endif %}
 {% if (modern_addres_footer[language_id] is not empty) %}
 <li class="li_top"><i class="fa-li fa fa-home launch-show"></i>{{ modern_addres_footer[language_id] }}</li>
@@ -99,6 +123,13 @@ window.bLazy = new Blazy({
 {% if (modern_time_footer[language_id] is not empty) %}
 <li><i class="fa-li fa fa-check-circle-o "></i>{{ modern_time_footer[language_id] }}</li>
 {% endif %}
+<li>
+<div class="header__social-block"> 
+<a class="instagram-linc" href="https://www.instagram.com/s.flowersukraine/"> <img style="width: 19px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/inst.svg"/></a> 
+<a class="instagram-linc" href="https://t.me/sflowersukraine"> <img style="width: 18px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/telegr.svg"/></a> 
+<a class="instagram-linc" href="https://www.facebook.com/s.flowersukraine"> <img style="width: 16px;height:auto;" src="/catalog/view/theme/modern/image/social-ico/fb.svg"/></a> 
+</div>
+ </li>
 </ul>
 </div>
 </div>
@@ -132,16 +163,28 @@ window.bLazy = new Blazy({
 <div class="container">
 <div class="row line_foot">
 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-<h5>{{ text_information }}</h5>
-<ul class="list-unstyled">
+<img src="/image/catalog/footer-logo.png" style="max-width: 168px; height: auto; width: 100%" alt="logo" class="logo_footer"/>
+<div class="header__social-block"> 
+<a class="instagram-linc" href="https://www.instagram.com/s.flowersukraine/"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/inst.svg"/></a> 
+<a class="instagram-linc" href="https://t.me/sflowersukraine"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/telegr.svg"/></a> 
+<a class="instagram-linc" href="https://www.facebook.com/s.flowersukraine"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/fb.svg"/></a> 
+<a class="instagram-linc" href="https://www.youtube.com/channel/UCIO8BL2mFumq8p07mbJtIIQ"> <img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/youtube.svg"/></a>
+ <a class="instagram-linc" href="callto:{{ modern_skype_footer[language_id] }}"><img style="height:auto;" src="/catalog/view/theme/modern/image/social-ico/skype.svg"/></a>
+</div>
+ <a class="footer-tel"href="tel:{{ modern_telephone_footer[language_id] }}">{{ modern_telephone_footer[language_id] }}</a>
+</div>
+
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+<h5 class="accordion">{{ text_information }}</h5>
+<ul class="list-unstyled panel">
 {% for information in informations %}
 <li><a href="{{ information['href'] }}">{{ information['title'] }}</a></li>
 {% endfor %}
 </ul>
 </div>
 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-<h5>{{ text_service }}</h5>
-<ul class="list-unstyled">
+<h5 class="accordion">{{ text_service }}</h5>
+<ul class="list-unstyled panel">
 {% if (modern_sitemap_footer != 1) %}
 <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
 {% endif %}
@@ -156,8 +199,8 @@ window.bLazy = new Blazy({
 </div>
 <div class="clearfix visible-xs"></div>
 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-<h5>{{ text_account }}</h5>
-<ul class="list-unstyled">
+<h5 class="accordion">{{ text_account }}</h5>
+<ul class="list-unstyled panel">
 {% if (modern_account_footer != 1) %}
 <li><a href="{{ account }}">{{ text_account }}</a></li>
 {% endif %}
@@ -174,8 +217,8 @@ window.bLazy = new Blazy({
 </ul>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-<h5>{{ text_extra }}</h5>
-<ul class="list-unstyled" >
+<h5 class="accordion">{{ text_extra }}</h5>
+<ul class="list-unstyled panel" >
 {% if (modern_manufacturer_footer != 1) %}
 <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
 {% endif %}
@@ -192,7 +235,8 @@ window.bLazy = new Blazy({
 </ul>
 </div>
 <div class="clearfix visible-xs "></div> 
-<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> 
+<!-- start social link    -----------------    -----    -----------------  -->
+{# <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> 
 {% if (modern_top_links2 ) %}
 <div class="footer_add">
 <div class="footer_socialpay">{{ text_footer_social }}</div>
@@ -204,22 +248,41 @@ window.bLazy = new Blazy({
 {% endfor %}
 </div>
 </div>
-{% endif %}
+{% endif %} #}
+<!-- end  social link --------------------------------------------- -->
 <div class="clearfix"></div>
-{% if (footer_pay is not empty) %}
-<div class="footer_socialpay">{{ text_footer_pay }}</div>
-<img class="img-responsive rigimg" alt="payment" title="payment" src="{{ footer_pay }}">
-{% endif %}
+
+
+
 </div>
 <div class="clearfix"></div>
 <span class="col-sm-12 counter-footer">
 {{ modern_counter }}
 </span>
 <div class="clearfix"></div>
+
+
+<div class="footer_down">
+<div class="left-footer-block">Copyright © 2021. Все права защищены</div>
+{% if (footer_pay is not empty) %}
+<div class="right-footer-block">
+<div class="footer_socialpay">{{ text_footer_pay }}</div>
+{# <img class="img-responsive rigimg" alt="payment" title="payment" src="{{ footer_pay }}"> #}
+<img src="/catalog/view/theme/modern/image/pay-var/privat.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/master-card.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/maestro.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/vis-el.png"   />
+<img src="/catalog/view/theme/modern/image/pay-var/visa.png"   />
 </div>
+{% endif %}
+
+ </div>
+
 </div>
+
+</?div>
 </footer>
-<!-- Testing OPENCART IVAN petrushchack  dc
+<!-- Testing OPENCART IVAN  test
 OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
 Please donate via PayPal to donate@opencart.com
 //-->
@@ -320,4 +383,21 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <script>
 function map_slide(){$(window).width()<750?($("#map123").css({height:hoverHeight}),$("*").removeClass("filter_map"),$("*").remove(".img_map"),$("*").remove(".block-contacts2")):($(".img_map").click(function(){$("#map123").stop().animate({height:hoverHeight},speed),$("*").removeClass("filter_map"),$("*").remove(".img_map"),$("*").remove(".block-contacts2");var a=$("body").height();$("html,body").animate({scrollTop:a},speed)}),$(".footer_contacts").click(function(){$("#map123").stop().animate({height:hoverHeight},speed),$("*").removeClass("filter_map"),$("*").remove(".img_map"),$("*").remove(".block-contacts2");var a=$("body").height();$("html,body").animate({scrollTop:a},speed)}))}var speed=1e3,originalHeight=50,hoverHeight=320;map_slide();
 </script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+<script src="//code.jivosite.com/widget/OR5iuEy6je" async></script>
 </body></html>
