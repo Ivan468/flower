@@ -1658,8 +1658,12 @@ li.active a.tab-linck:after {
 .fix_scroll_addit{position:relative!important}
 .quickw2 .nav-tabs>li{float:none}
 .quickw2,.fastorder2{padding:15px}
-.aridius_cart_body{padding:15px}
-.text_name{width:36%}
+.aridius_cart_body{padding:10px}
+.text_name{width:24%}
+.aridius_cart_body .table>thead>tr>th, .aridius_cart_body .table>tbody>tr>th, .aridius_cart_body .table>tfoot>tr>th, .aridius_cart_body .table>thead>tr>td, .aridius_cart_body .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 4px;}
+.aridius_cart_body a{color: #956D84;}
+.aridius_cart_body  .btn-cart {color: white;}
 .mfp-container{padding-left:0!important;padding-right:0!important}
 .mfp-content{top:0;vertical-align:middle!important}
 .quickview_mfp .mfp-content,.popupsize_mfp{vertical-align:top!important}
@@ -2082,7 +2086,7 @@ footer h5{font-size:12px;letter-spacing:1px}
 .foto_cart{
     /* display:none */
 }
-
+.pryvat-bank-img { max-width: 118px;}
 .cat_news{width:100%!important}
 .icon_size_wish, .icon_size_comp {font-size: 1.2em}
 .compare_set, .wishlist_set {height: 30px;width: 30px;border-radius: 30px;background-color: rgba(255,255,255,0.9)}

@@ -4,7 +4,6 @@
 .simple-content fieldset {
     text-align: left;
 }
-
 .simple-content fieldset h3 {
     margin: 0;
 }
@@ -17,7 +16,9 @@
     display: inline-flex;
     max-width: initial;
     align-items: center;
-    justify-content: center
+    justify-content: center;
+    width: 200px;
+    height: 37px;
 }
 .simple-content .buttons {
     margin: 0px 0px 15px 0px;
@@ -674,9 +675,8 @@
     clear:both;
 }
 .simple-content .checkout-heading {
-    background-color: #f5f5f5;
-    border-color: #ddd;
-    color: #333;
+    background-color: #956D84;
+    color: white;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     padding: 10px 15px;

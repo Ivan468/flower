@@ -10,13 +10,13 @@ $_['button_next']                    = 'Оплатить';
 
 // Text
 $_['text_cart']                      = 'Корзина';
-$_['text_checkout_customer']         = 'Покупатель';
+$_['text_checkout_customer']         = 'Данные отправителя';
 $_['text_checkout_customer_login']   = 'Я зарегистрирован';
 $_['text_checkout_customer_cancel']  = 'Отмена';
 $_['text_checkout_shipping_method']  = 'Способ доставки';
 $_['text_checkout_payment_method']   = 'Способ оплаты';
 $_['text_checkout_payment_address']  = 'Адрес оплаты';
-$_['text_checkout_shipping_address'] = 'Адрес доставки';
+$_['text_checkout_shipping_address'] = 'Данные получателя';
 $_['text_city']                      = 'Начните набирать Ваш город и выберите его из списка';
 $_['text_shipping_address']          = 'Введите Ваш адрес для получения полной информации по доставке';
 $_['text_payment_address']           = 'Введите Ваш адрес для получения полной информации по оплате';
@@ -34,7 +34,6 @@ $_['text_add_new']                   = 'Добавить новый адрес';
 $_['text_your_company']              = 'Данные организации';
 $_['text_select_address']            = 'Выберите адрес';
 $_['text_proceed_payment']           = 'Подождите... Происходит переход к оплате';
-$_['text_checkout_shipping_address'] = 'Адрес доставки';
 $_['text_payment_form_title']        = 'Оплата';
 $_['text_account_created']           = 'Ваш аккаунт создан! Вы можете перейти к оплате заказа!';
 $_['text_need_save_changes']         = 'Необходимо сохранить изменения перед оплатой!';
