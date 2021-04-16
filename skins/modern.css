@@ -1754,13 +1754,13 @@ a.plus-link{position:relative;right:-30px;text-align:left;top:-30px;background:t
     display: none;}
 .product-layoutcatnew .product-layout2 .cart, .product-layoutmod .product-layout2 .cart {
     margin-bottom: 5px;display: flex;flex-direction: row-reverse;
-    align-items: baseline;justify-content: space-evenly;padding: 5px;
+    align-items: baseline;justify-content: space-evenly;padding:0px 5px 5px;
 }
 .positionsticker {right: 0px}
 .price-new, .product-thumb .price, #cart_block .price {font-size:22px}
 .btn-cartpr,.btn-instock, .btn-instock2 {font-size:12px;     width: 100px;}
 .button_img_quick{height: 50px;width: 50px;margin-left: -25px;font-size: 15px}
-.product-thumb h4 {overflow: hidden;font-size: 15px}
+.product-thumb h4 {overflow: hidden;font-size: 15px; min-height: 35px; margin: 0px;}
 .product-thumb h4 a {font-size: 13px; padding: 0 5px;}
 .block_wish_comp .wishlist, .block_wish_comp .compare, .effect-hover .wishlist, .effect-hover .compare, .effect_hover_wc .wishlist, .effect_hover_wc .compare{font-size: 11px}
 #product-tab .tab_mob_main {border-bottom: 1px solid #ddd;margin-bottom: 20px}
