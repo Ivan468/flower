@@ -1,0 +1,26 @@
+<div id="cart" class="btn-group btn-block">
+<button type="button" data-loading-text="{{ text_loading }}" class="btn btn-inverse btn-block btn-lg cart_popup">
+{% if (modern_header_transp != 1 and class == 'common-home' and modern_header_var) %}
+<img id="frame2" class="img-responsive cartphotos" alt="cart" title="cart" src="{{ modern_cart_img_mini }}" data-src-desk="{{ modern_cart_img_mini }}" data-src-mob="{% if (modern_img_cartmob) %}{{ modern_img_cartmob }}{% else %}{{ modern_cart_img_mini }}{% endif %}">
+{% else %}
+<img id="frame2" class="img-responsive cartphotos" alt="cart" title="cart" src="{{ modern_cart_img }}" data-src-desk="{{ modern_cart_img }}" data-src-mob="{% if (modern_img_cartmob) %}{{ modern_img_cartmob }}{% else %}{{ modern_cart_img }}{% endif %}">
+{% endif %}
+<span><span id="cart-total">{{ text_items }}</span>&nbsp;<span class="caret hidden-xs"></span></span></button>
+<script>
+$(".cart_popup").click(function(){$.magnificPopup.open({fixedContentPos:!0,items:{src:"index.php?route=common/aridius_cart/info"},type:"ajax",mainClass:"mfp-fade"})});
+</script>
+<script>
+	var value_src_desk = $('#frame2').attr('data-src-desk');
+	var value_src_mob = $('#frame2').attr('data-src-mob');
+	function cartMob() {
+	$('#frame2').attr('src', value_src_mob);
+	}
+	function cartDesk() {
+	var value_src_norm = $('#frame2').attr('src');
+		if (value_src_desk != value_src_norm) {
+			$('#frame2').attr('src', value_src_desk);
+		}
+	}
+	scrWidthCheck(cartDesk,cartMob);
+</script>
+</div>
