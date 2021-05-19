@@ -1,0 +1,131 @@
+<div class="grid-container">
+  <!-- <div class="offer">
+    <h2>
+        Скидки <span style="color: white"> -6% </span>на все букеты
+        <span style="color: white">по предзаказу</span> на 8 марта
+      </h2>
+  
+  </div> -->
+  <div class="crystal">
+    <h2>
+      Подкормка <span style="color: #956d84">Crystal Clear</span> продливает
+      свежесть цветов от<span style="color: #956d84"> 30 до 100%</span>
+    </h2>
+  </div>
+  <div class="firm-crds">
+    <h2>
+      <span style="color: #956d84">Фирменная</span> карточка с Вашим текстом
+    </h2>
+  </div>
+  <div class="rafaello">
+    <h2>
+      При заказе цветов <span style="color: #956d84"> в коробке</span>, конфеты
+      <span style="color: #956d84"> Rafaello в подарок</span> к закзазу
+    </h2>
+  </div>
+</div>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .grid-container a {
+    width: 100%;
+    display: block;
+    height: 100%;
+    padding: 31px;
+  }
+  .grid-container {
+    height: 100%;
+    margin: 0;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    grid-template-rows: 1fr 1fr;
+    gap: 22px 22px;
+  }
+
+  .grid-container .offer {
+    background: center/ cover no-repeat
+      url(https://flowers-ukraine.com/catalog/view/theme/modern/image/gifts/8marth.jpg);
+  }
+  .firm-crds h2,
+  .rafaello h2,
+  .crystal h2 {
+    max-width: 412px;
+  }
+  .grid-container .offer h2 {
+    max-width: 412px;
+    margin-left: auto;
+    /*  display:none */
+  }
+
+  .grid-container .firm-crds {
+    background: center/ cover no-repeat
+      url(https://flowers-ukraine.com/catalog/view/theme/modern/image/gifts/firm-cards.jpg);
+  }
+
+  .grid-container .crystal {
+    background: right/ cover no-repeat
+      url(https://flowers-ukraine.com/catalog/view/theme/modern/image/gifts/gifts-all.jpg);
+  }
+  .grid-container .rafaello a {
+    padding-top: 110px;
+  }
+  .grid-container .rafaello {
+    background: center/ cover no-repeat
+      url(https://flowers-ukraine.com/catalog/view/theme/modern/image/gifts/rafaello.jpg);
+  }
+
+  .grid-container > div {
+    height: 396px;
+  }
+
+  .grid-container h2 {
+    font-family: Museo Sans Cyrl;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 50px;
+    color: #333333;
+  }
+  @media (max-width: 768px) {
+    .grid-container .rafaello a {
+      padding-top: 40px;
+    }
+
+    .grid-container .rafaello h2 {
+      max-width: 220px;
+    }
+    .grid-container h2 {
+      font-family: Museo Sans Cyrl;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 25px;
+      color: #333333;
+    }
+
+    .grid-container > div {
+      max-height: 271px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(291px, 1fr));
+      grid-template-rows: 1fr 1fr;
+      gap: 15px 22px;
+    }
+    .grid-container .offer h2 {
+      max-width: 222px;
+      margin-left: auto;
+      /*  display:none */
+    }
+  }
+  @media (max-width: 450px) {
+    .grid-container .rafaello {
+      background: center/ cover no-repeat
+        url(https://flowers-ukraine.com/catalog/view/theme/modern/image/gifts/rafaello-mob.jpg);
+    }
+  }
+</style>
