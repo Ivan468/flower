@@ -1498,9 +1498,6 @@ footer .list-unstyled li,footer .list-unstyled li a {font-size: 14px;}
 .fixslbann3{padding-right:0;padding-left:6px}
 .tomvmenu .opacityhv{display:none}
 .column_width2{width:602px}
-.table-cell-header {
-    background: #fffffffc;
-}
 }
 @media (min-width: 992px) {
 .drop_tel:hover .dropdown-menu {display: block}
@@ -2211,6 +2208,10 @@ span.price-old {
 body {
     background: #FFF;
 }
+.tel_block-icon {
+    max-height: 25px;
+    margin-right: 11px;
+}
 }
 
 @media screen and (max-width: 500px) {
@@ -2447,5 +2448,9 @@ button.btn.btn-inverse.btn-block.btn-lg.cart_popup, div#cart > .btn, #cart {
     max-width: none;
     height: 30px;
     margin-top: 0px;
+}
+.tel_block-icon {
+    max-height: 25px;
+    margin-right: 0px;
 }
 }
