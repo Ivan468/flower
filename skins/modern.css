@@ -2138,8 +2138,12 @@ footer h5{font-size:12px;letter-spacing:1px}
     gap: 0px;
     grid-template-columns: 90px 1fr;
 }
-
-
+.modal-body .h4 {
+    text-align: center; line-height: 1.7;
+}
+a.popup-youtube { padding: 10px 0px 0px 0px;
+    display: block;
+}
 	.ord #boc_submits{width: 77px;
 		font-size: 0px;  background: center/ auto  no-repeat  url(../../image/bg-btn-arr.svg), right/ contain no-repeat url(../../image/bg-button.png),  #956D84!important;
 	height: 56px;}
@@ -2439,7 +2443,16 @@ button.btn.btn-inverse.btn-block.btn-lg.cart_popup, div#cart > .btn, #cart {
     padding-left:0;margin: 0;
 }
 }
+@media (max-width: 375px) {
 
+   .video_cat+.list_block .caption span,
+    .video_cat+.list_block .caption i {
+   display: none;
+    }
+    .video_cat+.list_block .caption a, .video_cat+.list_block .caption {
+        padding-top: 0!important;
+    }
+}
 @media (max-width: 320px) {
     .tel_block-icon svg {
     width: 24px;
@@ -2453,4 +2466,7 @@ button.btn.btn-inverse.btn-block.btn-lg.cart_popup, div#cart > .btn, #cart {
     max-height: 25px;
     margin-right: 0px;
 }
+.video_cat+.list_block .caption a, .video_cat+.list_block .caption {
+        padding-top: 8px!important;
+    }
 }
